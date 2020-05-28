@@ -1,4 +1,4 @@
-package entity;
+package com.wildcodeschool.synergieFamily.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
