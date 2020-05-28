@@ -29,5 +29,3 @@ public class Diploma {
         this.name = name;
     }
 }
-
-
