@@ -1,4 +1,4 @@
-package entity;
+package com.wildcodeschool.synergieFamily.entity;
 
 public class Diploma {
 
