@@ -1,4 +1,4 @@
-package entity;
+package com.wildcodeschool.synergieFamily.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +11,7 @@ public class Diploma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
 
     public Diploma(int id, String name) {
