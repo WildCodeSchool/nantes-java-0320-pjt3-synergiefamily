@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Filter</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"
@@ -12,10 +14,17 @@
             type="text/javascript"
             src="https://code.jquery.com/jquery-2.1.1.min.js"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     <script>
         $(document).ready(function () {
             $("select").material_select();
+        });
+        $(document).ready(function () {
+            $(".datepicker").pickadate({
+                format: "dd/mm/yyyy"
+            });
         });
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -25,30 +34,27 @@
     <div class="row">
     <div class="col s12 m6">
         <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
+            <div class="card-content grey-text">
+                <h1><i class="material-icons left medium">filter_list</i>Recherches</h1>
                 <div class="input-field col s6">
-                    <input placeholder="Prénom" id="first_name" type="text" class="validate">
-                    <label for="first_name"></label>
+                    <input id="first_name" type="text" class="validate">
+                    <label for="first_name">Prénom</label>
                 </div>
                 <div class="input-field col s6">
-                    <input placeholder="Nom" id="last_name" type="text" class="validate">
-                    <label for="last_name"></label>
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Nom</label>
                 </div>
-                <div class="input-field col s12">
-                    <input id="birthday" type="date" class="datepicker">
-                    <label for="birthday"></label>
-                </div>
-                <div class="input-field col s12">
+                <div class="input-field col s6">
                     <input id="email" type="email" class="validate">
                     <label for="email">Email</label>
                 </div>
-                <div class="input-field col s12">
-                    <input placeholder="Téléphone" id="telephone" type="tel" class="validate">
-                    <label for="telephone"></label>
+                <div class="input-field col s6">
+                    <input id="telephone" type="tel" class="validate">
+                    <label for="telephone">Téléphone</label>
                 </div>
                 <div class="input-field col s12">
-                    <input placeholder="Adresse" id="address" type="text" class="validate">
-                    <label for="address"></label>
+                    <input id="address" type="text" class="validate">
+                    <label for="address">Adresse</label>
                 </div>
                     <div class = "input-field col s12">
                             <input id = "vehicule" type = "checkbox" checked = "checked" />
@@ -68,14 +74,58 @@
                             </select>
                         </div>
                     </form>
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <select multiple>
+                                    <option value="" disabled selected>Années d'expériences</option>
+                                    <option value="1">0 < 3 ans</option>
+                                    <option value="2">3 < 5 ans</option>
+                                    <option value="3">5 < 10 ans</option>
+                                    <option value="4"> >10 ans </option>
+                                </select>
+                            </div>
+                        </form>
                     <div class="input-field col s12">
-                        <input placeholder="Compétences" id="skill" type="text" class="validate">
-                        <label for="skill"></label>
+                        <input id="skill" type="text" class="validate">
+                        <label for="skill">Compétences</label>
                     </div>
+                        </div>
+                    <div class="row">
+                        <div class="col s6 input-field">
+                            <input id="test" type="date" class="datepicker" value="05/03/2019">
+                            <label for="test">Date de début de contrat</label>
+                        </div>
+                        <div class="row">
+                            <div class="col s6 input-field">
+                                <input id="test1" type="date" class="datepicker" value="05/03/2019">
+                                <label for="test1">Date de fin de contrat</label>
+                            </div>
                 </div>
+                        </form>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <select multiple>
+                                        <option value="" disabled selected>Public concerné</option>
+                                        <option value="1">3/6 ans</option>
+                                        <option value="2">6/8 ans</option>
+                                        <option value="3">9/12 ans</option>
+                                        <option value="4">12/15 ans</option>
+                                        <option value="5">16/18 ans</option>
+                                        <option value="6">18/25 ans</option>
+                                        <option value="7">25/35 ans</option>
+                                        <option value="8">35/50 ans</option>
+                                        <option value="9">65/+77 ans</option>
+                                    </select>
+                                </div>
+                            </form>
 
         </div>
-    </div>
+                        <div class="row">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Recherche
+                            <i class="material-icons left">search</i>
+                        </button>
 </div>
     </div>
 </body>
