@@ -1,8 +1,25 @@
 /*PAGE HOME 1*/
+body {
+    background-color: #f7f7f7;
+}
+.logoSynergie img {
+    width: 18rem;
+    height: 10rem;
+}
 
+.logoSynergie {
+    padding: 2rem;
+}
 
+.connexion {
+    font-family: 'Ubuntu',sans-serif;
+    font-weight: bold;
+}
 
-
+#connexion {
+    display: flex;
+    justify-content: center;
+}
 
 
 /*PAGE PROFIL 2*/
