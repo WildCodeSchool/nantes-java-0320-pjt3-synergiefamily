@@ -14,7 +14,7 @@ public class User {
 
     private String email;
     private String password;
-    private int idRole;
+    private Role role;
 
     public User() {
 
@@ -44,11 +44,11 @@ public class User {
         this.password = password;
     }
 
-    public int getIdRole() {
-        return this.idRole;
+    public Role getRole() {
+        return this.role;
     }
 
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
