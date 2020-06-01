@@ -14,7 +14,8 @@ public class User {
 
     private String email;
     private String password;
-    private Role role;
+    /* TODO : mettre en place ManyToOne */
+    //private Role role;
 
     public User() {
 
@@ -44,11 +45,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    /*public Role getRole() {
         return this.role;
     }
 
     public void setRole(Role role) {
         this.role = role;
-    }
+    }*/
 }
