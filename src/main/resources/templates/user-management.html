@@ -17,26 +17,37 @@
 
         <h2>Gestion des utilisateurs</h2>
 
-        <div class="newUserButtonDiv">
-            <input class="newUserButton" type="submit" value="+ Ajouter un utilisateur">
-        </div>
+        <a class="waves-effect waves-light btn"><i class="material-icons left">+</i>AJOUTER UN UTILISATEUR</a>
 
-        <table>
-            <tr>
-                <th>Email</th>
-                <th>Rôle</th>
-                <th>Actions</th>
-            </tr>
-            <tr> <!--TODO: make dynamic this table with Thymeleaf-->
-                <TD>test1@exemple.com</TD>
-                <TD>ADMIN</TD>
-                <TD>LOGOS</TD><!-- TODO: add 'edit' and 'delete' logos -->
-            </tr>
+        <table class="striped ">
+            <thead
+                <tr>
+                    <th>Email</th>
+                    <th>Rôle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> <!--TODO: make dynamic this table with Thymeleaf-->
+                    <td>test1@exemple.com</td>
+                    <td>ADMIN</td>
+                    <td>LOGOS</td><!-- TODO: add 'edit' and 'delete' logos -->
+                </tr>
+                <tr>
+                    <td>test2@example.com</td>
+                    <td>COORDINATOR</td>
+                    <td>LOGOS</td>
+                </tr>
+                <tr>
+                    <td>test3@example.com</td>
+                    <td>ADMIN</td>
+                    <td>LOGOS</td>
+                </tr>
+            </tbody>
         </table>
-
     </main>
 
 
-
+<script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 </html>
