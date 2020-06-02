@@ -72,8 +72,15 @@ body {
 
 
 /*PAGE RECHERCHE*/
-body {
-    background: red;
+
+
+#card-animateur{
+    display: flex;
+    border: solid 2px black;
+    width: 100vh;
+    height: 50vh;
+    margin: auto;
+
 }
 
 
