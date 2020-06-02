@@ -31,8 +31,11 @@ body {
 
 
 
-/*PAGE UTILISATEURS 3*/
-
+/* USER MANAGEMENT PAGE */
+.userEditionIcon {
+    height: 16px;
+    width: 16px;
+}
 
 
 

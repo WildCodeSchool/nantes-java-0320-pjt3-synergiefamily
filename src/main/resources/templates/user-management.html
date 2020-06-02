@@ -5,6 +5,7 @@
     <title>Gestion des utilisateurs</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -31,17 +32,26 @@
                 <tr> <!--TODO: make dynamic this table with Thymeleaf-->
                     <td>test1@exemple.com</td>
                     <td>ADMIN</td>
-                    <td>LOGOS</td><!-- TODO: add 'edit' and 'delete' logos -->
+                    <td>
+                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
+                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                    </td>
                 </tr>
                 <tr>
                     <td>test2@example.com</td>
                     <td>COORDINATOR</td>
-                    <td>LOGOS</td>
+                    <td>
+                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
+                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                    </td>
                 </tr>
                 <tr>
                     <td>test3@example.com</td>
                     <td>ADMIN</td>
-                    <td>LOGOS</td>
+                    <td>
+                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
+                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                    </td>
                 </tr>
             </tbody>
         </table>
