@@ -7,10 +7,6 @@ body {
     height: 10rem;
 }
 
-.logoSynergie {
-    padding: 2rem;
-}
-
 .connexion {
     font-family: 'Ubuntu',sans-serif;
     font-weight: bold;
@@ -42,10 +38,6 @@ body {
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
-#leader {
-    display: flex;
-    justify-content: center;
-}
 
 
 
