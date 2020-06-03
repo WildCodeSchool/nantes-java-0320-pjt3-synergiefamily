@@ -22,14 +22,15 @@ body {
 }
 
 
-/*PAGE PROFIL 2*/
+/* PROFILE PAGE */
+.profileContent {
+    margin-left: 5em;
+    margin-right: 5em;
+}
 
-
-
-
-
-
-
+.saveButton {
+    text-align: right;
+}
 
 /* USER MANAGEMENT PAGE */
 .userEditionIcon {
@@ -41,12 +42,6 @@ body {
     margin-left: 5em;
     margin-right: 5em;
 }
-
-
-
-
-
-
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
