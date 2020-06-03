@@ -5,6 +5,7 @@
     <title>Gestion des utilisateurs</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -16,27 +17,49 @@
     <main class="userManagementPageContent">
 
         <h2>Gestion des utilisateurs</h2>
+        <!-- TODO: put the same font-size to all the h2 from the whole website. -->
 
-        <div class="newUserButtonDiv">
-            <input class="newUserButton" type="submit" value="+ Ajouter un utilisateur">
-        </div>
+        <a class="waves-effect waves-light btn black-text white darken-1"><i class="material-icons left">+</i>AJOUTER UN UTILISATEUR</a>
+        <!--TODO: replace the + char by a + bold icon -->
 
-        <table>
-            <tr>
-                <th>Email</th>
-                <th>Rôle</th>
-                <th>Actions</th>
-            </tr>
-            <tr> <!--TODO: make dynamic this table with Thymeleaf-->
-                <TD>test1@exemple.com</TD>
-                <TD>ADMIN</TD>
-                <TD>LOGOS</TD><!-- TODO: add 'edit' and 'delete' logos -->
-            </tr>
+        <table class="striped ">
+            <thead
+                <tr>
+                    <th>Email</th>
+                    <th>Rôle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> <!--TODO: make dynamic this table with Thymeleaf-->
+                    <td>test1@exemple.com</td>
+                    <td>ADMIN</td>
+                    <td>
+                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
+                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                    </td>
+                </tr>
+                <tr>
+                    <td>test2@example.com</td>
+                    <td>COORDINATOR</td>
+                    <td>
+                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
+                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                    </td>
+                </tr>
+                <tr>
+                    <td>test3@example.com</td>
+                    <td>ADMIN</td>
+                    <td>
+                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
+                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                    </td>
+                </tr>
+            </tbody>
         </table>
-
     </main>
 
 
-
+<script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 </html>
