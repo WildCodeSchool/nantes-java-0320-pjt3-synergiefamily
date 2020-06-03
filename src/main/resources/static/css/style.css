@@ -42,6 +42,10 @@ body {
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
+#leader {
+    display: flex;
+    justify-content: center;
+}
 
 
 
