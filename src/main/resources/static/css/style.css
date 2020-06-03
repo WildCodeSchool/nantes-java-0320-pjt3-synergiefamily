@@ -81,16 +81,9 @@ body {
 
 /*PAGE RECHERCHE*/
 
-
-#card-animateur{
-    display: flex;
-    border: solid 2px black;
-    width: 100vh;
-    height: 50vh;
-    margin: auto;
-
+.card_check{
+   margin-left: 10vh;
 }
-
 
 @media only screen and (min-width: 768px) {
     /*PAGE HOME 1*/
