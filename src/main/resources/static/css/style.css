@@ -82,7 +82,14 @@ body {
     margin: auto;
 
 }
-
+/*FRAGMENT NAV*/
+.side-nav {
+    background-color: #f7f7f7;
+}
+header img {
+    width: 15rem;
+    height: 10rem;
+}
 
 @media only screen and (min-width: 768px) {
     /*PAGE HOME 1*/
