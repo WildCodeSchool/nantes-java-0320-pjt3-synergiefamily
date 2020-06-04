@@ -89,6 +89,9 @@ header img {
     width: 15rem;
     height: 10rem;
 }
+header ul li:nth-child(2) {
+    margin-top: 3rem;
+}
 
 @media only screen and (min-width: 768px) {
     /*PAGE HOME 1*/
