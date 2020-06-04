@@ -7,10 +7,6 @@ body {
     height: 10rem;
 }
 
-.logoSynergie {
-    padding: 2rem;
-}
-
 .connexion {
     font-family: 'Ubuntu',sans-serif;
     font-weight: bold;
@@ -22,14 +18,15 @@ body {
 }
 
 
-/*PAGE PROFIL 2*/
+/* PROFILE PAGE */
+.profileContent {
+    margin-left: 5em;
+    margin-right: 5em;
+}
 
-
-
-
-
-
-
+.saveButton {
+    text-align: right;
+}
 
 /* USER MANAGEMENT PAGE */
 .userEditionIcon {
@@ -41,12 +38,6 @@ body {
     margin-left: 5em;
     margin-right: 5em;
 }
-
-
-
-
-
-
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
@@ -83,6 +74,15 @@ body {
 
 .card_check{
    margin-left: 10vh;
+}
+
+/*FRAGMENT NAV*/
+.side-nav {
+    background-color: #f7f7f7;
+}
+header img {
+    width: 15rem;
+    height: 10rem;
 }
 
 @media only screen and (min-width: 768px) {
