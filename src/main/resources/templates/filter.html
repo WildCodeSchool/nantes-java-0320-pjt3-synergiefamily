@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<header></header>
 <body>
 <div class="row">
     <div class="col s12 m6 offset-l3">
@@ -46,11 +45,11 @@
                     <input id="address" type="text" class="validate">
                 </div>
                 <div class="form-field">
-                    <input id = "vehicule" type = "checkbox">
-                    <label for = "vehicule">Véhiculé
+                    <input id="vehicule" type = "checkbox">
+                    <label for="vehicule">Véhiculé
                     </label>
                 </div>
-                <div class="form-field col s6">
+                <div class="form-field">
                     <select multiple>
                         <option value="" disabled selected>Diplômes</option>
                         <option value="1">BAFA</option>
@@ -61,14 +60,10 @@
                         <option value="6">DEJEPS</option>
                     </select>
                 </div>
-                <div class="form-field col s6">
-                    <select multiple>
-                        <option value="" disabled selected>Années d'expériences</option>
-                        <option value="1">0 < 3 ans</option>
-                        <option value="2">3 < 5 ans</option>
-                        <option value="3">5 < 10 ans</option>
-                        <option value="4"> >10 ans </option>
-                    </select>
+                <div class="form-field">
+                    <label for="xp">Années d'expériences
+                    </label>
+                    <input id="xp" type="text" class="validate">
                 </div>
                 <div class="form-field">
                     <label for="skill">Compétences
