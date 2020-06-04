@@ -72,15 +72,10 @@ body {
 
 /*PAGE RECHERCHE*/
 
-
-#card-animateur{
-    display: flex;
-    border: solid 2px black;
-    width: 100vh;
-    height: 50vh;
-    margin: auto;
-
+.card_check{
+   margin-left: 10vh;
 }
+
 /*FRAGMENT NAV*/
 .side-nav {
     background-color: #f7f7f7;
