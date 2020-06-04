@@ -1,0 +1,150 @@
+/*PAGE HOME 1*/
+body {
+    background-color: #f7f7f7;
+}
+.logoSynergie img {
+    width: 18rem;
+    height: 10rem;
+}
+
+.connexion {
+    font-family: 'Ubuntu',sans-serif;
+    font-weight: bold;
+}
+
+#connexion {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* PROFILE PAGE */
+.profileContent {
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+.saveButton {
+    text-align: right;
+}
+
+/* USER MANAGEMENT PAGE */
+.userEditionIcon {
+    height: 16px;
+    width: 16px;
+}
+
+.userManagementPageContent {
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+/*PAGE FORMULAIRE CREATION UTILISATEUR*/
+
+
+
+
+
+
+
+/*PAGE ANIMATEUR 4*/
+
+
+
+
+
+
+
+
+
+/*PAGE FORMULAIRE CREATION ANIMATEUR*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*PAGE RECHERCHE*/
+
+.card_check{
+   margin-left: 10vh;
+}
+
+/*FRAGMENT NAV*/
+.side-nav {
+    background-color: #f7f7f7;
+}
+header img {
+    width: 15rem;
+    height: 10rem;
+}
+header ul li:nth-child(2) {
+    margin-top: 3rem;
+}
+
+@media only screen and (min-width: 768px) {
+    /*PAGE HOME 1*/
+
+
+
+
+
+
+    /*PAGE PROFIL 2*/
+
+
+
+
+
+
+
+
+    /*PAGE UTILISATEURS 3*/
+
+
+
+
+
+
+
+
+    /*PAGE FORMULAIRE CREATION UTILISATEUR*/
+
+
+
+
+
+
+
+    /*PAGE ANIMATEUR 4*/
+
+
+
+
+
+
+
+
+
+    /*PAGE FORMULAIRE CREATION ANIMATEUR*/
+
+
+
+
+
+
+
+
+
+
+
+
+    /*PAGE RECHERCHE*/
+
+}
