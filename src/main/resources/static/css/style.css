@@ -18,6 +18,19 @@ body {
 }
 
 
+/*PAGE PROFIL 2*/
+
+
+
+
+
+
+/*PAGE UTILISATEURS 3*/
+
+
+
+
+
 /* PROFILE PAGE */
 .profileContent {
     margin-left: 5em;
@@ -41,7 +54,11 @@ body {
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
-
+#buttonSave {
+    display: flex;
+    margin-top: 3rem;
+    text-align: center;
+}
 
 
 
