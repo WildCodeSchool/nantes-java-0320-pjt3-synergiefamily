@@ -31,8 +31,26 @@ body {
 
 
 
+/* PROFILE PAGE */
+.profileContent {
+    margin-left: 5em;
+    margin-right: 5em;
+}
 
+.saveButton {
+    text-align: right;
+}
 
+/* USER MANAGEMENT PAGE */
+.userEditionIcon {
+    height: 16px;
+    width: 16px;
+}
+
+.userManagementPageContent {
+    margin-left: 5em;
+    margin-right: 5em;
+}
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
@@ -71,16 +89,21 @@ body {
 
 /*PAGE RECHERCHE*/
 
-
-#card-animateur{
-    display: flex;
-    border: solid 2px black;
-    width: 100vh;
-    height: 50vh;
-    margin: auto;
-
+.card_check{
+   margin-left: 10vh;
 }
 
+/*FRAGMENT NAV*/
+.side-nav {
+    background-color: #f7f7f7;
+}
+header img {
+    width: 15rem;
+    height: 10rem;
+}
+header ul li:nth-child(2) {
+    margin-top: 3rem;
+}
 
 @media only screen and (min-width: 768px) {
     /*PAGE HOME 1*/

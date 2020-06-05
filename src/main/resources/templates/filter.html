@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Filter</title>
+    <title>Filter
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,37 +12,45 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<header th:replace="/nav.html :: nav-bar"></header>
 <div class="row">
-    <div class="col s12 l4 offset-l4">
-        <div class="card" >
+    <div class="col s12 m6 offset-l3">
+        <div class="card">
             <div class="card-action black-text">
                 <h5><i class="material-icons left small">filter_list</i>Recherches</h5>
             </div>
             <div class="card-content">
                 <div class="form-field col s6">
-                    <label for="first_name">Prénom</label>
+                    <label for="first_name">Prénom
+                    </label>
                     <input id="first_name" type="text" class="validate">
                 </div>
                 <div class="form-field col s6">
-                    <label for="last_name">Nom</label>
+                    <label for="last_name">Nom
+                    </label>
                     <input id="last_name" type="text" class="validate">
                 </div>
                 <div class="form-field">
-                    <label for="email">Email</label>
+                    <label for="email">Email
+                    </label>
                     <input id="email" type="email" class="validate">
                 </div>
                 <div class="form-field">
-                    <label for="telephone">Téléphone</label>
-                    <input id="telephone" type="tel" class="validate"></div>
+                    <label for="telephone">Téléphone
+                    </label>
+                    <input id="telephone" type="tel" class="validate">
+                </div>
                 <div class="form-field">
-                    <label for="address">Adresse</label>
+                    <label for="address">Adresse
+                    </label>
                     <input id="address" type="text" class="validate">
                 </div>
                 <div class="form-field">
-                    <input id = "vehicule" type = "checkbox">
-                    <label for = "vehicule">Véhiculé</label>
+                    <input id="vehicule" type = "checkbox">
+                    <label for="vehicule">Véhiculé
+                    </label>
                 </div>
-                <div class="form-field col s6">
+                <div class="form-field">
                     <select multiple>
                         <option value="" disabled selected>Diplômes</option>
                         <option value="1">BAFA</option>
@@ -52,25 +61,24 @@
                         <option value="6">DEJEPS</option>
                     </select>
                 </div>
-                <div class="form-field col s6">
-                    <select multiple>
-                        <option value="" disabled selected>Années d'expériences</option>
-                        <option value="1">0 < 3 ans</option>
-                        <option value="2">3 < 5 ans</option>
-                        <option value="3">5 < 10 ans</option>
-                        <option value="4"> >10 ans </option>
-                    </select>
+                <div class="form-field">
+                    <label for="xp">Années d'expériences
+                    </label>
+                    <input id="xp" type="text" class="validate">
                 </div>
                 <div class="form-field">
-                    <label for="skill">Compétences</label>
+                    <label for="skill">Compétences
+                    </label>
                     <input id="skill" type="text" class="validate">
                 </div>
                 <div class="form-field">
-                    <label for="test">Date de début de contrat</label>
+                    <label for="test">Date de début de contrat
+                    </label>
                     <input id="test" type="date" class="datepicker" value="05/03/2019">
                 </div>
                 <div class="form-field">
-                    <label for="test1">Date de fin de contrat</label>
+                    <label for="test1">Date de fin de contrat
+                    </label>
                     <input id="test1" type="date" class="datepicker" value="05/03/2019">
                 </div>
                 <div class="form-field">
@@ -96,18 +104,83 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("select").material_select();
-        });
-        $(document).ready(function () {
-            $(".datepicker").pickadate({
-                format: "dd/mm/yyyy"
+<div class="row">
+    <div class="col s12 m6 offset-l3">
+        <div class="container">
+            <span style="font-size: 1.2em;">1 élément sélectionné</span>
+            <button class="btn waves-effect waves-light right" type="submit" name="action">Envoyer un email
+                <i class="material-icons right">send</i>
+            </button>
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m6 offset-l3">
+        <div class="card horizontal">
+            <div class="card-content">
+                <div class="card_check">
+                    <p>
+                        <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
+                        <label for="filled-in-box">
+                        </label>
+                    </p>
+                </div>
+                <h5>Didier Drogba</h5>
+                <div class="content">
+                    <p><i class="tiny material-icons">phone</i>07 75 89 90 10 88</p>
+                    <p><i class="tiny material-icons">email</i>didierdrogba@synergie-family.com</p>
+                    <p><i class="tiny material-icons">home</i>13 rue du vélodrome, 13000 Marseille</p>
+                    <p><i class="tiny material-icons">directions_car</i>Oui</p>
+                    <br>
+                    <p>Age:<span> 37 ans</span></p>
+                    <p>EXP:<span> 7 ans</span></p>
+                    <br>
+                    <p class="collections-title">Diplômes</p>
+                    <div class="chip">
+                        BAFA
+                    </div>
+                    <div class="chip">
+                        BEP
+                    </div>
+                </div>
+                <p class="collections-title">Publics concernés</p>
+                <div class="chip">
+                    3/6ans
+                </div>
+                <div class="chip">
+                    6/8ans
+                </div>
+                <div class="chip">
+                    9/12ans
+                </div>
+                <br>
+                <br>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Voir la fiche</button>
+            </div>
+        </div>
+    </div>
+    <div class="container col s12 m6 offset-l6">
+        <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("select").material_select();
             });
-        });
-    </script>
+            $(document).ready(function () {
+                $(".datepicker").pickadate({
+                    format: "dd/mm/yyyy"
+                });
+            });
+        </script>
 </body>
 </html>
