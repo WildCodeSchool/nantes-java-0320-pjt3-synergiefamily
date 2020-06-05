@@ -25,8 +25,6 @@ body {
 
 
 
-
-
 /*PAGE UTILISATEURS 3*/
 
 
@@ -38,7 +36,11 @@ body {
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
-
+#buttonSave {
+    display: flex;
+    margin-top: 3rem;
+    text-align: center;
+}
 
 
 
