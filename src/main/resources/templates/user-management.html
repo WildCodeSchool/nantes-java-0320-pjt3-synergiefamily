@@ -1,28 +1,25 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Gestion des utilisateurs</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
+    <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
-
-<!--TODO: uncomment the next code line when header.html will be done.-->
-<!--<thblock th:include"fragments/header.html :: header"></thblock>-->
-
+<body class="user-management-body">
+<header th:replace="/nav.html :: nav-bar"></header>
     <main class="userManagementPageContent">
-
         <h2>Gestion des utilisateurs</h2>
         <!-- TODO: put the same font-size to all the h2 from the whole website. -->
 
         <a class="waves-effect waves-light btn black-text white darken-1"><i class="material-icons left">+</i>AJOUTER UN UTILISATEUR</a>
         <!--TODO: replace the + char by a + bold icon -->
-
-        <table class="striped ">
+        <!-- TODO REPLACE ICONS BLACK TEXT -->
+        <table class="striped">
             <thead
                 <tr>
                     <th>Email</th>
@@ -35,31 +32,29 @@
                     <td>test1@exemple.com</td>
                     <td>ADMIN</td>
                     <td>
-                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
-                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                        <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                     </td>
                 </tr>
                 <tr>
                     <td>test2@example.com</td>
                     <td>COORDINATOR</td>
                     <td>
-                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
-                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                        <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                     </td>
                 </tr>
                 <tr>
                     <td>test3@example.com</td>
                     <td>ADMIN</td>
                     <td>
-                        <img class="userEditionIcon" src="../static/image/pencil.svg" alt="edit">
-                        <img class="userEditionIcon" src="../static/image/trashbin.svg" alt="delete">
+                        <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                     </td>
                 </tr>
             </tbody>
         </table>
     </main>
-
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 </html>

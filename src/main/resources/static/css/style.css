@@ -18,10 +18,24 @@ body {
 }
 
 
+/*PAGE PROFIL 2*/
+
+
+
+
+
+
+/*PAGE UTILISATEURS 3*/
+
+
+
+
+
 /* PROFILE PAGE */
 .profileContent {
-    margin-left: 5em;
-    margin-right: 5em;
+    margin-left: 21rem;
+    margin-right: 10rem;
+    margin-top: 12rem;
 }
 
 .saveButton {
@@ -29,19 +43,27 @@ body {
 }
 
 /* USER MANAGEMENT PAGE */
-.userEditionIcon {
-    height: 16px;
-    width: 16px;
+
+.user-management-body{
+    display: flex;
+    flex-direction: row;
+    margin-left: 21rem;
+    margin-top: 3rem;
 }
 
 .userManagementPageContent {
     margin-left: 5em;
     margin-right: 5em;
+    width: 80%;
 }
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
-
+#buttonSave {
+    display: flex;
+    margin-top: 3rem;
+    text-align: center;
+}
 
 
 

@@ -11,10 +11,6 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-    //TODO DEPLACER LA METHODE PLUS TARD VOIR AVEC ALAN
-    @GetMapping("/filter")
-    public String getFilter(){
-        return "filter";
-    }
-
 }
+
+
