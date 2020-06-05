@@ -29,14 +29,18 @@ body {
 }
 
 /* USER MANAGEMENT PAGE */
-.userEditionIcon {
-    height: 16px;
-    width: 16px;
+
+.user-management-body{
+    display: flex;
+    flex-direction: row;
+    margin-left: 21rem;
+    margin-top: 3rem;
 }
 
 .userManagementPageContent {
     margin-left: 5em;
     margin-right: 5em;
+    width: 80%;
 }
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
