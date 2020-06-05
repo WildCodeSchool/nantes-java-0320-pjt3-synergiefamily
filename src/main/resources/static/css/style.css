@@ -20,8 +20,9 @@ body {
 
 /* PROFILE PAGE */
 .profileContent {
-    margin-left: 5em;
-    margin-right: 5em;
+    margin-left: 21rem;
+    margin-right: 10rem;
+    margin-top: 12rem;
 }
 
 .saveButton {
