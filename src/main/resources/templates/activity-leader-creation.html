@@ -15,8 +15,10 @@
 <h3 class="center-align">Information Animateur</h3>
     <div id="leader" class="row">
         <div class="col s12 m6 offset-l3">
-            <div class="card white" >
-                <div class="card-action black-text"></div>
+            <div class="card white">
+                <div class="card-action black-text">
+                    <h4 class="center-align">Information Animateur</h4>
+                </div>
                 <div class="card-content">
                     <div class="form-field col s6">
                         <input id="first_name" type="text" class="validate" placeholder="Prénom">
@@ -25,7 +27,8 @@
                         <input id="last_name" type="text" class="validate" placeholder="Nom">
                     </div>
                     <div class="form-field col s6">
-                        <input id="birthdate" type="date" class="datepicker" placeholder="Date de Naissance">
+                        <label for="birthdate" type="date" title="Clique-ici">Date de Naissance</label>
+                        <input id="birthdate" type="text" class="datepicker">
                     </div>
                     <div class="form-field">
                         <input id="email" type="email" class="validate" placeholder="Email">
@@ -63,10 +66,10 @@
                         <input id="xp" type="number" placeholder="Années d'expériences">
                     </div>
                     <div>
-                        <textarea id="comment" name="comment"  placeholder="Commentaires"></textarea>
+                        <textarea id="comment" name="comment" placeholder="Commentaires"></textarea>
                     </div>
-                    <div class="form-field col s6">
-                        <label for="unavailability">Indisponibilités</label>
+                    <div class="form-field">
+                        <label for="unavailability" title="Clique-ici">Indisponibilités</label>
                         <input id="unavailability" type="date" class="datepicker" name="unavailability">
                     </div>
                     <div class="form-field">
@@ -74,11 +77,11 @@
                         <input id="skill" type="text" autocomplete="off" class="validate">
                     </div>
                     <div class="form-field">
-                        <label for="startdate1">Date de début de contrat</label>
+                        <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
                         <input id="startdate1" type="date" class="datepicker" value="05/03/2019">
                     </div>
                     <div class="form-field">
-                        <label for="endDate1">Date de fin de contrat</label>
+                        <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
                         <input id="endDate1" type="date" class="datepicker" value="05/03/2019">
                     </div>
                     <div class="form-field">
@@ -102,7 +105,7 @@
                             <option value="2">Optimisme</option>
                             <option value="3">Proximité</option>
                             <option value="4">Responsabilité</option>
-                            <option value="5">Determination</option>
+                            <option value="5">Détermination</option>
                         </select>
                         <input id="other" type="text" class="validate" placeholder="Autres valeurs">
                     </div>
@@ -115,14 +118,14 @@
         <div class="card white">
             <div class="card-content">
                 <p>Espace réservé (à ne pas remplir) :</p>
-            </div>
-            <div class="form-field">
+                <div class="form-field">
                 <label for="startdate">Date de début de contrat</label>
                 <input id="startdate" type="date" class="datepicker" value="05/03/2019">
-            </div>
-            <div class="form-field">
+                </div>
+                <div class="form-field">
                 <label for="endDate">Date de fin de contrat</label>
                 <input id="endDate" type="date" class="datepicker" value="05/03/2019">
+                </div>
             </div>
         </div>
     </div>
@@ -155,6 +158,9 @@
         secondaryPlaceholder: '+Tag',
     });
     $('.chips-initial').material_chip('data');
+    $(document).ready(function(){
+        $('.fixed-action-btn').floatingActionButton();
+    });
 </script>
 </body>
 </html>
