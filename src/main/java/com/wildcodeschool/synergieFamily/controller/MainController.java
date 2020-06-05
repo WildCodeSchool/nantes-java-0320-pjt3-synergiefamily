@@ -23,7 +23,7 @@ public class MainController {
 
     @GetMapping("/activity-leader-creation")
     public String getActivityLeaderCreation() {
-        return "index";
+        return "activity-leader-creation";
     }
 
     @GetMapping("/filter")

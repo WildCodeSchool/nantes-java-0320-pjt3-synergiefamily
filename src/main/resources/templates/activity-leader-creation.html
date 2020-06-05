@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Animateur</title>
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<header th:replace="/nav.html :: nav-bar"></header>
 <h3 class="center-align">Information Animateur</h3>
     <div id="leader" class="row">
         <div class="col s12 m6 offset-l3">
