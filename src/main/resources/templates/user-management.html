@@ -28,23 +28,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr> <!--TODO: make dynamic this table with Thymeleaf-->
-                    <td>test1@exemple.com</td>
-                    <td>ADMIN</td>
-                    <td>
-                        <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>test2@example.com</td>
-                    <td>COORDINATOR</td>
-                    <td>
-                        <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>test3@example.com</td>
-                    <td>ADMIN</td>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.email}">test1@exemple.com</td>
+                    <td th:text="${user.role.name}">ROLE</td>
                     <td>
                         <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                     </td>
