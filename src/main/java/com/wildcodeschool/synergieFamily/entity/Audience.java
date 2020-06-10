@@ -1,17 +1,21 @@
 package com.wildcodeschool.synergieFamily.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "audiences")
+@Table(name = "audience")
 public class Audience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String ageBracket;
 
     @ManyToMany(mappedBy = "audiences")

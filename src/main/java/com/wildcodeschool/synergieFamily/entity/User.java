@@ -1,5 +1,7 @@
 package com.wildcodeschool.synergieFamily.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String email;
+
+    @NotNull
+    @Column(nullable = false)
     private String password;
 
     @ManyToOne

@@ -1,5 +1,7 @@
 package com.wildcodeschool.synergieFamily.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "role")

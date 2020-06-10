@@ -2,6 +2,8 @@ package com.wildcodeschool.synergieFamily.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
 import javax.persistence.Id;
@@ -34,25 +36,29 @@ public class ActivityLeader {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String birthdate;
 
-    @Column(nullable = false)
-    private boolean hasACar;
+    @Column(nullable = true)
+    private Boolean hasACar;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String experience;
 
-    @Column(nullable = false)
-    private String avaibility;
+    @Column(nullable = true)
+    private String availability;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String comment;
 
-    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+
+    @Column(nullable = true)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -83,9 +89,9 @@ public class ActivityLeader {
             inverseJoinColumns = @JoinColumn(name = "audience_id"))
     private List<Audience> audiences = new ArrayList<>();
 
-    private boolean isActive;
+    private Boolean isActive;
 
-    private boolean isDraft;
+    private Boolean isDraft;
 
     public ActivityLeader() {
     }
