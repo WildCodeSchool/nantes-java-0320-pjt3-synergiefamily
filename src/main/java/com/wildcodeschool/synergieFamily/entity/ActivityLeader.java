@@ -72,19 +72,19 @@ public class ActivityLeader {
     private List<Skill> skills = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "value_activiy_leader",
+    @JoinTable(name = "value_activity_leader",
             joinColumns = @JoinColumn(name = "activity_leader_id"),
             inverseJoinColumns = @JoinColumn(name = "value_id"))
     private List<Value> values = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "diploma_activiy_leader",
+    @JoinTable(name = "diploma_activity_leader",
             joinColumns = @JoinColumn(name = "activity_leader_id"),
             inverseJoinColumns = @JoinColumn(name = "diploma_id"))
     private List<Diploma> diplomas = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "audience_activiy_leader",
+    @JoinTable(name = "audience_activity_leader",
             joinColumns = @JoinColumn(name = "activity_leader_id"),
             inverseJoinColumns = @JoinColumn(name = "audience_id"))
     private List<Audience> audiences = new ArrayList<>();
@@ -160,7 +160,10 @@ public class ActivityLeader {
         this.experience = experience;
     }
 
-    public String getAvailability() { return availability; }
+    public String getAvailability() {
+        return availability;
+    }
+
 
     public void setAvailability(String availability) {
         this.availability = availability;

@@ -16,11 +16,6 @@ public class MainController {
         return "profile";
     }
 
-    @GetMapping("/user-management")
-    public String getUserManagement() {
-        return "user-management";
-    }
-
     @GetMapping("/activity-leader-creation")
     public String getActivityLeaderCreation() {
         return "activity-leader-creation";
