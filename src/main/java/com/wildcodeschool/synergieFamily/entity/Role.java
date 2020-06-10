@@ -1,11 +1,10 @@
 package com.wildcodeschool.synergieFamily.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "role")
 public class Role {
 
     @Id
@@ -14,8 +13,10 @@ public class Role {
 
     private String name;
 
-    public Role() {
+    @OneToMany(mappedBy = "role")
+    private List<User> users;
 
+    public Role() {
     }
 
     public Long getId() {
@@ -32,5 +33,13 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

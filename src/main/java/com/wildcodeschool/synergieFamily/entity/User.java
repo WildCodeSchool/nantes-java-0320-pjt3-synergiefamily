@@ -1,11 +1,9 @@
 package com.wildcodeschool.synergieFamily.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
@@ -14,11 +12,12 @@ public class User {
 
     private String email;
     private String password;
-    /* TODO : mettre en place ManyToOne */
-    //private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     public User() {
-
     }
 
     public Long getId() {
@@ -45,11 +44,11 @@ public class User {
         this.password = password;
     }
 
-    /*public Role getRole() {
+    public Role getRole() {
         return this.role;
     }
 
     public void setRole(Role role) {
         this.role = role;
-    }*/
+    }
 }
