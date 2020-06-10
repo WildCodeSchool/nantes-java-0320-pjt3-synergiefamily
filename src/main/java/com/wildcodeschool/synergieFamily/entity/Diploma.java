@@ -1,18 +1,25 @@
 package com.wildcodeschool.synergieFamily.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "diploma")
 public class Diploma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
+    @Column(nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "diplomas")
+    private List<ActivityLeader> activityLeaders = new ArrayList<>();
 
     public Diploma(int id, String name) {
         this.id = id;
@@ -36,5 +43,13 @@ public class Diploma {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ActivityLeader> getActivityLeaders() {
+        return activityLeaders;
+    }
+
+    public void setActivityLeaders(List<ActivityLeader> activityLeaders) {
+        this.activityLeaders = activityLeaders;
     }
 }

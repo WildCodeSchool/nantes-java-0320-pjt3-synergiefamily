@@ -1,20 +1,31 @@
 package com.wildcodeschool.synergieFamily.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+import org.springframework.data.annotation.TypeAlias;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "location")
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String address1;
+
+    @Column(nullable = true)
     private String address2;
+
+    @NotNull
+    @Column(nullable = false)
     private int postcode;
+
+    @NotNull
+    @Column(nullable = false)
     private String city;
 
     public Location() {}
@@ -58,4 +69,6 @@ public class Location {
     public void setCity(String city) {
         this.city = city;
     }
+
+
 }
