@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="user : $users}"> <!--TODO: make dynamic this table with Thymeleaf-->
+                <tr th:each="user : ${users}"> <!--TODO: make dynamic this table with Thymeleaf-->
                     <td th:text="${user.email}">test1@exemple.com</td>
                     <td th:text="${user.role}">ADMIN</td>
                     <td>
