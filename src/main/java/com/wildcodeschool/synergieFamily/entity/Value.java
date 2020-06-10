@@ -1,11 +1,11 @@
 package com.wildcodeschool.synergieFamily.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "value")
 public class Value {
 
     @Id
@@ -13,6 +13,9 @@ public class Value {
     private Long id;
 
     private String name;
+
+    @ManyToMany(mappedBy = "values")
+    private List<ActivityLeader> activityLeaders = new ArrayList<>();
 
     public Value() {
     }

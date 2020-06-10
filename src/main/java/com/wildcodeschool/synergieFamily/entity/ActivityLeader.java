@@ -60,12 +60,16 @@ public class ActivityLeader {
     private Location location;
 
     @ManyToMany
-    @JoinTable(name = "activity_leader_skill",
+    @JoinTable(name = "skill_activity_leader",
             joinColumns = @JoinColumn(name = "activity_leader_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private List<Skill> skills = new ArrayList<>();
 
-
+    @ManyToMany
+    @JoinTable(name = "value_activiy_leader",
+            joinColumns = @JoinColumn(name = "activity_leader_id"),
+            inverseJoinColumns = @JoinColumn(name = "value_id"))
+    private List<Value> values = new ArrayList<>();
 
     private boolean isActive;
 
