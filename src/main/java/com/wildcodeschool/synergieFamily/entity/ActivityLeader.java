@@ -164,6 +164,7 @@ public class ActivityLeader {
         return availability;
     }
 
+
     public void setAvailability(String availability) {
         this.availability = availability;
     }

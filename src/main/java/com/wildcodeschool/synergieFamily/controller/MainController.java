@@ -26,6 +26,11 @@ public class MainController {
         return "filter";
     }
 
+    @GetMapping("/user-animator")
+    public String getUserAnimator() {
+        return "user-animator";
+    }
+
 
 }
 
