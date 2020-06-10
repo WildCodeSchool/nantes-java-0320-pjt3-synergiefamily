@@ -40,4 +40,12 @@ public class Audience {
     public void setAgeBracket(String ageBracket) {
         this.ageBracket = ageBracket;
     }
+
+    public List<ActivityLeader> getActivityLeaders() {
+        return activityLeaders;
+    }
+
+    public void setActivityLeaders(List<ActivityLeader> activityLeaders) {
+        this.activityLeaders = activityLeaders;
+    }
 }

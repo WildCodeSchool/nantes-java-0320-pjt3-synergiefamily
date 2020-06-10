@@ -201,4 +201,44 @@ public class ActivityLeader {
     public void setDraft(boolean draft) {
         isDraft = draft;
     }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public List<Value> getValues() {
+        return values;
+    }
+
+    public void setValues(List<Value> values) {
+        this.values = values;
+    }
+
+    public List<Diploma> getDiplomas() {
+        return diplomas;
+    }
+
+    public void setDiplomas(List<Diploma> diplomas) {
+        this.diplomas = diplomas;
+    }
+
+    public List<Audience> getAudiences() {
+        return audiences;
+    }
+
+    public void setAudiences(List<Audience> audiences) {
+        this.audiences = audiences;
+    }
 }

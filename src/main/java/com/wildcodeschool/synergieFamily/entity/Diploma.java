@@ -40,4 +40,12 @@ public class Diploma {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<ActivityLeader> getActivityLeaders() {
+        return activityLeaders;
+    }
+
+    public void setActivityLeaders(List<ActivityLeader> activityLeaders) {
+        this.activityLeaders = activityLeaders;
+    }
 }
