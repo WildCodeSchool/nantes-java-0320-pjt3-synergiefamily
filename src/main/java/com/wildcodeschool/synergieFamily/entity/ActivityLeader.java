@@ -71,6 +71,12 @@ public class ActivityLeader {
             inverseJoinColumns = @JoinColumn(name = "value_id"))
     private List<Value> values = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "diploma_activiy_leader",
+            joinColumns = @JoinColumn(name = "activity_leader_id"),
+            inverseJoinColumns = @JoinColumn(name = "diploma_id"))
+    private List<Diploma> diplomas = new ArrayList<>();
+
     private boolean isActive;
 
     private boolean isDraft;
