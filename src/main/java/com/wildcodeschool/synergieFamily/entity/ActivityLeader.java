@@ -160,12 +160,10 @@ public class ActivityLeader {
         this.experience = experience;
     }
 
-    public String getAvaibility() {
-        return avaibility;
-    }
+    public String getAvailability() { return availability; }
 
-    public void setAvaibility(String avaibility) {
-        this.avaibility = avaibility;
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
     public String getComment() {
