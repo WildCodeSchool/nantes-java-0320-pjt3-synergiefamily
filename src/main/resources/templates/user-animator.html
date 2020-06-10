@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des animateurs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body class="user-management-body">
+<header th:replace="nav.html :: nav-bar"></header>
+<main class="userManagementPageContent">
+    <h2>Gestion des Abimateurs</h2>
+    <!-- TODO: put the same font-size to all the h2 from the whole website. -->
+    <div class="user-animator-ligne">
+        <a class="waves-effect waves-light btn black-text white darken-1"><i class="material-icons left">add</i>AJOUTER UN UTILISATEUR</a>
+        <a class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL<i class="tiny material-icons right">send</i></a>
+        <div class="search-wrapper" id="search-wrapper-animator">
+            <i class="material-icons left" id="search-user-animator">search<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">chercher</font></font></i><input id="search" placeholder="Chercher">
+        </div>
+    </div>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nom & Prénom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Date de naissance</th>
+                <th>Actif</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr> <!--TODO: make dynamic this table with Thymeleaf-->
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test1 TEST1</td>
+                <td>test1@exemple.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">done</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select2" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select2"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">close</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+        <tr>
+            <td><form action="#">
+                <p>
+                    <label>
+                        <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                        <label for = "select"></label>
+                        <span></span>
+                    </label>
+                </p>
+            </form></td>
+            <td>test2 TEST2</td>
+            <td>test2@example.com</td>
+            <td>+33 6 50 90 00 00</td>
+            <td>01/01/2020</td>
+            <td><i class="small material-icons">check</i></td>
+            <td>
+                <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+            </td>
+        </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">check</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">check</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">check</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">check</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">check</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">check</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">check</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+            <tr>
+                <td><form action="#">
+                    <p>
+                        <label>
+                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
+                            <label for = "select"></label>
+                            <span></span>
+                        </label>
+                    </p>
+                </form></td>
+                <td>test2 TEST2</td>
+                <td>test2@example.com</td>
+                <td>+33 6 50 90 00 00</td>
+                <td>01/01/2020</td>
+                <td><i class="small material-icons">check</i></td>
+                <td>
+                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active teal lighten-2"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!">4</a></li>
+        <li class="waves-effect"><a href="#!">5</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</main>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
