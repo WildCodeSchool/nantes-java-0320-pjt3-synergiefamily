@@ -1,11 +1,11 @@
 package com.wildcodeschool.synergieFamily.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.TypeAlias;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "location")
 public class Location {
 
     @Id

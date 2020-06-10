@@ -7,9 +7,12 @@ import com.sun.istack.Nullable;
 import javax.persistence.Id;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "activity_leader")
 public class ActivityLeader {
 
     @Id
@@ -51,6 +54,18 @@ public class ActivityLeader {
 
     @Column(nullable = false)
     private Date endDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    private Location location;
+
+    @ManyToMany
+    @JoinTable(name = "activity_leader_skill",
+            joinColumns = @JoinColumn(name = "activity_leader_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    private List<Skill> skills = new ArrayList<>();
+
+
 
     private boolean isActive;
 
