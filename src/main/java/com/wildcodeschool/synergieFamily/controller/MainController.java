@@ -28,7 +28,7 @@ public class MainController {
 
     @GetMapping("/user-animator")
     public String getUserAnimator() {
-        return "user-animator";
+        return "activity-leader-management";
     }
 
 
