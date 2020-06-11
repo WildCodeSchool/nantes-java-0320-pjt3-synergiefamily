@@ -1,9 +1,9 @@
 package com.wildcodeschool.synergieFamily.repository;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@SpringBootApplication
+@Repository
 public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, Long> {
 }
