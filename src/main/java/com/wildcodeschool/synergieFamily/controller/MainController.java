@@ -16,11 +16,6 @@ public class MainController {
         return "profile";
     }
 
-    @GetMapping("/activity-leader-creation")
-    public String getActivityLeaderCreation() {
-        return "activity-leader-creation";
-    }
-
     @GetMapping("/filter")
     public String getFilter() {
         return "filter";
@@ -28,7 +23,7 @@ public class MainController {
 
     @GetMapping("/user-animator")
     public String getUserAnimator() {
-        return "user-animator";
+        return "activity-leader-management";
     }
 
 
