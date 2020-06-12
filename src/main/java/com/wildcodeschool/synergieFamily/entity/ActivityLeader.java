@@ -5,9 +5,7 @@ import javax.persistence.GeneratedValue;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
-import com.sun.istack.Nullable;
 import javax.persistence.Id;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,6 +34,7 @@ public class ActivityLeader {
     @Column(nullable = false)
     private String email;
 
+    // TODO voir pour ne pas rendre obligatoire
     @Column(nullable = true)
     private String birthdate;
 
@@ -53,10 +52,12 @@ public class ActivityLeader {
 
     @Temporal(TemporalType.DATE)
 
+    // TODO voir pour ne pas rendre obligatoire
     @Column(nullable = true)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
+    // TODO voir pour ne pas rendre obligatoire
     @Column(nullable = true)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;

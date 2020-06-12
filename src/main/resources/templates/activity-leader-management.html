@@ -16,11 +16,14 @@
     <h2>Gestion des Animateurs</h2>
     <!-- TODO: put the same font-size to all the h2 from the whole website. -->
     <div class="user-animator-ligne">
-        <a class="waves-effect waves-light btn black-text white darken-1" href="activity-leader-creation"><i class="material-icons left">add</i>AJOUTER UN UTILISATEUR</a>
+        <a class="waves-effect waves-light btn black-text white darken-1" href="activity-leader-creation"><i class="material-icons left">add</i>AJOUTER UN ANIMATEUR</a>
         <a class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL<i class="tiny material-icons right">send</i></a>
-        <div class="search-wrapper" id="search-wrapper-animator">
-            <i class="material-icons left" id="search-user-animator">search<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">chercher</font></font></i><input id="search" placeholder="Chercher">
-        </div>
+        <form method="get" action="/activity-leader-management">
+            <div class="search-wrapper" id="search-wrapper-animator">
+                <i class="material-icons left" id="search-user-animator">search<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">chercher</font></font></i><input id="search" placeholder="Chercher">
+            </div>
+        </form>
+
     </div>
     <table class="striped">
         <thead>
@@ -35,7 +38,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr> <!--TODO: make dynamic this table with Thymeleaf-->
+            <tr th:each="activityLeader : ${activityLeaders}">
                 <td><form action="#">
                     <p>
                         <label>
@@ -45,201 +48,11 @@
                         </label>
                     </p>
                 </form></td>
-                <td>test1 TEST1</td>
-                <td>test1@exemple.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
+                <td th:text="|${activityLeader.firstName.toLowerCase()}  ${activityLeader.lastName.toUpperCase()}|">test1 TEST1</td>
+                <td th:text="${activityLeader.email}">test1@exemple.com</td>
+                <td th:text="${activityLeader.phone}">+33 6 50 90 00 00</td>
+                <td th:text="${activityLeader.birthdate}">01/01/2020</td>
                 <td><i class="small material-icons">done</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select2" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select2"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">close</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-        <tr>
-            <td><form action="#">
-                <p>
-                    <label>
-                        <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                        <label for = "select"></label>
-                        <span></span>
-                    </label>
-                </p>
-            </form></td>
-            <td>test2 TEST2</td>
-            <td>test2@example.com</td>
-            <td>+33 6 50 90 00 00</td>
-            <td>01/01/2020</td>
-            <td><i class="small material-icons">check</i></td>
-            <td>
-                <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-            </td>
-        </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">check</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">check</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">check</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">check</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">check</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">check</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">check</i></td>
-                <td>
-                    <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                </td>
-            </tr>
-            <tr>
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
-                <td>test2 TEST2</td>
-                <td>test2@example.com</td>
-                <td>+33 6 50 90 00 00</td>
-                <td>01/01/2020</td>
-                <td><i class="small material-icons">check</i></td>
                 <td>
                     <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                 </td>
