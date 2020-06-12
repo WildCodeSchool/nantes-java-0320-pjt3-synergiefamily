@@ -48,7 +48,7 @@
                         </label>
                     </p>
                 </form></td>
-                <td th:text="|${activityLeader.firstName}  ${activityLeader.lastName}|">test1 TEST1</td>
+                <td th:text="|${activityLeader.firstName.toLowerCase()}  ${activityLeader.lastName.toUpperCase()}|">test1 TEST1</td>
                 <td th:text="${activityLeader.email}">test1@exemple.com</td>
                 <td th:text="${activityLeader.phone}">+33 6 50 90 00 00</td>
                 <td th:text="${activityLeader.birthdate}">01/01/2020</td>
