@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.List;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class ActivityLeaderController {
@@ -17,10 +19,13 @@ public class ActivityLeaderController {
     private ActivityLeaderRepository activityLeaderRepository;
 
     @GetMapping("/activity-leader-creation")
-    public String getActivityLeaderCreation() {
+    public String getActivityLeaderCreation(Model out) {
 
+        ActivityLeader activityLeader = new ActivityLeader();
+        out.addAttribute("activityLeader", activityLeader);
         return "activity-leader-creation";
     }
+
 
     @GetMapping("/activity-leader-management")
     public String getActivityLeaderManagement(Model out) {
@@ -41,5 +46,12 @@ public class ActivityLeaderController {
                                                                                  @PathVariable String firstName) {
 
         return activityLeaderRepository.findAllByLastNameContainingAndFirstNameContaining(lastName, firstName);
+
+    @PostMapping("/activity-leader-creation")
+    public String postForm(@ModelAttribute ActivityLeader activityLeader) {
+
+        activityLeaderRepository.save(activityLeader);
+        return "redirect:/activity-leader-creation";
+
     }
 }
