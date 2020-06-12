@@ -1,18 +1,25 @@
 package com.wildcodeschool.synergieFamily.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "audience")
 public class Audience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String ageBracket;
+
+    @ManyToMany(mappedBy = "audiences")
+    private List<ActivityLeader> activityLeaders = new ArrayList<>();
 
     public Audience(Long id, String ageBracket) {
         this.id = id;
@@ -36,5 +43,13 @@ public class Audience {
 
     public void setAgeBracket(String ageBracket) {
         this.ageBracket = ageBracket;
+    }
+
+    public List<ActivityLeader> getActivityLeaders() {
+        return activityLeaders;
+    }
+
+    public void setActivityLeaders(List<ActivityLeader> activityLeaders) {
+        this.activityLeaders = activityLeaders;
     }
 }

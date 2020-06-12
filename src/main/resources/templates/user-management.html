@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="user-management-body">
-<header th:replace="/nav.html :: nav-bar"></header>
+<header th:replace="nav.html :: nav-bar"></header>
     <main class="userManagementPageContent">
         <h2>Gestion des utilisateurs</h2>
         <!-- TODO: put the same font-size to all the h2 from the whole website. -->
@@ -20,7 +20,7 @@
         <!--TODO: replace the + char by a + bold icon -->
         <!-- TODO REPLACE ICONS BLACK TEXT -->
         <table class="striped">
-            <thead
+            <thead>
                 <tr>
                     <th>Email</th>
                     <th>Rôle</th>
@@ -28,23 +28,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr> <!--TODO: make dynamic this table with Thymeleaf-->
-                    <td>test1@exemple.com</td>
-                    <td>ADMIN</td>
-                    <td>
-                        <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>test2@example.com</td>
-                    <td>COORDINATOR</td>
-                    <td>
-                        <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>test3@example.com</td>
-                    <td>ADMIN</td>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.email}">test1@exemple.com</td>
+                    <td th:text="${user.role.name}">ROLE</td>
                     <td>
                         <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                     </td>

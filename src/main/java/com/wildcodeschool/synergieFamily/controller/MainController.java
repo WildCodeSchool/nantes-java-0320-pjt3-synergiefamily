@@ -16,19 +16,14 @@ public class MainController {
         return "profile";
     }
 
-    @GetMapping("/user-management")
-    public String getUserManagement() {
-        return "user-management";
-    }
-
-    @GetMapping("/activity-leader-creation")
-    public String getActivityLeaderCreation() {
-        return "activity-leader-creation";
-    }
-
     @GetMapping("/filter")
     public String getFilter() {
         return "filter";
+    }
+
+    @GetMapping("/user-animator")
+    public String getUserAnimator() {
+        return "activity-leader-management";
     }
 
 

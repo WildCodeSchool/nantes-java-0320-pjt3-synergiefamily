@@ -1,5 +1,5 @@
 /*PAGE HOME 1*/
-body {
+.container {
     background-color: #f7f7f7;
 }
 .logoSynergie img {
@@ -47,14 +47,14 @@ body {
 .user-management-body{
     display: flex;
     flex-direction: row;
-    margin-left: 21rem;
+    margin-left: 18rem;
     margin-top: 3rem;
 }
 
 .userManagementPageContent {
-    margin-left: 5em;
-    margin-right: 5em;
-    width: 80%;
+    margin-left: 4rem;
+    margin-right: 5rem;
+    width: 90%;
 }
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
@@ -70,9 +70,27 @@ body {
 
 
 /*PAGE ANIMATEUR 4*/
+a i {
+    color: black;
+}
+#search-wrapper-animator {
+    width: 20rem;
+    display: flex;
+}
+#search-user-animator {
+    width: 1rem;
+    margin-top: 1.1rem;
+}
+.user-animator-ligne {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+}
 
-
-
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+}
 
 
 
