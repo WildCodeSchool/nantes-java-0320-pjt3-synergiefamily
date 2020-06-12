@@ -46,6 +46,8 @@ public class ActivityLeaderController {
                                                                                  @PathVariable String firstName) {
 
         return activityLeaderRepository.findAllByLastNameContainingAndFirstNameContaining(lastName, firstName);
+    }
+
 
     @PostMapping("/activity-leader-creation")
     public String postForm(@ModelAttribute ActivityLeader activityLeader) {
