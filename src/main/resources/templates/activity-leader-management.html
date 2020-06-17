@@ -55,7 +55,11 @@
                 <td th:text="${activityLeader.email}">test1@exemple.com</td>
                 <td th:text="${activityLeader.phone}">+33 6 50 90 00 00</td>
                 <td th:text="${activityLeader.birthdate}">01/01/2020</td>
-                <td><i class="small material-icons">done</i></td>
+                <td >
+                    <i th:if="${activityLeader.active}" class="small material-icons">done</i>
+
+                    <i  th:if="${activityLeader.active == false}" class="small material-icons">close</i>
+                </td>
                 <td>
                     <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                 </td>
