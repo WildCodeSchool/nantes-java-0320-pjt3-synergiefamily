@@ -25,15 +25,6 @@ public class ActivityLeaderController {
         return "activity-leader-creation";
     }
 
-
-    /*@GetMapping("/activity-leader-management")
-    public String getActivityLeaderManagement(Model out) {
-
-        out.addAttribute("activityLeaders", activityLeaderRepository.findAll());
-
-        return "activity-leader-management";
-    }*/
-
     @GetMapping("/activity-leader-management")
     public String showAllActivityLeaders(Model out) {
 
@@ -43,7 +34,7 @@ public class ActivityLeaderController {
 
     @GetMapping("/activity-leaders-search")
     public String showActivityLeadersByLastNameFirstNamePhoneEmail(Model out,
-                                                                   @RequestParam  String search) {
+                                                                   @RequestParam String search) {
 
         out.addAttribute("activityLeaders", activityLeaderRepository.findByLastNameContainingOrFirstNameContainingOrEmailContaining(search, search, search));
         return "activity-leader-management";
