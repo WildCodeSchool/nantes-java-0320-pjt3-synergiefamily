@@ -17,4 +17,5 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
 
     @Query("SELECT a FROM ActivityLeader a ORDER BY a.id DESC")
     public List<ActivityLeader> findAll();
+
 }
