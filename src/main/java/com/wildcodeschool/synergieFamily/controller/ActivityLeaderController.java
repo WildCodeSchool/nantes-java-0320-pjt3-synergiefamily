@@ -7,11 +7,10 @@ import com.wildcodeschool.synergieFamily.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import java.util.Optional;
 
 
 @Controller
@@ -29,24 +28,18 @@ public class ActivityLeaderController {
     }
 
     @GetMapping("/activity-leader-management")
-    public String getActivityLeaderManagement(Model out) {
+    public String showAllActivityLeaders(Model out) {
 
         out.addAttribute("activityLeaders", activityLeaderRepository.findAll());
-
         return "activity-leader-management";
     }
 
-    @GetMapping("/activityLeaders")
-    public List<ActivityLeader> showAllActivityLeaders() {
+    @GetMapping("/activity-leaders-search")
+    public String showActivityLeadersByLastNameFirstNamePhoneEmail(Model out,
+                                                                   @RequestParam String search) {
 
-        return activityLeaderRepository.findAll();
-    }
-
-    @GetMapping("/activityLeader")
-    public List<ActivityLeader> showActivityLeadersByLastNameFirstNamePhoneEmail(@PathVariable String lastName,
-                                                                                 @PathVariable String firstName) {
-
-        return activityLeaderRepository.findAllByLastNameContainingAndFirstNameContaining(lastName, firstName);
+        out.addAttribute("activityLeaders", activityLeaderRepository.findByLastNameContainingOrFirstNameContainingOrEmailContaining(search, search, search));
+        return "activity-leader-management";
     }
 
     @PostMapping("/activity-leader-creation")
