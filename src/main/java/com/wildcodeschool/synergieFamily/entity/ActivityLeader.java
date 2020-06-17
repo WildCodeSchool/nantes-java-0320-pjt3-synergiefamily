@@ -90,7 +90,8 @@ public class ActivityLeader {
             inverseJoinColumns = @JoinColumn(name = "audience_id"))
     private List<Audience> audiences = new ArrayList<>();
 
-    private Boolean isActive;
+    @Transient
+    private Boolean active;
 
     private Boolean isDraft;
 
@@ -194,14 +195,6 @@ public class ActivityLeader {
         this.endDate = endDate;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public boolean isDraft() {
         return isDraft;
     }
@@ -249,4 +242,19 @@ public class ActivityLeader {
     public void setAudiences(List<Audience> audiences) {
         this.audiences = audiences;
     }
+
+
+    public Boolean getActive() {
+        if (this.getStartDate() == null || this.getStartDate().compareTo(new Date()) > 0
+                || this.getEndDate() == null || this.getEndDate().compareTo(new Date()) < 0 ) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+
 }
