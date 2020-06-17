@@ -27,7 +27,7 @@ public class ActivityLeader {
     @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = true)
+    @Column
     private String phone;
 
     @NotNull
@@ -35,30 +35,30 @@ public class ActivityLeader {
     private String email;
 
     // TODO voir pour ne pas rendre obligatoire
-    @Column(nullable = true)
+    @Column
     private String birthdate;
 
-    @Column(nullable = true)
+    @Column
     private Boolean hasACar;
 
-    @Column(nullable = true)
+    @Column
     private String experience;
 
-    @Column(nullable = true)
+    @Column
     private String availability;
 
-    @Column(nullable = true)
+    @Column
     private String comment;
 
     @Temporal(TemporalType.DATE)
 
     // TODO voir pour ne pas rendre obligatoire
-    @Column(nullable = true)
+    @Column
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
     // TODO voir pour ne pas rendre obligatoire
-    @Column(nullable = true)
+    @Column
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
