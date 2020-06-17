@@ -13,7 +13,7 @@
 </head>
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
-<form action="" method="post" >
+<form action="" method="get" >
 <div class="row">
     <div class="col s12 m6 offset-l3">
         <div class="card">
@@ -22,7 +22,7 @@
             </div>
             <div class="card-content">
                 <div class="form-field col s6">
-                    <label for="first_name">Prénom
+                    <label for="first_name" th:id="${firstName}" th:value="${}">Prénom
                     </label>
                     <input id="first_name" type="text" class="validate">
                 </div>
