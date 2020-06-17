@@ -15,11 +15,7 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
     @Query("SELECT a FROM ActivityLeader a WHERE a.lastName= :lastName OR a.firstName= :firstName OR a.email= :email ORDER BY a.lastName asc, a.firstName asc, a.email asc")
     List<ActivityLeader> findByLastNameContainingOrFirstNameContainingOrEmailContaining(@Param("lastName") String lastName , @Param("firstName") String firstName, @Param("email") String email);
 
-<<<<<<< HEAD
-
-
-=======
     @Query("SELECT a FROM ActivityLeader a ORDER BY a.id DESC")
     public List<ActivityLeader> findAll();
->>>>>>> 7f86dbfbf1a4f49afeb5f52c068c86a573201b55
+
 }
