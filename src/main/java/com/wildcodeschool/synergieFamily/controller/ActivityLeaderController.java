@@ -52,7 +52,7 @@ public class ActivityLeaderController {
     public String postForm(@ModelAttribute ActivityLeader activityLeader) {
 
         activityLeaderRepository.save(activityLeader);
-        return "redirect:/user-animator";
+        return "redirect:/activity-leader-management";
 
     }
 }
