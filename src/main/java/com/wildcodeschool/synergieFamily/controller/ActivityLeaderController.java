@@ -3,15 +3,10 @@ package com.wildcodeschool.synergieFamily.controller;
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
 import com.wildcodeschool.synergieFamily.entity.Skill;
 import com.wildcodeschool.synergieFamily.repository.ActivityLeaderRepository;
-import com.wildcodeschool.synergieFamily.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-
 
 @Controller
 public class ActivityLeaderController {
@@ -41,10 +36,7 @@ public class ActivityLeaderController {
         out.addAttribute("activityLeaders", activityLeaderRepository.findByLastNameContainingOrFirstNameContainingOrEmailContaining(search, search, search));
         return "activity-leader-management";
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 7f86dbfbf1a4f49afeb5f52c068c86a573201b55
     @PostMapping("/activity-leader-creation")
     public String postForm(@ModelAttribute ActivityLeader activityLeader) {
 
