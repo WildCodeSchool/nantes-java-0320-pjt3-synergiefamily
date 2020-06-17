@@ -244,8 +244,6 @@ public class ActivityLeader {
         this.audiences = audiences;
     }
 
-
-
     public Boolean getActive() {
         if (this.getStartDate() == null || this.getStartDate().compareTo(new Date()) > 0
                 || this.getEndDate() == null || this.getEndDate().compareTo(new Date()) < 0 ) {
@@ -258,22 +256,12 @@ public class ActivityLeader {
         this.active = active;
     }
 
-
-
     public Boolean getHasACar() {
         return hasACar;
     }
 
     public void setHasACar(Boolean hasACar) {
         this.hasACar = hasACar;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
     }
 
     public Boolean getDraft() {

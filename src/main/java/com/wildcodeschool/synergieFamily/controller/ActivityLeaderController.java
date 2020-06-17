@@ -42,10 +42,7 @@ public class ActivityLeaderController {
         out.addAttribute("activityLeaders", activityLeaderRepository.findByLastNameContainingOrFirstNameContainingOrEmailContaining(search, search, search));
         return "activity-leader-management";
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 7f86dbfbf1a4f49afeb5f52c068c86a573201b55
     @PostMapping("/activity-leader-creation")
     public String postForm(@ModelAttribute ActivityLeader activityLeader) {
 
