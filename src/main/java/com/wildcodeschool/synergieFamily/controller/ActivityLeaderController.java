@@ -48,12 +48,11 @@ public class ActivityLeaderController {
         return activityLeaderRepository.findAllByLastNameContainingAndFirstNameContaining(lastName, firstName);
     }
 
-
     @PostMapping("/activity-leader-creation")
     public String postForm(@ModelAttribute ActivityLeader activityLeader) {
 
         activityLeaderRepository.save(activityLeader);
-        return "redirect:/activity-leader-creation";
+        return "redirect:/user-animator";
 
     }
 }
