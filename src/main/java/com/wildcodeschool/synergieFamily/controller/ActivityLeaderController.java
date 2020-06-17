@@ -1,7 +1,9 @@
 package com.wildcodeschool.synergieFamily.controller;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
+import com.wildcodeschool.synergieFamily.entity.Skill;
 import com.wildcodeschool.synergieFamily.repository.ActivityLeaderRepository;
+import com.wildcodeschool.synergieFamily.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,6 @@ public class ActivityLeaderController {
         out.addAttribute("activityLeader", activityLeader);
         return "activity-leader-creation";
     }
-
 
     @GetMapping("/activity-leader-management")
     public String getActivityLeaderManagement(Model out) {
@@ -51,8 +52,17 @@ public class ActivityLeaderController {
     @PostMapping("/activity-leader-creation")
     public String postForm(@ModelAttribute ActivityLeader activityLeader) {
 
+        String skillList = activityLeader.getSkillList();
+        String[] skills = skillList.split(",");
+        for (String skill : skills) {
+            Skill skillItem = new Skill(skill);
+            activityLeader.getSkills().add(skillItem);
+        }
+
         activityLeaderRepository.save(activityLeader);
         return "redirect:/activity-leader-management";
 
     }
+
+
 }

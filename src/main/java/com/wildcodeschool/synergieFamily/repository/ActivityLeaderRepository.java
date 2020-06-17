@@ -12,4 +12,6 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
     public List<ActivityLeader> findAllByLastNameContainingAndFirstNameContaining(String lastName, String firstName);
 
 
+
+
 }

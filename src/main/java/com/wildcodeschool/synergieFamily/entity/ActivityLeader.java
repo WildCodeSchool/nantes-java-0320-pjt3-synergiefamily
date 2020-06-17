@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Id;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -51,22 +53,18 @@ public class ActivityLeader {
     private String comment;
 
     @Temporal(TemporalType.DATE)
-
-    // TODO voir pour ne pas rendre obligatoire
-    @Column
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
-    // TODO voir pour ne pas rendre obligatoire
-    @Column
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "skill_activity_leader",
             joinColumns = @JoinColumn(name = "activity_leader_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
@@ -93,6 +91,9 @@ public class ActivityLeader {
     private Boolean isActive;
 
     private Boolean isDraft;
+
+    @Transient
+    private String skillList;
 
     public ActivityLeader() {
     }
@@ -248,5 +249,37 @@ public class ActivityLeader {
 
     public void setAudiences(List<Audience> audiences) {
         this.audiences = audiences;
+    }
+
+    public Boolean getHasACar() {
+        return hasACar;
+    }
+
+    public void setHasACar(Boolean hasACar) {
+        this.hasACar = hasACar;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Boolean getDraft() {
+        return isDraft;
+    }
+
+    public void setDraft(Boolean draft) {
+        isDraft = draft;
+    }
+
+    public String getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(String skillList) {
+        this.skillList = skillList;
     }
 }
