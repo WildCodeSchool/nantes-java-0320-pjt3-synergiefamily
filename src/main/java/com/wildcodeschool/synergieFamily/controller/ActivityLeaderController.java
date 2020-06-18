@@ -3,16 +3,10 @@ package com.wildcodeschool.synergieFamily.controller;
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
 import com.wildcodeschool.synergieFamily.entity.Skill;
 import com.wildcodeschool.synergieFamily.repository.ActivityLeaderRepository;
-import com.wildcodeschool.synergieFamily.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
 
 @Controller
 public class ActivityLeaderController {
@@ -57,6 +51,5 @@ public class ActivityLeaderController {
         return "redirect:/activity-leader-management";
 
     }
-
 
 }
