@@ -18,9 +18,10 @@
     <div class="user-animator-ligne">
         <a class="waves-effect waves-light btn black-text white darken-1" href="activity-leader-creation"><i class="material-icons left">add</i>AJOUTER UN ANIMATEUR</a>
         <a class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL<i class="tiny material-icons right">send</i></a>
-        <form method="get" action="/activity-leader-management">
+        <form method="get" action="/activity-leaders-search">
             <div class="search-wrapper" id="search-wrapper-animator">
-                <i class="material-icons left" id="search-user-animator">search<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">chercher</font></font></i><input id="search" placeholder="Chercher">
+                <button type="submit" class="searchButton"> <i class="material-icons left" id="search-user-animator">search<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">chercher</font></font></i></button>
+                <input type="text" id="search" placeholder="Chercher" name="search">
             </div>
         </form>
 
@@ -29,7 +30,8 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Nom & Prénom</th>
+                <th>Nom</th>
+                <th>Prénom</th>
                 <th>Email</th>
                 <th>Téléphone</th>
                 <th>Date de naissance</th>
@@ -48,11 +50,16 @@
                         </label>
                     </p>
                 </form></td>
-                <td th:text="|${activityLeader.firstName.toLowerCase()}  ${activityLeader.lastName.toUpperCase()}|">test1 TEST1</td>
+                <td th:text="${activityLeader.lastName.toUpperCase()}">TEST1</td>
+                <td th:text="${activityLeader.firstName.toLowerCase()}">test1</td>
                 <td th:text="${activityLeader.email}">test1@exemple.com</td>
                 <td th:text="${activityLeader.phone}">+33 6 50 90 00 00</td>
                 <td th:text="${activityLeader.birthdate}">01/01/2020</td>
-                <td><i class="small material-icons">done</i></td>
+                <td >
+                    <i th:if="${activityLeader.active}" class="small material-icons">done</i>
+
+                    <i  th:if="${activityLeader.active == false}" class="small material-icons">close</i>
+                </td>
                 <td>
                     <p> <a class="subheader" href="/"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                 </td>
