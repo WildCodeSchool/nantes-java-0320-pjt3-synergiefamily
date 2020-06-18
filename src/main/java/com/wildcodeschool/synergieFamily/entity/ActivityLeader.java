@@ -37,8 +37,9 @@ public class ActivityLeader {
     private String email;
 
     // TODO voir pour ne pas rendre obligatoire
-    @Column
-    private String birthdate;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthdate;
 
     @Column
     private Boolean hasACar;
@@ -90,7 +91,8 @@ public class ActivityLeader {
 
     private Boolean isActive;
 
-    private Boolean isDraft;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean draft;
 
     @Transient
     private String skillList;
@@ -138,11 +140,11 @@ public class ActivityLeader {
         this.email = email;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -203,12 +205,13 @@ public class ActivityLeader {
         isActive = active;
     }
 
-    public boolean isDraft() {
-        return isDraft;
+    public Boolean getDraft() {
+
+        return draft;
     }
 
-    public void setDraft(boolean draft) {
-        isDraft = draft;
+    public void setDraft(Boolean draft) {
+        this.draft = draft;
     }
 
     public Location getLocation() {
@@ -257,22 +260,6 @@ public class ActivityLeader {
 
     public void setHasACar(Boolean hasACar) {
         this.hasACar = hasACar;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
-
-    public Boolean getDraft() {
-        return isDraft;
-    }
-
-    public void setDraft(Boolean draft) {
-        isDraft = draft;
     }
 
     public String getSkillList() {
