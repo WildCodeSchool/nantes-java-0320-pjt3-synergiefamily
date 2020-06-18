@@ -130,8 +130,14 @@
     </div>
 </div>
 <div class="center-align">
-    <button class = "btn waves-effect waves-light cyan lighten-1" type = "submit">Enregistrer
+    <button  class = "btn waves-effect waves-light" type = "submit">Enregistrer
         <i class = "material-icons right">save</i></button>
+    <button th:if="*{draft == true}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <p>Bonjour. Merci de cliquez sur ce lien et de ne valider qu'une fois seulement que tous les champs renseignés seront remplis.</p>
+        </div>
+    </div>
 </div>
 </form>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -145,6 +151,9 @@
         $(".datepicker").pickadate({
             format: "dd/mm/yyyy"
         });
+    });
+    $(document).ready(function(){
+        $('.modal-trigger').leanModal();
     });
 </script>
 </body>
