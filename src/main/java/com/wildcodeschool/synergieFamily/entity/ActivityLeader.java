@@ -2,8 +2,6 @@ package com.wildcodeschool.synergieFamily.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
