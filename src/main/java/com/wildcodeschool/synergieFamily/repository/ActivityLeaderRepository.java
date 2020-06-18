@@ -50,7 +50,7 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             " AND (location.postcode IS NULL OR (:postcode='') OR location.postcode LIKE %:postcode%)" +
             " AND (hasACar IS NULL OR (:hasACar='') OR hasACar LIKE %:hasACar%)" +
             " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)" +
-            " AND (`value`.name IS NULL OR (:valeur='') OR `value`.name LIKE %:valeur%)" +
+            //TODO " AND (`value`.name IS NULL OR (:valeur='') OR `value`.name LIKE %:valeur%)" VOIR POUR PLUSIEURS VALEURS
             " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
             " AND (endDate IS NULL OR (:endDATE='') OR endDate LIKE %:endDate%)"
     )
@@ -65,7 +65,6 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("postcode") int postCode,
             @Param("hasACar") boolean hasACar,
             @Param("experience") String experience,
-            @Param("value") String value,
             @Param("startDate") Date startDate,
             @Param("endDate") Date endDate);
 }

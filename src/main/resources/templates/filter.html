@@ -13,7 +13,7 @@
 </head>
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
-<form action="" method="get" >
+<form action="/filter" method="post" >
 <div class="row">
     <div class="col s12 m6 offset-l3">
         <div class="card">
@@ -120,7 +120,7 @@
     </div>
     <div class="col s12 m6 offset-l3">
         <div class="card horizontal">
-            <div class="card-content">
+            <div class="card-content" th:each="activityleader : ${activityleaders}">
                 <div class="card_check">
                     <p>
                         <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
@@ -128,7 +128,7 @@
                         </label>
                     </p>
                 </div>
-                <h5>Didier Drogba</h5>
+                <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Didier Drogba</h5>
                 <div class="content">
                     <p><i class="tiny material-icons">phone</i>07 75 89 90 10 88</p>
                     <p><i class="tiny material-icons">email</i>didierdrogba@synergie-family.com</p>
