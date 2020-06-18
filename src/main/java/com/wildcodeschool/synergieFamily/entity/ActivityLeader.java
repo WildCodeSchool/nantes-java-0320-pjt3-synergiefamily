@@ -36,7 +36,6 @@ public class ActivityLeader {
     @Column(nullable = false)
     private String email;
 
-    // TODO voir pour ne pas rendre obligatoire
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
