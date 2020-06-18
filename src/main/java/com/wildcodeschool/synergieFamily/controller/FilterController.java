@@ -31,7 +31,7 @@ public class FilterController {
     @Autowired
     private ValueRepository valueRepository;
 
-    @PostMapping("/filters")
+    @PostMapping("/filter")
     public String filter(Model model, @ModelAttribute ActivityLeader activityLeader){
         List<ActivityLeader> list = activityLeaderRepository.findAllByFilter(activityLeader.getFirstName(),
                 activityLeader.getLastName(),
@@ -41,11 +41,17 @@ public class FilterController {
                 activityLeader.getLocation().getAddress2(),
                 activityLeader.getLocation().getCity(),
                 activityLeader.getLocation().getPostcode(),
-                activityLeader.getHasACar(),
+               //  activityLeader.hasACar(),
                 activityLeader.getExperience(),
                 activityLeader.getStartDate(),
                 activityLeader.getEndDate());
         model.addAttribute("activityleaders", list);
+        return "filter";
+    }
+
+    @GetMapping("/filter")
+    public String showFilter(Model model){
+        model.addAttribute("activityLeader", new ActivityLeader());
         return "filter";
     }
 }

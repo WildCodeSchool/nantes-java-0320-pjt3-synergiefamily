@@ -40,19 +40,23 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             " ON skill_activity_leader.skill_id = skill.id" +
             " LEFT JOIN location" +
             " ON activity_leader.location_id = location.id" +
-            " WHERE (firstName IS NULL OR (:firstName == '') OR firstName LIKE %:firstName%)" +
+            " WHERE (firstName IS NULL OR (:firstName = '') OR firstName LIKE %:firstName%)" +
             " AND (lastName IS NULL OR (:lastName = '') OR lastName LIKE %:lastName%)" +
             " AND (email IS NULL OR (:email='') OR email LIKE %:email%)" +
             " AND (phone IS NULL OR (:phone='') OR phone LIKE %:phone%)" +
             " AND (location.address1 IS NULL OR (:address1='') OR location.address1 LIKE %:address1%)" +
             " AND (location.address2 IS NULL OR (:address2='') OR location.address2 LIKE %:address2%)" +
             " AND (location.city IS NULL OR (:city='') OR location.city LIKE %:city%)" +
-            " AND (location.postcode IS NULL OR (:postcode='') OR location.postcode LIKE %:postcode%)" +
-            " AND (hasACar IS NULL OR (:hasACar='') OR hasACar LIKE %:hasACar%)" +
+            " AND (location.postcode IS NULL OR (:postcode=0) OR location.postcode = :postcode)" +
+            /*
+            " AND (hasACar IS NULL OR (:hasACar='0') OR hasACar LIKE %:hasACar%)" +
+*/
             " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)" +
-            //TODO " AND (`value`.name IS NULL OR (:valeur='') OR `value`.name LIKE %:valeur%)" VOIR POUR PLUSIEURS VALEURS
+/*
+            TODO " AND (`value`.name IS NULL OR (:valeur='') OR `value`.name LIKE %:valeur%)" VOIR POUR PLUSIEURS VALEURS
+*/
             " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
-            " AND (endDate IS NULL OR (:endDATE='') OR endDate LIKE %:endDate%)"
+            " AND (endDate IS NULL OR (:endDate='') OR endDate LIKE %:endDate%)"
     )
     public List<ActivityLeader> findAllByFilter(
             @Param("firstName") String firstName,
@@ -63,7 +67,6 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("address2") String address2,
             @Param("city") String city,
             @Param("postcode") int postCode,
-            @Param("hasACar") boolean hasACar,
             @Param("experience") String experience,
             @Param("startDate") Date startDate,
             @Param("endDate") Date endDate);

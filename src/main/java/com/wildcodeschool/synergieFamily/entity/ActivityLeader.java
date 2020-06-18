@@ -149,7 +149,7 @@ public class ActivityLeader {
         this.birthdate = birthdate;
     }
 
-    public boolean isHasACar() {
+    public boolean hasACar() {
         return hasACar;
     }
 

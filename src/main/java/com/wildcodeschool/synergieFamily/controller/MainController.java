@@ -15,14 +15,5 @@ public class MainController {
     public String getProfile() {
         return "profile";
     }
-
-    @GetMapping("/filter")
-    public String getFilter() {
-        return "filter";
-    }
-
-
-
-
 }
 
