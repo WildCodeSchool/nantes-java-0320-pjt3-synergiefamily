@@ -2,8 +2,6 @@ package com.wildcodeschool.synergieFamily.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,8 +34,6 @@ public class ActivityLeader {
     @Column(nullable = false)
     private String email;
 
-    // TODO voir pour ne pas rendre obligatoire
-    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 

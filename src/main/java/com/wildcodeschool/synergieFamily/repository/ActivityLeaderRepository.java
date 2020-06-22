@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, Long> {
@@ -18,9 +17,5 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
 
     @Query("SELECT a FROM ActivityLeader a ORDER BY a.id DESC")
     public List<ActivityLeader> findAll();
-
-
-
-
 
 }
