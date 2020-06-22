@@ -2,9 +2,9 @@ package com.wildcodeschool.synergieFamily.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Id;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,46 +27,41 @@ public class ActivityLeader {
     @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = true)
+    @Column
     private String phone;
 
     @NotNull
     @Column(nullable = false)
     private String email;
 
-    // TODO voir pour ne pas rendre obligatoire
-    @Column(nullable = true)
-    private String birthdate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthdate;
 
-    @Column(nullable = true)
+    @Column
     private Boolean hasACar;
 
-    @Column(nullable = true)
+    @Column
     private String experience;
 
-    @Column(nullable = true)
+    @Column
     private String availability;
 
-    @Column(nullable = true)
+    @Column
     private String comment;
 
     @Temporal(TemporalType.DATE)
-
-    // TODO voir pour ne pas rendre obligatoire
-    @Column(nullable = true)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
-    // TODO voir pour ne pas rendre obligatoire
-    @Column(nullable = true)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "skill_activity_leader",
             joinColumns = @JoinColumn(name = "activity_leader_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
@@ -90,9 +85,14 @@ public class ActivityLeader {
             inverseJoinColumns = @JoinColumn(name = "audience_id"))
     private List<Audience> audiences = new ArrayList<>();
 
-    private Boolean isActive;
+    @Transient
+    private Boolean active;
 
-    private Boolean isDraft;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean draft;
+
+    @Transient
+    private String skillList;
 
     public ActivityLeader() {
     }
@@ -137,11 +137,11 @@ public class ActivityLeader {
         this.email = email;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -164,7 +164,6 @@ public class ActivityLeader {
     public String getAvailability() {
         return availability;
     }
-
 
     public void setAvailability(String availability) {
         this.availability = availability;
@@ -194,20 +193,13 @@ public class ActivityLeader {
         this.endDate = endDate;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
+    public Boolean getDraft() {
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
+        return draft;
+    }  
 
-    public boolean isDraft() {
-        return isDraft;
-    }
-
-    public void setDraft(boolean draft) {
-        isDraft = draft;
+    public void setDraft(Boolean draft) {
+        this.draft = draft;
     }
 
     public Location getLocation() {
@@ -249,4 +241,25 @@ public class ActivityLeader {
     public void setAudiences(List<Audience> audiences) {
         this.audiences = audiences;
     }
+
+    public Boolean getActive() {
+        if (this.getStartDate() == null || this.getStartDate().compareTo(new Date()) > 0
+                || this.getEndDate() == null || this.getEndDate().compareTo(new Date()) < 0 ) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(String skillList) {
+        this.skillList = skillList;
+    }
+
 }
