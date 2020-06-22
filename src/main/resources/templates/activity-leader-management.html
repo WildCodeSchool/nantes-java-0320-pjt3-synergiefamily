@@ -16,8 +16,10 @@
     <h2>Gestion des Animateurs</h2>
     <!-- TODO: put the same font-size to all the h2 from the whole website. -->
     <div class="user-animator-ligne">
-        <a class="waves-effect waves-light btn black-text white darken-1" href="activity-leader-creation"><i class="material-icons left">add</i>AJOUTER UN ANIMATEUR</a>
-        <a class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL<i class="tiny material-icons right">send</i></a>
+        <a class="waves-effect waves-light btn black-text white darken-1" th:href="@{/activity-leader-creation}">
+            <i class="material-icons left">add</i>AJOUTER UN ANIMATEUR</a>
+        <a class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL
+            <i class="tiny material-icons right">send</i></a>
         <form method="get" action="/activity-leaders-search">
             <div class="search-wrapper" id="search-wrapper-animator">
                 <button type="submit" class="searchButton"> <i class="material-icons left" id="search-user-animator">search<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">chercher</font></font></i></button>
@@ -54,7 +56,7 @@
                 <td th:text="${activityLeader.firstName.toLowerCase()}">test1</td>
                 <td th:text="${activityLeader.email}">test1@exemple.com</td>
                 <td th:text="${activityLeader.phone}">+33 6 50 90 00 00</td>
-                <td th:text="${activityLeader.birthdate}">01/01/2020</td>
+                <td th:text="${#dates.format(activityLeader.birthdate, 'dd/MM/yyyy')}">01/01/2020</td>
                 <td >
                     <i th:if="${activityLeader.active}" class="small material-icons">done</i>
 

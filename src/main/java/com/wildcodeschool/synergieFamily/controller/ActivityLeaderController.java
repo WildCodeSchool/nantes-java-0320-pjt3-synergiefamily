@@ -14,6 +14,8 @@ import java.util.Optional;
 @Controller
 public class ActivityLeaderController {
 
+
+
     @Autowired
     private ActivityLeaderRepository activityLeaderRepository;
 
@@ -55,7 +57,8 @@ public class ActivityLeaderController {
 
     }
 
-    @PostMapping("/activity-leader-modification")
+    // TODO créer la route pour la modification d'un animateur
+    /*@PostMapping("/activity-leader-modification")
     public String updateActivityLeader(@ModelAttribute ActivityLeader activityLeader,
                                        @PathVariable Long id,
                                        @PathVariable String lastName,
@@ -78,64 +81,65 @@ public class ActivityLeaderController {
                                        @PathVariable Boolean draft) {
 
         Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
-            if (optionalActivityLeader.isPresent()) {
-               activityLeader = optionalActivityLeader.get();
-               if (lastName != null) {
-                   activityLeader.setLastName(lastName);
-               }
-                if (firstName != null) {
-                    activityLeader.setFirstName(firstName);
-                }
-                if (phone != null) {
-                    activityLeader.setPhone(phone);
-                }
-                if (email != null) {
-                    activityLeader.setEmail(email);
-                }
-                if (birthdate != null) {
-                    activityLeader.setBirthdate(birthdate);
-                }
-                if (hasAcar != null) {
-                    activityLeader.setHasACar(hasAcar);
-                }
-                if (experience != null) {
-                    activityLeader.setExperience(experience);
-                }
-                if (availability != null) {
-                    activityLeader.setAvailability(availability);
-                }
-                if (comment != null) {
-                    activityLeader.setComment(comment);
-                }
-                if (startDate != null) {
-                    activityLeader.setStartDate(startDate);
-                }
-                if (endDate != null) {
-                    activityLeader.setEndDate(endDate);
-                }
-                if (location != null) {
-                    activityLeader.setLocation(location);
-                }
-                if (skills != null) {
-                    activityLeader.setSkills(skills);
-                }
-                if (values != null) {
-                    activityLeader.setValues(values);
-                }
-                if (diplomas != null) {
-                    activityLeader.setDiplomas(diplomas);
-                }
-                if (audiences != null) {
-                    activityLeader.setAudiences(audiences);
-                }
-                if (active != null) {
-                    activityLeader.setActive(active);
-                }
-                if (draft != null) {
-                    activityLeader.setDraft(draft);
-                }
+        if (optionalActivityLeader.isPresent()) {
+            activityLeader = optionalActivityLeader.get();
+            if (lastName != null) {
+                activityLeader.setLastName(lastName);
             }
-            activityLeaderRepository.save(activityLeader);
-            return "redirect:/activity-leader-creation";
-    }
+            if (firstName != null) {
+                activityLeader.setFirstName(firstName);
+            }
+            if (phone != null) {
+                activityLeader.setPhone(phone);
+            }
+            if (email != null) {
+                activityLeader.setEmail(email);
+            }
+            if (birthdate != null) {
+                activityLeader.setBirthdate(birthdate);
+            }
+            if (hasAcar != null) {
+                activityLeader.setHasACar(hasAcar);
+            }
+            if (experience != null) {
+                activityLeader.setExperience(experience);
+            }
+            if (availability != null) {
+                activityLeader.setAvailability(availability);
+            }
+            if (comment != null) {
+                activityLeader.setComment(comment);
+            }
+            if (startDate != null) {
+                activityLeader.setStartDate(startDate);
+            }
+            if (endDate != null) {
+                activityLeader.setEndDate(endDate);
+            }
+            if (location != null) {
+                activityLeader.setLocation(location);
+            }
+            if (skills != null) {
+                activityLeader.setSkills(skills);
+            }
+            if (values != null) {
+                activityLeader.setValues(values);
+            }
+            if (diplomas != null) {
+                activityLeader.setDiplomas(diplomas);
+            }
+            if (audiences != null) {
+                activityLeader.setAudiences(audiences);
+            }
+            if (active != null) {
+                activityLeader.setActive(active);
+            }
+            if (draft != null) {
+                activityLeader.setDraft(draft);
+            }
+        }
+        activityLeaderRepository.save(activityLeader);
+        return "redirect:/activity-leader-creation";
+
+    }*/
 }

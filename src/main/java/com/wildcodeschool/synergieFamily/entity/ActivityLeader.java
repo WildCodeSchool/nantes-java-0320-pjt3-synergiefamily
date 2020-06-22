@@ -34,7 +34,6 @@ public class ActivityLeader {
     @Column(nullable = false)
     private String email;
 
-    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
