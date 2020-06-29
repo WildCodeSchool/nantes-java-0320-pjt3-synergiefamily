@@ -140,10 +140,4 @@ public class ActivityLeaderController {
         activityLeaderRepository.save(activityLeader);
         return "redirect:/activity-leader-creation";
     }
-
-    PostMapping("/")
-    public String deleteActivityLeader() {
-
-
-    }
 }
