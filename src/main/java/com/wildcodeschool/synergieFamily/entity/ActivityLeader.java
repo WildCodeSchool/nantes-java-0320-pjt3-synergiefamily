@@ -266,7 +266,11 @@ public class ActivityLeader {
     }
 
     public Boolean getDisabled() {
-        return disabled;
+
+        if (this.getDisabled() == null) {
+            return false;
+        }
+        return true;
     }
 
     public void setDisabled(Boolean disabled) {

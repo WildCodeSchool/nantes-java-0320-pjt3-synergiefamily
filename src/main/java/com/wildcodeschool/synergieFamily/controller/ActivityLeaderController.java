@@ -14,8 +14,6 @@ import java.util.Optional;
 @Controller
 public class ActivityLeaderController {
 
-
-
     @Autowired
     private ActivityLeaderRepository activityLeaderRepository;
 
@@ -26,6 +24,8 @@ public class ActivityLeaderController {
         out.addAttribute("activityLeader", activityLeader);
         return "activity-leader-creation";
     }
+
+
 
     @GetMapping("/activity-leader-management")
     public String showAllActivityLeaders(Model out) {
@@ -57,27 +57,39 @@ public class ActivityLeaderController {
 
     }
 
-    @PostMapping("/activity-leader-modification/{id}")
+    @GetMapping("/activity-leader-modification/{id}")
+    public String getActivityLeaderModification(Model out,
+                                                @PathVariable Long id) {
+
+        Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+        if (optionalActivityLeader.isPresent()) {
+            ActivityLeader activityLeader = optionalActivityLeader.get();
+            out.addAttribute("activityLeader", activityLeader);
+        }
+        return "activity-leader-creation";
+    }
+
+    @PostMapping("/activity-leader-modification")
     public String updateActivityLeader(@ModelAttribute ActivityLeader activityLeader,
-                                       @PathVariable Long id,
-                                       @PathVariable String lastName,
-                                       @PathVariable String firstName,
-                                       @PathVariable String phone,
-                                       @PathVariable String email,
-                                       @PathVariable Date birthdate,
-                                       @PathVariable Boolean hasAcar,
-                                       @PathVariable String experience,
-                                       @PathVariable String availability,
-                                       @PathVariable String comment,
-                                       @PathVariable Date startDate,
-                                       @PathVariable Date endDate,
-                                       @PathVariable Location location,
-                                       @PathVariable List<Skill> skills,
-                                       @PathVariable List<Value> values,
-                                       @PathVariable List<Diploma> diplomas,
-                                       @PathVariable List<Audience> audiences,
-                                       @PathVariable Boolean active,
-                                       @PathVariable Boolean draft) {
+                                       @RequestParam Long id,
+                                       @RequestParam String lastName,
+                                       @RequestParam String firstName,
+                                       @RequestParam String phone,
+                                       @RequestParam String email,
+                                       @RequestParam Date birthdate,
+                                       @RequestParam Boolean hasAcar,
+                                       @RequestParam String experience,
+                                       @RequestParam String availability,
+                                       @RequestParam String comment,
+                                       @RequestParam Date startDate,
+                                       @RequestParam Date endDate,
+                                       @RequestParam Location location,
+                                       @RequestParam List<Skill> skills,
+                                       @RequestParam List<Value> values,
+                                       @RequestParam List<Diploma> diplomas,
+                                       @RequestParam List<Audience> audiences,
+                                       @RequestParam Boolean active,
+                                       @RequestParam Boolean draft) {
 
         Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
         if (optionalActivityLeader.isPresent()) {
@@ -138,6 +150,6 @@ public class ActivityLeaderController {
             }
         }
         activityLeaderRepository.save(activityLeader);
-        return "redirect:/activity-leader-creation";
+        return "redirect:/activity-leader-modification?id";
     }
 }
