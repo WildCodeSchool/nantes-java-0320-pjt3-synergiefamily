@@ -141,31 +141,22 @@
                 </div>
                 <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Didier Drogba</h5>
                 <div class="content">
-                    <p><i class="tiny material-icons">phone</i>07 75 89 90 10 88</p>
-                    <p><i class="tiny material-icons">email</i>didierdrogba@synergie-family.com</p>
-                    <p><i class="tiny material-icons">home</i>13 rue du vélodrome, 13000 Marseille</p>
-                    <p><i class="tiny material-icons">directions_car</i>Oui</p>
+                    <p th:text="${activityleader.getPhone()}"><i class="tiny material-icons">phone</i>07 75 89 90 10 88</p>
+                    <p th:text="${activityleader.getEmail()}"><i class="tiny material-icons">email</i>didierdrogba@synergie-family.com</p>
+                    <p><i class="tiny material-icons">home</i><span th:text="${activityleader.location.getAddress1()}"></span><span th:text="${activityleader.location.getPostcode()}">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
+                    <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
                     <br>
-                    <p>Age:<span> 37 ans</span></p>
-                    <p>EXP:<span> 7 ans</span></p>
+                    <p>Age: <span th:text="${activityleader.getAge()}"></span></p>
+                    <p>EXP: <span th:text="${activityleader.experience}"> 7</span> ans</p>
                     <br>
                     <p class="collections-title">Diplômes</p>
-                    <div class="chip">
+                    <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
                         BAFA
-                    </div>
-                    <div class="chip">
-                        BEP
                     </div>
                 </div>
                 <p class="collections-title">Publics concernés</p>
-                <div class="chip">
+                <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
                     3/6ans
-                </div>
-                <div class="chip">
-                    6/8ans
-                </div>
-                <div class="chip">
-                    9/12ans
                 </div>
                 <br>
                 <br>

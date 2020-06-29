@@ -266,4 +266,9 @@ public class ActivityLeader {
         this.skillList = skillList;
     }
 
+    public int getAge(){
+        // TODO faire le calcul de la date de naissance vers l'âge
+        return 0;
+    }
+
 }

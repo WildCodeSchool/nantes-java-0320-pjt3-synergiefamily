@@ -51,12 +51,12 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             /*
             " AND (hasACar IS NULL OR (:hasACar='0') OR hasACar LIKE %:hasACar%)" +
 */
-            " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)" +
+            " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)"
 /*
             TODO " AND (`value`.name IS NULL OR (:valeur='') OR `value`.name LIKE %:valeur%)" VOIR POUR PLUSIEURS VALEURS
 */
-            " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
-            " AND (endDate IS NULL OR (:endDate='') OR endDate LIKE %:endDate%)"
+        // TODO    " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
+        // todo    " AND (endDate IS NULL OR (:endDate='') OR endDate LIKE %:endDate%)"
     )
     public List<ActivityLeader> findAllByFilter(
             @Param("firstName") String firstName,
@@ -67,8 +67,9 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("address2") String address2,
             @Param("city") String city,
             @Param("postcode") int postCode,
-            @Param("experience") String experience,
-            @Param("startDate") Date startDate,
-            @Param("endDate") Date endDate);
+            @Param("experience") String experience);
+   //TODO         @Param("diploma") String diploma);
+     //todo       @Param("startDate") Date startDate,
+     //TODO       @Param("endDate") Date endDate);
 }
 
