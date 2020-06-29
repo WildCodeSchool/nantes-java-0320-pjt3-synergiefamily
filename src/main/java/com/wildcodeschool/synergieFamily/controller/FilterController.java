@@ -41,10 +41,10 @@ public class FilterController {
                 activityLeader.getLocation().getAddress2(),
                 activityLeader.getLocation().getCity(),
                 activityLeader.getLocation().getPostcode(),
-               //  activityLeader.hasACar(),
                 activityLeader.getExperience()
         );
-             //todo   activityLeader.getStartDate(),
+              //TODO  activityLeader.hasACar(),
+             //TODO   activityLeader.getStartDate(),
              //TODO   activityLeader.getEndDate()
         model.addAttribute("activityleaders", list);
         return "filter";

@@ -14,18 +14,18 @@ public class Location {
     private Long id;
 
     @NotNull
-    @Column(nullable = false)
+    @Column
     private String address1;
 
-    @Column(nullable = true)
+    @Column
     private String address2;
 
     @NotNull
-    @Column(nullable = false)
-    private int postcode;
+    @Column
+    private Integer postcode;
 
     @NotNull
-    @Column(nullable = false)
+    @Column
     private String city;
 
     public Location() {}
@@ -54,11 +54,11 @@ public class Location {
         this.address2 = adress2;
     }
 
-    public int getPostcode() {
+    public Integer getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(Integer postcode) {
         this.postcode = postcode;
     }
 

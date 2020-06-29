@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, Long> {
@@ -18,8 +17,6 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
 
     @Query("SELECT a FROM ActivityLeader a ORDER BY a.id DESC")
     public List<ActivityLeader> findAll();
-
-
 
 
     @Query(nativeQuery = true, value = "SELECT DISTINCT activity_leader.* FROM activity_leader" +
@@ -68,8 +65,8 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("city") String city,
             @Param("postcode") int postCode,
             @Param("experience") String experience);
-   //TODO         @Param("diploma") String diploma);
-     //todo       @Param("startDate") Date startDate,
+     //TODO      @Param("startDate") Date startDate,
      //TODO       @Param("endDate") Date endDate);
+
 }
 

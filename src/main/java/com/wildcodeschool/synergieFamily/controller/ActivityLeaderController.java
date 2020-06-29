@@ -1,12 +1,15 @@
 package com.wildcodeschool.synergieFamily.controller;
 
-import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
-import com.wildcodeschool.synergieFamily.entity.Skill;
+import com.wildcodeschool.synergieFamily.entity.*;
 import com.wildcodeschool.synergieFamily.repository.ActivityLeaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ActivityLeaderController {
@@ -21,6 +24,8 @@ public class ActivityLeaderController {
         out.addAttribute("activityLeader", activityLeader);
         return "activity-leader-creation";
     }
+
+
 
     @GetMapping("/activity-leader-management")
     public String showAllActivityLeaders(Model out) {
@@ -52,4 +57,99 @@ public class ActivityLeaderController {
 
     }
 
+    @GetMapping("/activity-leader-modification/{id}")
+    public String getActivityLeaderModification(Model out,
+                                                @PathVariable Long id) {
+
+        Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+        if (optionalActivityLeader.isPresent()) {
+            ActivityLeader activityLeader = optionalActivityLeader.get();
+            out.addAttribute("activityLeader", activityLeader);
+        }
+        return "activity-leader-creation";
+    }
+
+    @PostMapping("/activity-leader-modification")
+    public String updateActivityLeader(@ModelAttribute ActivityLeader activityLeader,
+                                       @RequestParam Long id,
+                                       @RequestParam String lastName,
+                                       @RequestParam String firstName,
+                                       @RequestParam String phone,
+                                       @RequestParam String email,
+                                       @RequestParam Date birthdate,
+                                       @RequestParam Boolean hasAcar,
+                                       @RequestParam String experience,
+                                       @RequestParam String availability,
+                                       @RequestParam String comment,
+                                       @RequestParam Date startDate,
+                                       @RequestParam Date endDate,
+                                       @RequestParam Location location,
+                                       @RequestParam List<Skill> skills,
+                                       @RequestParam List<Value> values,
+                                       @RequestParam List<Diploma> diplomas,
+                                       @RequestParam List<Audience> audiences,
+                                       @RequestParam Boolean active,
+                                       @RequestParam Boolean draft) {
+
+        Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+        if (optionalActivityLeader.isPresent()) {
+            activityLeader = optionalActivityLeader.get();
+            if (lastName != null) {
+                activityLeader.setLastName(lastName);
+            }
+            if (firstName != null) {
+                activityLeader.setFirstName(firstName);
+            }
+            if (phone != null) {
+                activityLeader.setPhone(phone);
+            }
+            if (email != null) {
+                activityLeader.setEmail(email);
+            }
+            if (birthdate != null) {
+                activityLeader.setBirthdate(birthdate);
+            }
+            if (hasAcar != null) {
+                activityLeader.setHasACar(hasAcar);
+            }
+            if (experience != null) {
+                activityLeader.setExperience(experience);
+            }
+            if (availability != null) {
+                activityLeader.setAvailability(availability);
+            }
+            if (comment != null) {
+                activityLeader.setComment(comment);
+            }
+            if (startDate != null) {
+                activityLeader.setStartDate(startDate);
+            }
+            if (endDate != null) {
+                activityLeader.setEndDate(endDate);
+            }
+            if (location != null) {
+                activityLeader.setLocation(location);
+            }
+            if (skills != null) {
+                activityLeader.setSkills(skills);
+            }
+            if (values != null) {
+                activityLeader.setValues(values);
+            }
+            if (diplomas != null) {
+                activityLeader.setDiplomas(diplomas);
+            }
+            if (audiences != null) {
+                activityLeader.setAudiences(audiences);
+            }
+            if (active != null) {
+                activityLeader.setActive(active);
+            }
+            if (draft != null) {
+                activityLeader.setDraft(draft);
+            }
+        }
+        activityLeaderRepository.save(activityLeader);
+        return "redirect:/activity-leader-modification?id";
+    }
 }
