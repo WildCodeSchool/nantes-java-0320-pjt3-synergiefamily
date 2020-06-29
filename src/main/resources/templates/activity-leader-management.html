@@ -63,7 +63,7 @@
                     <i  th:if="${activityLeader.active == false}" class="small material-icons">close</i>
                 </td>
                 <td>
-                    <p> <a class="subheader" th:href="@{/activity-leader-creation}"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                    <p><a class="subheader" th:href="@{'/activity-leader-modification/' + ${activityLeader.id}}"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
                 </td>
             </tr>
         </tbody>

@@ -13,6 +13,7 @@
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
 <form action="/activity-leader-creation" method="post" th:object="${activityLeader}">
+    <input th:field="*{id}" type="hidden">
     <div id="leader" class="row">
         <div class="col s12 m6 offset-l3">
             <div class="card white">
