@@ -57,7 +57,6 @@ public class ActivityLeaderController {
 
     }
 
-    // TODO créer la route pour la modification d'un animateur
     @PostMapping("/activity-leader-modification/{id}")
     public String updateActivityLeader(@ModelAttribute ActivityLeader activityLeader,
                                        @PathVariable Long id,
@@ -140,6 +139,11 @@ public class ActivityLeaderController {
         }
         activityLeaderRepository.save(activityLeader);
         return "redirect:/activity-leader-creation";
+    }
+
+    PostMapping("/")
+    public String deleteActivityLeader() {
+
 
     }
 }
