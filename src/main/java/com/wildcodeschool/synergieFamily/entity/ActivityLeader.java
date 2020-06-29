@@ -49,6 +49,9 @@ public class ActivityLeader {
     @Column
     private String comment;
 
+    @Column
+    private Boolean disabled;
+
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
@@ -262,4 +265,11 @@ public class ActivityLeader {
         this.skillList = skillList;
     }
 
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
+    }
 }
