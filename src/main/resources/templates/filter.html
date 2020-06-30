@@ -16,8 +16,8 @@
 <form action="/filter" method="post" th:object="${activityLeader}">
     <div id="leader" class="row">
         <div class="col s12 m6 offset-l3">
-            <div class="card white">
-                <div class="card-action black-text">
+            <div class="card white" id="card-white">
+                <div class="card-action black-text" id="card-action">
                     <h4 class="center-align">Recherches</h4>
                 </div>
                 <div class="card-content">
@@ -65,9 +65,6 @@
                     <div class="form-field col s6">
                         <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences">
                     </div>
-                    <div>
-                        <textarea id="comment" name="comment" placeholder="Commentaires"></textarea>
-                    </div>
                     <div class="form-field">
                         <label for="unavailability" title="Clique-ici">Indisponibilités</label>
                         <input th:field="*{availability}" id="unavailability" type="date" class="datepicker" name="unavailability">
@@ -114,8 +111,8 @@
         </div>
     </div>
     <div class="center-align">
-        <button  class = "btn waves-effect waves-light" type = "submit">Enregistrer
-            <i class = "material-icons right">save</i></button>
+        <button  class = "btn waves-effect waves-light" type = "submit" id="search-button">Rechercher
+            <i class = "material-icons right"></i></button>
     </div>
 </form>
 <div class="row">
@@ -130,23 +127,23 @@
         </div>
     </div>
     <div class="col s12 m6 offset-l3">
-        <div class="card horizontal">
-            <div class="card-content" th:each="activityleader : ${activityleaders}">
-                <div class="card_check">
+        <div class="card horizontal" th:each="activityleader : ${activityleaders}">
+            <div class="card-content">
+                <div class="card_check" id="card-check">
                     <p>
                         <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
                         <label for="filled-in-box">
                         </label>
                     </p>
                 </div>
-                <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Didier Drogba</h5>
+                <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Nom</h5>
                 <div class="content">
-                    <p th:text="${activityleader.getPhone()}"><i class="tiny material-icons">phone</i>07 75 89 90 10 88</p>
-                    <p th:text="${activityleader.getEmail()}"><i class="tiny material-icons">email</i>didierdrogba@synergie-family.com</p>
-                    <p><i class="tiny material-icons">home</i><span th:text="${activityleader.location.getAddress1()}"></span><span th:text="${activityleader.location.getPostcode()}">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
+                    <p th:text="${activityleader.getPhone()}"><i class="tiny material-icons">phone</i>Numéro de téléphone</p>
+                    <p th:text="${activityleader.getEmail()}"><i class="tiny material-icons">email</i>Email</p>
+                    <p><i class="tiny material-icons">home</i><span th:text="| ${activityleader.location.getAddress1()},|"></span><span th:text="| ${activityleader.location.getPostcode()} |">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
                     <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
                     <br>
-                    <p>Age: <span th:text="${activityleader.getAge()}"></span></p>
+                    <p>Age: <span th:text="|${activityleader.getAge()} ans|"></span></p>
                     <p>EXP: <span th:text="${activityleader.experience}"> 7</span> ans</p>
                     <br>
                     <p class="collections-title">Diplômes</p>
