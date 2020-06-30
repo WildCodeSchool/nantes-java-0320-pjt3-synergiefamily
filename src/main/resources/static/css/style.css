@@ -145,6 +145,34 @@ header ul li:nth-child(2) {
     margin: auto;
 }
 
+.phone-email-address{
+    display: flex;
+}
+
+.card .card-content p{
+    margin-right: 2rem;
+}
+
+.title-check{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.title-check h5 {
+    display: flex;
+    margin-right: 22rem;
+}
+
+.title-check p {
+    padding-left: 30rem;
+    padding-top: 1rem;
+}
+
+#fiche{
+    display: flex;
+    margin-left: 48rem;
+}
+
 @media only screen and (min-width: 768px) {
     /*PAGE HOME 1*/
 
