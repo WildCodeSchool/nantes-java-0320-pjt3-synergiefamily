@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
@@ -98,7 +98,7 @@
                             <option value="9">65/+77 ans</option>
                         </select>
                     </div>
-                    <div class="form-field">
+                     <div class="form-field">
                         <select multiple>
                             <option value="" disabled selected>Valeurs</option>
                             <option value="1">Bienveillance</option>
@@ -133,7 +133,8 @@
 <div class="center-align">
     <button  class = "btn waves-effect waves-light" type = "submit">Enregistrer
         <i class = "material-icons right">save</i></button>
-    <button th:if="*{draft == true}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
+    <button th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
+
     <div id="modal1" class="modal">
         <div class="modal-content">
             <p>Bonjour. Merci de cliquez sur ce lien et de ne valider qu'une fois seulement que tous les champs renseignés seront remplis.</p>

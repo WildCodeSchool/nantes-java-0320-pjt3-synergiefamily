@@ -91,8 +91,8 @@ public class ActivityLeader {
     @Transient
     private Boolean active;
 
-    @Column(columnDefinition = "boolean default true")
-    private Boolean draft;
+    @Column(columnDefinition = "boolean default true", nullable = false)
+    private Boolean draft = true;
 
     @Transient
     private String skillList;
