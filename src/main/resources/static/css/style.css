@@ -132,6 +132,24 @@ header ul li:nth-child(2) {
     margin-top: 3rem;
 }
 
+#card-action{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#card-white{
+    width: 80%;
+    margin: auto;
+}
+
+#search-button{
+    margin: 3rem;}
+
+#card-check.card_check{
+    display: flex;
+    margin: auto;
+}
+
 @media only screen and (min-width: 768px) {
     /*PAGE HOME 1*/
 

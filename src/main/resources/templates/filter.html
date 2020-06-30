@@ -16,8 +16,8 @@
 <form action="/filter" method="post" th:object="${activityLeader}">
     <div id="leader" class="row">
         <div class="col s12 m6 offset-l3">
-            <div class="card white">
-                <div class="card-action black-text">
+            <div class="card white" id="card-white">
+                <div class="card-action black-text" id="card-action">
                     <h4 class="center-align">Recherches</h4>
                 </div>
                 <div class="card-content">
@@ -111,8 +111,8 @@
         </div>
     </div>
     <div class="center-align">
-        <button  class = "btn waves-effect waves-light" type = "submit">Rechercher
-            <i class = "material-icons right">save</i></button>
+        <button  class = "btn waves-effect waves-light" type = "submit" id="search-button">Rechercher
+            <i class = "material-icons right"></i></button>
     </div>
 </form>
 <div class="row">
@@ -127,9 +127,9 @@
         </div>
     </div>
     <div class="col s12 m6 offset-l3">
-        <div class="card horizontal">
-            <div class="card-content" th:each="activityleader : ${activityleaders}">
-                <div class="card_check">
+        <div class="card horizontal" th:each="activityleader : ${activityleaders}">
+            <div class="card-content">
+                <div class="card_check" id="card-check">
                     <p>
                         <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
                         <label for="filled-in-box">
