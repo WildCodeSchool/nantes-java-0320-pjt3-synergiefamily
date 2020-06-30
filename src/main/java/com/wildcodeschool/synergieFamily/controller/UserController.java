@@ -7,14 +7,8 @@ import com.wildcodeschool.synergieFamily.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,16 +29,27 @@ public class UserController {
         return "user-management";
     }
 
-    @GetMapping("/users")
-    public List<User> showAllUsers() {
+    @GetMapping("/user")
+    public String getUserCreation(Model out,
+                                  @RequestParam(required = false) Long id) {
 
-        return userRepository.findAll();
-    }
-
-    @GetMapping("/user-creation")
-    public String getUserCreation() {
+        User user = new User();
+        if (id != null) {
+            Optional<User> optionalUser = userRepository.findById(id);
+            if (optionalUser.isPresent()) {
+                user = optionalUser.get();
+            }
+        }
+        out.addAttribute("user", user);
 
         return "user-creation";
+    }
+
+    @PostMapping("/user")
+    public String postUser(@ModelAttribute User newUser) {
+
+        userRepository.save(newUser);
+        return "redirect:/user-management";
     }
 }
 

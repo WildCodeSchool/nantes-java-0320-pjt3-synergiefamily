@@ -25,8 +25,6 @@ public class ActivityLeaderController {
         return "activity-leader-creation";
     }
 
-
-
     @GetMapping("/activity-leader-management")
     public String showAllActivityLeaders(Model out) {
 
