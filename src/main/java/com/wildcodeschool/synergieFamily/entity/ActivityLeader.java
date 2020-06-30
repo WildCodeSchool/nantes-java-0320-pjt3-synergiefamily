@@ -148,11 +148,11 @@ public class ActivityLeader {
         this.birthdate = birthdate;
     }
 
-    public boolean hasACar() {
+    public Boolean getHasACar() {
         return hasACar;
     }
 
-    public void setHasACar(boolean hasACar) {
+    public void setHasACar(Boolean hasACar) {
         this.hasACar = hasACar;
     }
 
