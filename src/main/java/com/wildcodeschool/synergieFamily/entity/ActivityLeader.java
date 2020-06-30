@@ -62,7 +62,7 @@ public class ActivityLeader {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
-    private Location location;
+    private Location location = new Location();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "skill_activity_leader",

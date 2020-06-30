@@ -65,9 +65,6 @@
                     <div class="form-field col s6">
                         <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences">
                     </div>
-                    <div>
-                        <textarea id="comment" name="comment" placeholder="Commentaires"></textarea>
-                    </div>
                     <div class="form-field">
                         <label for="unavailability" title="Clique-ici">Indisponibilités</label>
                         <input th:field="*{availability}" id="unavailability" type="date" class="datepicker" name="unavailability">
@@ -114,7 +111,7 @@
         </div>
     </div>
     <div class="center-align">
-        <button  class = "btn waves-effect waves-light" type = "submit">Enregistrer
+        <button  class = "btn waves-effect waves-light" type = "submit">Rechercher
             <i class = "material-icons right">save</i></button>
     </div>
 </form>
@@ -139,10 +136,10 @@
                         </label>
                     </p>
                 </div>
-                <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Didier Drogba</h5>
+                <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Nom</h5>
                 <div class="content">
-                    <p th:text="${activityleader.getPhone()}"><i class="tiny material-icons">phone</i>07 75 89 90 10 88</p>
-                    <p th:text="${activityleader.getEmail()}"><i class="tiny material-icons">email</i>didierdrogba@synergie-family.com</p>
+                    <p th:text="${activityleader.getPhone()}"><i class="tiny material-icons">phone</i>Numéro de téléphone</p>
+                    <p th:text="${activityleader.getEmail()}"><i class="tiny material-icons">email</i>Email</p>
                     <p><i class="tiny material-icons">home</i><span th:text="${activityleader.location.getAddress1()}"></span><span th:text="${activityleader.location.getPostcode()}">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
                     <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
                     <br>
