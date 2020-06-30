@@ -7,6 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -265,9 +268,19 @@ public class ActivityLeader {
         this.skillList = skillList;
     }
 
-    public int getAge(){
-        // TODO faire le calcul de la date de naissance vers l'âge
-        return 0;
+    public int getAge() {
+
+        if (this.birthdate != null) {
+            return Period.between(convertDate(this.birthdate), convertDate(new Date())).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+    public LocalDate convertDate(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
     public Boolean getDisabled() {
