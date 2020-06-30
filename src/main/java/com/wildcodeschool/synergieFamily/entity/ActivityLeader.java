@@ -148,11 +148,11 @@ public class ActivityLeader {
         this.birthdate = birthdate;
     }
 
-    public boolean isHasACar() {
+    public Boolean isHasACar() {
         return hasACar;
     }
 
-    public void setHasACar(boolean hasACar) {
+    public void setHasACar(Boolean hasACar) {
         this.hasACar = hasACar;
     }
 
@@ -263,6 +263,11 @@ public class ActivityLeader {
 
     public void setSkillList(String skillList) {
         this.skillList = skillList;
+    }
+
+    public int getAge(){
+        // TODO faire le calcul de la date de naissance vers l'âge
+        return 0;
     }
 
     public Boolean getDisabled() {

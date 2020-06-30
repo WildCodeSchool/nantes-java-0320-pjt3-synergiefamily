@@ -13,97 +13,111 @@
 </head>
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
-<div class="row">
-    <div class="col s12 m6 offset-l3">
-        <div class="card">
-            <div class="card-action black-text">
-                <h5><i class="material-icons left small">filter_list</i>Recherches</h5>
-            </div>
-            <div class="card-content">
-                <div class="form-field col s6">
-                    <label for="first_name">Prénom
-                    </label>
-                    <input id="first_name" type="text" class="validate">
+<form action="/filter" method="post" th:object="${activityLeader}">
+    <div id="leader" class="row">
+        <div class="col s12 m6 offset-l3">
+            <div class="card white">
+                <div class="card-action black-text">
+                    <h4 class="center-align">Recherches</h4>
                 </div>
-                <div class="form-field col s6">
-                    <label for="last_name">Nom
-                    </label>
-                    <input id="last_name" type="text" class="validate">
-                </div>
-                <div class="form-field">
-                    <label for="email">Email
-                    </label>
-                    <input id="email" type="email" class="validate">
-                </div>
-                <div class="form-field">
-                    <label for="telephone">Téléphone
-                    </label>
-                    <input id="telephone" type="tel" class="validate">
-                </div>
-                <div class="form-field">
-                    <label for="address">Adresse
-                    </label>
-                    <input id="address" type="text" class="validate">
-                </div>
-                <div class="form-field">
-                    <input id="vehicule" type = "checkbox">
-                    <label for="vehicule">Véhiculé
-                    </label>
-                </div>
-                <div class="form-field">
-                    <select multiple>
-                        <option value="" disabled selected>Diplômes</option>
-                        <option value="1">BAFA</option>
-                        <option value="2">CAP petite enfance</option>
-                        <option value="3">BAFD</option>
-                        <option value="4">CQP Animateur Périscolaire</option>
-                        <option value="5">BPJEPS</option>
-                        <option value="6">DEJEPS</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="xp">Années d'expériences
-                    </label>
-                    <input id="xp" type="text" class="validate">
-                </div>
-                <div class="form-field">
-                    <label for="skill">Compétences
-                    </label>
-                    <input id="skill" type="text" class="validate">
-                </div>
-                <div class="form-field">
-                    <label for="test">Date de début de contrat
-                    </label>
-                    <input id="test" type="date" class="datepicker" value="05/03/2019">
-                </div>
-                <div class="form-field">
-                    <label for="test1">Date de fin de contrat
-                    </label>
-                    <input id="test1" type="date" class="datepicker" value="05/03/2019">
-                </div>
-                <div class="form-field">
-                    <select multiple>
-                        <option value="" disabled selected>Public concerné</option>
-                        <option value="1">3/6 ans</option>
-                        <option value="2">6/8 ans</option>
-                        <option value="3">9/12 ans</option>
-                        <option value="4">12/15 ans</option>
-                        <option value="5">16/18 ans</option>
-                        <option value="6">18/25 ans</option>
-                        <option value="7">25/35 ans</option>
-                        <option value="8">35/50 ans</option>
-                        <option value="9">65/+77 ans</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <button class="btn waves-effect waves-light"type="submit" name="action">Recherche
-                        <i class="material-icons left">search</i>
-                    </button>
+                <div class="card-content">
+                    <div class="form-field col s6">
+                        <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom">
+                    </div>
+                    <div class="form-field col s6">
+                        <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom">
+                    </div>
+                    <div class="form-field col s6">
+                        <input th:field="*{birthdate}" id="birthdate" type="date" placeholder="Date de Naissance">
+                    </div>
+                    <div class="form-field">
+                        <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email">
+                    </div>
+                    <div class="form-field col s6">
+                        <input th:field="*{phone}"id="phone" type="tel" class="validate" placeholder="Téléphone"></div>
+                    <div class="form-field">
+                        <input th:field="*{location.address1}" type="text" class="validate" placeholder="Adresse 1">
+                    </div>
+                    <div class="form-field col s6">
+                        <input th:field="*{location.address2}"type="text" class="validate" placeholder="Adresse 2">
+                    </div>
+                    <div class="form-field col s6">
+                        <input th:field="*{location.postcode}" type="number" class="validate" placeholder="Code postal">
+                    </div>
+                    <div class="form-field col s6">
+                        <input th:field="*{location.city}" type="text" class="validate" placeholder="Ville">
+                    </div>
+                    <div class="form-field">
+                        <input id="vehicule" type="checkbox">
+                        <label for="vehicule">Véhiculé</label>
+                    </div>
+                    <div class="form-field col s6">
+                        <select multiple>
+                            <option value="" disabled selected>Diplômes</option>
+                            <option value="1">BAFA</option>
+                            <option value="2">CAP petite enfance</option>
+                            <option value="3">BAFD</option>
+                            <option value="4">CQP Animateur Périscolaire</option>
+                            <option value="5">BPJEPS</option>
+                            <option value="6">DEJEPS</option>
+                        </select>
+                    </div>
+                    <div class="form-field col s6">
+                        <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences">
+                    </div>
+                    <div>
+                        <textarea id="comment" name="comment" placeholder="Commentaires"></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label for="unavailability" title="Clique-ici">Indisponibilités</label>
+                        <input th:field="*{availability}" id="unavailability" type="date" class="datepicker" name="unavailability">
+                    </div>
+                    <div class="form-field">
+                        <label for="skill" type="text"  class="validate">Compétences</label>
+                        <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate">
+                    </div>
+                    <div class="form-field">
+                        <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
+                        <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019">
+                    </div>
+                    <div class="form-field">
+                        <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
+                        <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019">
+                    </div>
+                    <div class="form-field">
+                        <select multiple>
+                            <option value="" disabled selected>Public concerné</option>
+                            <option value="1">3/6 ans</option>
+                            <option value="2">6/8 ans</option>
+                            <option value="3">9/12 ans</option>
+                            <option value="4">12/15 ans</option>
+                            <option value="5">16/18 ans</option>
+                            <option value="6">18/25 ans</option>
+                            <option value="7">25/35 ans</option>
+                            <option value="8">35/50 ans</option>
+                            <option value="9">65/+77 ans</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <select multiple>
+                            <option value="" disabled selected>Valeurs</option>
+                            <option value="1">Bienveillance</option>
+                            <option value="2">Optimisme</option>
+                            <option value="3">Proximité</option>
+                            <option value="4">Responsabilité</option>
+                            <option value="5">Détermination</option>
+                        </select>
+                        <input id="other" type="text" class="validate" placeholder="Autres valeurs">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="center-align">
+        <button  class = "btn waves-effect waves-light" type = "submit">Enregistrer
+            <i class = "material-icons right">save</i></button>
+    </div>
+</form>
 <div class="row">
     <div class="col s12 m6 offset-l3">
         <div class="container">
@@ -117,7 +131,7 @@
     </div>
     <div class="col s12 m6 offset-l3">
         <div class="card horizontal">
-            <div class="card-content">
+            <div class="card-content" th:each="activityleader : ${activityleaders}">
                 <div class="card_check">
                     <p>
                         <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
@@ -125,33 +139,24 @@
                         </label>
                     </p>
                 </div>
-                <h5>Didier Drogba</h5>
+                <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Didier Drogba</h5>
                 <div class="content">
-                    <p><i class="tiny material-icons">phone</i>07 75 89 90 10 88</p>
-                    <p><i class="tiny material-icons">email</i>didierdrogba@synergie-family.com</p>
-                    <p><i class="tiny material-icons">home</i>13 rue du vélodrome, 13000 Marseille</p>
-                    <p><i class="tiny material-icons">directions_car</i>Oui</p>
+                    <p th:text="${activityleader.getPhone()}"><i class="tiny material-icons">phone</i>07 75 89 90 10 88</p>
+                    <p th:text="${activityleader.getEmail()}"><i class="tiny material-icons">email</i>didierdrogba@synergie-family.com</p>
+                    <p><i class="tiny material-icons">home</i><span th:text="${activityleader.location.getAddress1()}"></span><span th:text="${activityleader.location.getPostcode()}">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
+                    <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
                     <br>
-                    <p>Age:<span> 37 ans</span></p>
-                    <p>EXP:<span> 7 ans</span></p>
+                    <p>Age: <span th:text="${activityleader.getAge()}"></span></p>
+                    <p>EXP: <span th:text="${activityleader.experience}"> 7</span> ans</p>
                     <br>
                     <p class="collections-title">Diplômes</p>
-                    <div class="chip">
+                    <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
                         BAFA
-                    </div>
-                    <div class="chip">
-                        BEP
                     </div>
                 </div>
                 <p class="collections-title">Publics concernés</p>
-                <div class="chip">
+                <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
                     3/6ans
-                </div>
-                <div class="chip">
-                    6/8ans
-                </div>
-                <div class="chip">
-                    9/12ans
                 </div>
                 <br>
                 <br>
