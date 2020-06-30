@@ -13,10 +13,6 @@
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
 <form action="/user" method="post" th:action="@{/user}" th:object="${user}">
-<!--    TODO: create a post method in usercontroller for user-creation-->
-<!--
-    TODO: create the 'user' key in attributes to a model in the controller
--->
     <input th:field="*{id}" type="hidden">
     <div class="row">
         <div class="col s12 m6 offset-l3">
@@ -33,6 +29,10 @@
                         <label for="password">Mot de passe</label>
                         <input required th:field="*{password}" id="password" type="password" class="validate" placeholder="Mot de passe*">
                     </div>
+<!--
+                    TODO: DELETE this password field, and replace by a random temporary password.
+                    TODO: make a email sending for asking a new password to the new user
+-->
                     <div class="form-field">
                         <select th:field="*{role}">
                             <option value="" disabled selected>Rôle</option>
