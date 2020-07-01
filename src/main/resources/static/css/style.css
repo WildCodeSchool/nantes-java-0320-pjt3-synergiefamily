@@ -155,7 +155,7 @@ header ul li:nth-child(2) {
 
 .title-check{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 
 .title-check h5 {
