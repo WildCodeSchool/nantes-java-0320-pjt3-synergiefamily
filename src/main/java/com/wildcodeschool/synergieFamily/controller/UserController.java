@@ -20,7 +20,6 @@ public class UserController {
     public String getUserManagement(Model out) {
 
         out.addAttribute("users", userRepository.findAll());
-
         return "user-management";
     }
 
@@ -36,7 +35,6 @@ public class UserController {
             }
         }
         out.addAttribute("user", user);
-
         return "user-creation";
     }
 
@@ -45,6 +43,17 @@ public class UserController {
 
         userRepository.save(newUser);
         return "redirect:/user-management";
+    }
+
+    @GetMapping("/user/delete")
+    public String deleteUser(@RequestParam Long id) {
+
+        userRepository.deleteById(id);
+        return "redirect:/user-management";
+/*
+        TODO: create a popup to ask whether the deletion is really wanted
+        TODO: create a second popup to confirm the deletion
+*/
     }
 }
 

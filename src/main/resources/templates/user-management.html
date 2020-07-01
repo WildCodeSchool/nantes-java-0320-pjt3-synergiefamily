@@ -39,16 +39,17 @@
                                         edit
                                 </i>
                             </a>
-                            <a class="subheader" href="/">
+                            <a class="subheader" th:href="@{user/delete(id=${user.id})}">
                                 <i class="small material-icons">
                                         delete
                                 </i>
                             </a>
+<!--
+                            TODO: create a popup to ask whether the deletion is really wanted
+                            TODO: create a second popup to confirm the deletion
+                            -->
                         </p>
                     </td>
-<!--
-                    TODO: make the DELETE function work
--->
                 </tr>
             </tbody>
         </table>
