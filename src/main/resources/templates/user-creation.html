@@ -12,27 +12,29 @@
 </head>
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
-<div class="row">
-    <div class="col s12 m6 offset-l3">
-        <div class="card">
-            <div class="card-action black-text">
-                <h4 class="center-align">Information Utilisateur</h4>
-            </div>
-            <div class="card-content">
-                <div class="form-field">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="validate">
+
+<div class="bloc-user-creation">
+    <div class="row">
+        <div class="col s12 m6 offset-l3" id="bloc-form-user-creation">
+            <div class="card">
+                <div class="card-action black-text">
+                    <h4 class="center-align">Informations Utilisateur</h4>
                 </div>
-                <div class="form-field">
-                    <select>
-                        <option value="" disabled selected>Rôle</option>
-                        <option value="1">Admin</option>
-                        <option value="2">Coordinateur</option>
-                    </select>
-                </div>
-                <div id="buttonSave" class="center-align">
-                    <a class="waves-effect waves-light btn">enregistrer<i class="material-icons right">save</i></a>
-                </div>
+                <form class="card-content" th:action="@{/user-creation}" method="post">
+                    <div class="form-field" id="input-user-creation">
+                        <input id="email" type="email" class="validate" placeholder="Email" name="email">
+                    </div>
+                    <div class="form-field">
+                        <select name="role_id" id="role_id" required>
+                            <option value="name" disabled selected>Rôle</option>
+                            <option value="1">Coordinateur</option>
+                            <option value="2">Administrateur</option>
+                        </select>
+                    </div>
+                    <div class="button-form" id="button-form-user-creation">
+                        <button type="submit" class="btn">ENREGISTRER<i class="material-icons right">save</i></button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

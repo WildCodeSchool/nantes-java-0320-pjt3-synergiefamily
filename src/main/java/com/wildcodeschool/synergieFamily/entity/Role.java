@@ -3,6 +3,7 @@ package com.wildcodeschool.synergieFamily.entity;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,14 +18,19 @@ public class Role {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users = new ArrayList<>();
 
     public Role() {
+
+    }
+
+    public Role(String name) {
+        this.name = name;
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -32,7 +38,7 @@ public class Role {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
