@@ -151,7 +151,7 @@ public class ActivityLeader {
         this.birthdate = birthdate;
     }
 
-    public Boolean isHasACar() {
+    public Boolean getHasACar() {
         return hasACar;
     }
 
@@ -281,14 +281,6 @@ public class ActivityLeader {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
-    }
-
-    public Boolean getDisabled() {
-
-        if (this.getDisabled() == null) {
-            return false;
-        }
-        return true;
     }
 
     public void setDisabled(Boolean disabled) {

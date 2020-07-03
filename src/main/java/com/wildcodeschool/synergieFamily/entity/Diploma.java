@@ -12,7 +12,7 @@ public class Diploma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotNull
     @Column(nullable = false)
@@ -21,7 +21,7 @@ public class Diploma {
     @ManyToMany(mappedBy = "diplomas")
     private List<ActivityLeader> activityLeaders = new ArrayList<>();
 
-    public Diploma(int id, String name) {
+    public Diploma(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -29,11 +29,11 @@ public class Diploma {
     public Diploma() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
