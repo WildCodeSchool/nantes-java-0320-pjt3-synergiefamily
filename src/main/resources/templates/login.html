@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
@@ -13,6 +13,7 @@
     </script>
     <link rel="stylesheet" href="/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 </head>
 <header>
 </header>
@@ -27,31 +28,27 @@
                     <div class="card-content black-text">
                         <h5 class="connexion">CONNEXION</h5>
                         <div class="row">
-                            <form class="col s12">
+                            <form class="col s12" th:action="@{/login}" method="post">
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="email" type="email" class="validate">
-                                        <label for="email">Email</label>
+                                        <div th:if="${param.error}" class="alert alert-error">
+                                            Email et mot de passe invalide
+                                        </div>
+                                        <div th:if="${param.logout}" class="alert alert-success">
+                                            You have been logged out.
+                                        </div>
+                                        <input id="email" type="email" class="validate" placeholder="Email" name="username"/>
+                                        <input id="password" type="text" class="validate" placeholder="Mot de passe" name="password"/>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="password" type="text" class="validate">
-                                        <label for="password">Mot de passe</label>
-                                    </div>
+                                <div class="button-form">
+                                    <button type="submit" class="btn">Se connecter<i class="material-icons right">done</i></button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="center-align">
-            <a href="/profile" class="waves-effect waves-light btn">se connecter<i class="material-icons right">done</i></a>
         </div>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
