@@ -12,6 +12,9 @@
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
 <form action="/activity-leader-creation" method="post" th:object="${activityLeader}">
+
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
     <input th:field="*{id}" type="hidden">
     <div id="leader" class="row">
         <div class="col s12 m6 offset-l3">

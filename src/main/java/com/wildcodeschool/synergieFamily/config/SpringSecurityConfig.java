@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -41,10 +42,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/*").permitAll()
                 .antMatchers("/image/*").permitAll()
                 .antMatchers("/login/**").permitAll()
-                .antMatchers("/init*").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/activity-leader-creation*").hasAnyRole("ADMIN", "COORDINATEUR")
-                .antMatchers("/activity-leader-management*").hasAnyRole("ADMIN", "COORDINATEUR")
+                .antMatchers("/init").permitAll()
+/*                .antMatchers("/register").permitAll()*/
+                .antMatchers("/activity-leader-creation").hasRole("ADMIN")
+                .antMatchers("/activity-leader-modification/*").hasAnyRole("ADMIN", "COORDINATEUR")
+                .antMatchers("/activity-leader-management").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/filter").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/profile").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/user-creation").hasRole("ADMIN")
