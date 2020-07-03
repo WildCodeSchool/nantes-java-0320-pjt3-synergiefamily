@@ -47,8 +47,10 @@
                         <input th:field="*{location.city}" type="text" class="validate" placeholder="Ville">
                     </div>
                     <div class="form-field">
-                        <input th:field="*{hasACar}" id="vehicule" type="checkbox">
-                        <label for="vehicule">Véhiculé</label>
+                        <label>
+                            <input name="hasACar" th:checked="*{hasACar}" type="checkbox">
+                            <span>Véhiculé</span>
+                        </label>
                     </div>
                     <div class="form-field col s6">
                         <select multiple th:field="${activityLeader.diplomas}">
