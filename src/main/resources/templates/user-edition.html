@@ -27,7 +27,6 @@
                                     <input required th:field="*{email}" id="email" type="email" class="validate">
                                 </div>
                                 <div class="form-field">
-                                    <label for="password">Mot de passe</label>
                                     <input required th:field="*{password}" id="password" type="password" class="validate" placeholder="Mot de passe*">
                                 </div>
                                 <!--TODO: DELETE this password field, and replace by a random temporary password.
@@ -40,12 +39,9 @@
                                         <option value="2">Coordinateur</option>
                                     </select>
                                 </div>
-                                <button class = "btn waves-effect waves-light" type = "submit" value="Enregistrer">
-                                    Enregistrer
-                                    <i class = "material-icons right">
-                                        save
-                                    </i>
-                                </button>
+                                <div class="button-form" id="button-form-user-creation">
+                                    <button type="submit" class="btn">ENREGISTRER<i class="material-icons right">save</i></button>
+                                </div>
                             </div>
                         </div>
                     </form>
