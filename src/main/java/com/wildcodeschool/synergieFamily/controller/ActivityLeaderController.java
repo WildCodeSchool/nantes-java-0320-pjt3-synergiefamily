@@ -2,6 +2,9 @@ package com.wildcodeschool.synergieFamily.controller;
 
 import com.wildcodeschool.synergieFamily.entity.*;
 import com.wildcodeschool.synergieFamily.repository.ActivityLeaderRepository;
+import com.wildcodeschool.synergieFamily.repository.AudienceRepository;
+import com.wildcodeschool.synergieFamily.repository.DiplomaRepository;
+import com.wildcodeschool.synergieFamily.repository.ValueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,15 @@ import java.util.Optional;
 public class ActivityLeaderController {
 
     @Autowired
+    private DiplomaRepository diplomaRepository;
+
+    @Autowired
+    private AudienceRepository audienceRepository;
+
+    @Autowired
+    private ValueRepository valueRepository;
+
+    @Autowired
     private ActivityLeaderRepository activityLeaderRepository;
 
     @GetMapping("/activity-leader-creation")
@@ -19,6 +31,9 @@ public class ActivityLeaderController {
 
         ActivityLeader activityLeader = new ActivityLeader();
         out.addAttribute("activityLeader", activityLeader);
+        out.addAttribute("valuesList", valueRepository.findAll());
+        out.addAttribute("audiencesList", audienceRepository.findAll());
+        out.addAttribute("diplomasList", diplomaRepository.findAll());
         return "activity-leader-creation";
     }
 
@@ -45,7 +60,8 @@ public class ActivityLeaderController {
         for (String skill : skills) {
             Skill skillItem = new Skill(skill);
             activityLeader.getSkills().add(skillItem);
-        }
+        } // TODO voir avec bastien pourquoi quand on ne rentre pas de skill ça rentre un blanc dans la BDD?
+         // TODO voir pour faire la même chose pour les valeurs
 
         activityLeader = activityLeaderRepository.save(activityLeader);
         return "redirect:/activity-leader-modification/" + activityLeader.getId();
@@ -60,6 +76,9 @@ public class ActivityLeaderController {
         if (optionalActivityLeader.isPresent()) {
             ActivityLeader activityLeader = optionalActivityLeader.get();
             out.addAttribute("activityLeader", activityLeader);
+            out.addAttribute("valuesList", valueRepository.findAll());
+            out.addAttribute("audiencesList", audienceRepository.findAll());
+            out.addAttribute("diplomasList", diplomaRepository.findAll());
         }
         return "activity-leader-creation";
     }
