@@ -43,11 +43,8 @@ public class FilterController {
                 activityLeader.getLocation().getAddress2(),
                 activityLeader.getLocation().getCity(),
                 activityLeader.getLocation().getPostcode(),
-                activityLeader.getExperience()
-        );
-              //TODO  activityLeader.hasACar(),
-             //TODO   activityLeader.getStartDate(),
-             //TODO   activityLeader.getEndDate()
+                activityLeader.getExperience());
+        //TODO  activityLeader.hasACar()
         model.addAttribute("activityleaders", list);
         return "filter";
     }
