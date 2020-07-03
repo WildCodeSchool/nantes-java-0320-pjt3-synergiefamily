@@ -52,8 +52,8 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
 /*
             TODO " AND (`value`.name IS NULL OR (:valeur='') OR `value`.name LIKE %:valeur%)" VOIR POUR PLUSIEURS VALEURS
 */
-        // TODO    " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
-        // todo    " AND (endDate IS NULL OR (:endDate='') OR endDate LIKE %:endDate%)"
+            // TODO    " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
+            // todo    " AND (endDate IS NULL OR (:endDate='') OR endDate LIKE %:endDate%)"
     )
     public List<ActivityLeader> findAllByFilter(
             @Param("firstName") String firstName,
@@ -65,8 +65,7 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("city") String city,
             @Param("postcode") Integer postCode,
             @Param("experience") String experience);
-     //TODO      @Param("startDate") Date startDate,
-     //TODO       @Param("endDate") Date endDate);
+    //TODO      @Param("startDate") Date startDate,
+    //TODO       @Param("endDate") Date endDate);
 
 }
-

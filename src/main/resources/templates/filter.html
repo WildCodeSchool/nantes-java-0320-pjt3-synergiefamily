@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -139,8 +138,8 @@
                         </p>
                     </div>
                     <div class="phone-email-address">
-                    <p th:text="${activityleader.getPhone()}"><i class="tiny material-icons">phone</i>Numéro de téléphone</p>
-                    <p th:text="${activityleader.getEmail()}"><i class="tiny material-icons">email</i>Email</p>
+                        <p><i class="tiny material-icons">phone</i><span th:text="${activityleader.getPhone()}"></span></p>
+                    <p><i class="tiny material-icons">email</i><span th:text="${activityleader.getEmail()}"></span></p>
                     <p><i class="tiny material-icons">home</i><span th:text="| ${activityleader.location.getAddress1()},|"></span><span th:text="| ${activityleader.location.getPostcode()} |">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
                     <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
                     </div>
@@ -159,13 +158,12 @@
                 </div>
                 <br>
                 <br>
-                <a class="btn waves-effect waves-light" type="submit" name="action" id="fiche" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a>
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="fiche"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
             </div>
         </div>
     </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
             $(document).ready(function () {
                 $("select").material_select();
