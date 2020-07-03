@@ -16,7 +16,11 @@
         <h2>Gestion des utilisateurs</h2>
         <!-- TODO: put the same font-size to all the h2 from the whole website. -->
 
-        <a class="waves-effect waves-light btn black-text white darken-1" th:href="@{/user}">
+
+        <a class="waves-effect waves-light btn black-text white darken-1" th:href="@{/user-creation}">
+
+        <!--<a class="waves-effect waves-light btn black-text white darken-1" th:href="@{/user}">-->
+
             <i class="material-icons left">+</i>AJOUTER UN UTILISATEUR</a>
         <!--TODO: replace the + char by a + bold icon -->
         <!-- TODO REPLACE ICONS BLACK TEXT -->
@@ -31,10 +35,12 @@
             <tbody>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.email}">test1@exemple.com</td>
-                    <td th:text="${user.role.name}">ROLE</td>
+                    <td>
+                        <span th:each="role : ${user.roles}" th:text="${role.name}">ROLE</span>
+                    </td><!--TODO: faire afficher le role-->
                     <td>
                         <p>
-                            <a class="subheader" th:href="@{/user(id=${user.id})}">
+                            <a class="subheader" th:href="@{/user-edition(id=${user.id})}">
                                 <i class="small material-icons">
                                         edit
                                 </i>

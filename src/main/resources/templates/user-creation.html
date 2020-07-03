@@ -12,46 +12,32 @@
 </head>
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
-<form action="/user" method="post" th:action="@{/user}" th:object="${user}">
-    <input th:field="*{id}" type="hidden">
+<div class="bloc-user-creation">
     <div class="row">
-        <div class="col s12 m6 offset-l3">
+        <div class="col s12 m6 offset-l3" id="bloc-form-user-creation">
             <div class="card">
                 <div class="card-action black-text">
-                    <h4 class="center-align" th:text="${user.id} ? 'Modification de compte' : 'Création de compte'">Information Utilisateur</h4>
-                </div>
-                <div class="card-content">
-                    <div class="form-field">
-                        <label for="email">Email</label>
-                        <input required th:field="*{email}" id="email" type="email" class="validate">
-                    </div>
-                    <div class="form-field">
-                        <label for="password">Mot de passe</label>
-                        <input required th:field="*{password}" id="password" type="password" class="validate" placeholder="Mot de passe*">
-                    </div>
-<!--
-                    TODO: DELETE this password field, and replace by a random temporary password.
-                    TODO: make a email sending for asking a new password to the new user
--->
-                    <div class="form-field">
-                        <select th:field="*{role}">
-                            <option value="" disabled selected>Rôle</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Coordinateur</option>
-                        </select>
-                    </div>
-
-                    <button class = "btn waves-effect waves-light" type = "submit" value="Enregistrer">
-                        Enregistrer
-                        <i class = "material-icons right">
-                            save
-                        </i>
-                    </button>
+                    <h4 class="center-align" th:text="${user.id} ? 'Modification de compte' : 'Création de compte'">Informations Utilisateur</h4>
+                    <form class="card-content" th:action="@{/user-creation}" method="post" >
+                        <div class="form-field" id="input-user-creation">
+                            <input id="email" type="email" class="validate" placeholder="Email" name="email">
+                        </div>
+                        <div class="form-field">
+                            <select name="role_id" id="role_id" required>
+                                <option value="" disabled selected>Rôle</option>
+                                <option value="1">Coordinateur</option>
+                                <option value="2">Administrateur</option><!--TODO remplacer par les roles d la base données-->
+                            </select>
+                        </div>
+                        <div class="button-form" id="button-form-user-creation">
+                            <button type="submit" class="btn">ENREGISTRER<i class="material-icons right">save</i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>

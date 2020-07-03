@@ -34,6 +34,8 @@ public class ActivityLeaderController {
         out.addAttribute("valuesList", valueRepository.findAll());
         out.addAttribute("audiencesList", audienceRepository.findAll());
         out.addAttribute("diplomasList", diplomaRepository.findAll());
+        out.addAttribute("editable", true);
+
         return "activity-leader-creation";
     }
 
@@ -79,6 +81,20 @@ public class ActivityLeaderController {
             out.addAttribute("valuesList", valueRepository.findAll());
             out.addAttribute("audiencesList", audienceRepository.findAll());
             out.addAttribute("diplomasList", diplomaRepository.findAll());
+            out.addAttribute("editable", true);
+        }
+        return "activity-leader-creation";
+    }
+
+    @GetMapping("/activity-leader-showcard/{id}")
+    public String getActivityLeaderShowCard(Model out,
+                                                @PathVariable Long id) {
+
+        Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+        if (optionalActivityLeader.isPresent()) {
+            ActivityLeader activityLeader = optionalActivityLeader.get();
+            out.addAttribute("activityLeader", activityLeader);
+            out.addAttribute("editable", false);
         }
         return "activity-leader-creation";
     }

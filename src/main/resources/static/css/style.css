@@ -18,6 +18,7 @@
 }
 
 
+
 /*PAGE PROFIL 2*/
 
 
@@ -64,6 +65,32 @@
     margin-top: 3rem;
     text-align: center;
 }
+
+.bloc-user-creation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#bloc-form-user-creation {
+    width: 35rem;
+    margin-right: 7rem;
+}
+
+#button-form-user-creation {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+#input-user-creation {
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
 /*PAGE ANIMATEUR 4*/
 a i {
     color: black;
@@ -143,6 +170,34 @@ header ul li:nth-child(2) {
 #card-check.card_check{
     display: flex;
     margin: auto;
+}
+
+.phone-email-address{
+    display: flex;
+}
+
+.card .card-content p{
+    margin-right: 2rem;
+}
+
+.title-check{
+    display: flex;
+    flex-direction: row;
+}
+
+.title-check h5 {
+    display: flex;
+    margin-right: 22rem;
+}
+
+.title-check p {
+    padding-left: 30rem;
+    padding-top: 1rem;
+}
+
+#fiche{
+    display: flex;
+    margin-left: 48rem;
 }
 
 @media only screen and (min-width: 768px) {
