@@ -18,6 +18,7 @@
 }
 
 
+
 /*PAGE PROFIL 2*/
 
 
@@ -64,6 +65,32 @@
     margin-top: 3rem;
     text-align: center;
 }
+
+.bloc-user-creation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#bloc-form-user-creation {
+    width: 35rem;
+    margin-right: 7rem;
+}
+
+#button-form-user-creation {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+#input-user-creation {
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
 /*PAGE ANIMATEUR 4*/
 a i {
     color: black;
