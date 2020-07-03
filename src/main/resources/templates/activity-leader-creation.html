@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -48,25 +47,22 @@
                         <input th:field="*{location.city}" type="text" class="validate" placeholder="Ville" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
-                        <input id="vehicule" type="checkbox" th:disabled="${!editable}">
-                        <label for="vehicule">Véhiculé</label>
+                        <label>
+                            <input name="hasACar" th:checked="*{hasACar}" type="checkbox" th:disabled="${!editable}">
+                            <span>Véhiculé</span>
+                        </label>
                     </div>
                     <div class="form-field col s6">
-                        <select multiple>
+                        <select multiple th:field="${activityLeader.diplomas}">
                             <option value="" disabled selected>Diplômes</option>
-                            <option value="1" th:disabled="${!editable}">BAFA</option>
-                            <option value="2" th:disabled="${!editable}">CAP petite enfance</option>
-                            <option value="3" th:disabled="${!editable}">BAFD</option>
-                            <option value="4" th:disabled="${!editable}">CQP Animateur Périscolaire</option>
-                            <option value="5" th:disabled="${!editable}">BPJEPS</option>
-                            <option value="6" th:disabled="${!editable}">DEJEPS</option>
-                        </select>
+                            <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}"></option>
+                         </select>
                     </div>
                     <div class="form-field col s6">
                         <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences" th:disabled="${!editable}">
                     </div>
                     <div>
-                        <textarea id="comment" name="comment" placeholder="Commentaires"></textarea>
+                        <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
                     </div>
                     <div class="form-field">
                         <label for="unavailability" title="Clique-ici">Indisponibilités</label>
@@ -85,27 +81,15 @@
                         <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
-                        <select multiple>
-                            <option value="" disabled selected>Public concerné</option>
-                            <option value="1" th:disabled="${!editable}">3/6 ans</option>
-                            <option value="2" th:disabled="${!editable}">6/8 ans</option>
-                            <option value="3" th:disabled="${!editable}">9/12 ans</option>
-                            <option value="4" th:disabled="${!editable}">12/15 ans</option>
-                            <option value="5" th:disabled="${!editable}">16/18 ans</option>
-                            <option value="6" th:disabled="${!editable}">18/25 ans</option>
-                            <option value="7" th:disabled="${!editable}">25/35 ans</option>
-                            <option value="8" th:disabled="${!editable}">35/50 ans</option>
-                            <option value="9" th:disabled="${!editable}">65/+77 ans</option>
+                        <select multiple th:field="${activityLeader.audiences}">
+                            <option value="" disabled selected>Public concerné : </option>
+                            <option th:each="audience : ${audiencesList}" th:value="${audience.id}" th:text="${audience.ageBracket}"></option>
                         </select>
                     </div>
                      <div class="form-field">
-                        <select multiple>
-                            <option value="" disabled selected>Valeurs</option>
-                            <option value="1">Bienveillance</option>
-                            <option value="2">Optimisme</option>
-                            <option value="3">Proximité</option>
-                            <option value="4">Responsabilité</option>
-                            <option value="5">Détermination</option>
+                        <select multiple th:field="*{values}">
+                            <option value="" disabled selected>Sélectionnez une valeur : </option>
+                            <option th:each="value : ${valuesList}" th:value="${value.id}" th:text="${value.name}"></option>
                         </select>
                         <input id="other" type="text" class="validate" placeholder="Autres valeurs" th:disabled="${!editable}">
                     </div>
@@ -131,7 +115,7 @@
     </div>
 </div>
 <div class="center-align">
-    <button  class = "btn waves-effect waves-light" type = "submit">Enregistrer
+    <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
         <i class = "material-icons right">save</i></button>
     <button th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
 
@@ -142,21 +126,34 @@
     </div>
 </div>
 </form>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("select").material_select();
+        $('select').formSelect();
     });
     $(document).ready(function () {
-        $(".datepicker").pickadate({
-            format: "dd/mm/yyyy"
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 2, // Creates a dropdown of 15 years to control year
+            labelMonthNext: 'Mois suivant',
+            labelMonthPrev: 'Mois précédent',
+            labelMonthSelect: 'Selectionner le mois',
+            labelYearSelect: 'Selectionner une année',
+            monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+            monthsShort: [ 'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec' ],
+            weekdaysFull: [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
+            weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
+            weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+            today: 'Aujourd\'hui',
+            clear: 'Réinitialiser',
+            close: 'Fermer',
+            format: 'dd/mm/yyyy'
         });
     });
     $(document).ready(function(){
         $('.modal-trigger').leanModal();
     });
-</script>
+</script>$('select').formSelect();
 </body>
 </html>
