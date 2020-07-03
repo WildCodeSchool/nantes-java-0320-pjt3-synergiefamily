@@ -12,21 +12,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
+
 @Controller
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
 
     @Autowired
     private RoleRepository roleRepository;
@@ -65,43 +64,75 @@ public class UserController {
     }
 
     @GetMapping("/user-creation")
-    public String getRegister() {
+    public String getRegister(Model out,
+                              @RequestParam(required = false) Long id) {
+        User user = new User();
+        if (id != null) {
+            Optional<User> optionalUser = userRepository.findById(id);
+            if (optionalUser.isPresent()) {
+                user = optionalUser.get();
+            }
+        }
+        out.addAttribute("user", user);
         return "user-creation";
     }
 
     @PostMapping("/user-creation")
     public String postRegister(HttpServletRequest request,
-                               @RequestParam String email) {
+                               @RequestParam String email,
+                               @RequestParam(name = "role_id") Long roleId) {
         String password = "test";//TODO génerer le mot de passe aléatoirement à envoyer  par mail
         User user = new User();
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
 
-        Optional<Role> optionalRole = roleRepository.findByName("ROLE_COORDINATEUR");
+        Optional<Role> optionalRole = roleRepository.findById(roleId);
         if (optionalRole.isPresent()) {
             user.getRoles().add(optionalRole.get());
             userRepository.save(user);
-
-            userService.autoLogin(request, email, password);
-            return "redirect:/profile";
-
         }
-        return "redirect:/user-creation";
+        return "redirect:/user-management";
+    }
+    @GetMapping("/user-edition")
+    public String getUserCreation(Model out,
+                                  @RequestParam(required = false) Long id) {
+
+        User user = new User();
+        if (id != null) {
+            Optional<User> optionalUser = userRepository.findById(id);
+            if (optionalUser.isPresent()) {
+                user = optionalUser.get();
+            }
+        }
+        out.addAttribute("user", user);
+        return "user-edition";
     }
 
+    @PostMapping("/user-edition")
+    public String postUser(@ModelAttribute User newUser) {
+
+        userRepository.save(newUser);
+        return "redirect:/user-management";
+    }
 
     @GetMapping("/user-management")
     public String getUserManagement(Model out) {
 
         out.addAttribute("users", userRepository.findAll());
-
         return "user-management";
     }
 
-    @GetMapping("/users")
-    public List<User> showAllUsers() {
 
-        return userRepository.findAll();
+
+    @GetMapping("/user/delete")
+    public String deleteUser(@RequestParam Long id) {
+
+        userRepository.deleteById(id);
+        return "redirect:/user-management";
+/*
+        TODO: create a popup to ask whether the deletion is really wanted
+        TODO: create a second popup to confirm the deletion
+*/
     }
 
     @GetMapping("/login")

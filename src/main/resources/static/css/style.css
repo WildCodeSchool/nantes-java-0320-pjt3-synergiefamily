@@ -65,6 +65,7 @@
     margin-top: 3rem;
     text-align: center;
 }
+
 .bloc-user-creation {
     display: flex;
     justify-content: center;
@@ -84,6 +85,8 @@
 #input-user-creation {
     margin-bottom: 1rem;
 }
+
+
 
 
 
@@ -149,6 +152,52 @@ header img {
 }
 header ul li:nth-child(2) {
     margin-top: 3rem;
+}
+
+#card-action{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#card-white{
+    width: 80%;
+    margin: auto;
+}
+
+#search-button{
+    margin: 3rem;}
+
+#card-check.card_check{
+    display: flex;
+    margin: auto;
+}
+
+.phone-email-address{
+    display: flex;
+}
+
+.card .card-content p{
+    margin-right: 2rem;
+}
+
+.title-check{
+    display: flex;
+    flex-direction: row;
+}
+
+.title-check h5 {
+    display: flex;
+    margin-right: 22rem;
+}
+
+.title-check p {
+    padding-left: 30rem;
+    padding-top: 1rem;
+}
+
+#fiche{
+    display: flex;
+    margin-left: 48rem;
 }
 
 @media only screen and (min-width: 768px) {

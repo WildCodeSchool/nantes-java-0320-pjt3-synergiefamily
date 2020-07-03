@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
@@ -22,83 +22,83 @@
                 </div>
                 <div class="card-content">
                     <div class="form-field col s6">
-                        <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom*">
+                        <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
                     </div>
                     <div class="form-field col s6">
-                        <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom*">
+                        <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
                     </div>
                     <div class="form-field col s6">
-                        <input th:field="*{birthdate}" id="birthdate" type="date" placeholder="Date de Naissance">
+                        <input th:field="*{birthdate}" id="birthdate" type="date" placeholder="Date de Naissance" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
-                        <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email*">
+                        <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
                     </div>
                     <div class="form-field col s6">
-                        <input th:field="*{phone}"id="phone" type="tel" class="validate" placeholder="Téléphone"></div>
+                        <input th:field="*{phone}"id="phone" type="tel" class="validate" placeholder="Téléphone" th:disabled="${!editable}"></div>
                     <div class="form-field">
-                        <input th:field="*{location.address1}" type="text" class="validate" placeholder="Adresse 1">
+                        <input th:field="*{location.address1}" type="text" class="validate" placeholder="Adresse 1" th:disabled="${!editable}">
                     </div>
                     <div class="form-field col s6">
-                        <input th:field="*{location.address2}"type="text" class="validate" placeholder="Adresse 2">
+                        <input th:field="*{location.address2}"type="text" class="validate" placeholder="Adresse 2" th:disabled="${!editable}">
                     </div>
                     <div class="form-field col s6">
-                        <input th:field="*{location.postcode}" type="number" class="validate" placeholder="Code postal">
+                        <input th:field="*{location.postcode}" type="number" class="validate" placeholder="Code postal" th:disabled="${!editable}">
                     </div>
                     <div class="form-field col s6">
-                        <input th:field="*{location.city}" type="text" class="validate" placeholder="Ville">
+                        <input th:field="*{location.city}" type="text" class="validate" placeholder="Ville" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
-                        <input id="vehicule" type="checkbox">
+                        <input id="vehicule" type="checkbox" th:disabled="${!editable}">
                         <label for="vehicule">Véhiculé</label>
                     </div>
                     <div class="form-field col s6">
                         <select multiple>
                             <option value="" disabled selected>Diplômes</option>
-                            <option value="1">BAFA</option>
-                            <option value="2">CAP petite enfance</option>
-                            <option value="3">BAFD</option>
-                            <option value="4">CQP Animateur Périscolaire</option>
-                            <option value="5">BPJEPS</option>
-                            <option value="6">DEJEPS</option>
+                            <option value="1" th:disabled="${!editable}">BAFA</option>
+                            <option value="2" th:disabled="${!editable}">CAP petite enfance</option>
+                            <option value="3" th:disabled="${!editable}">BAFD</option>
+                            <option value="4" th:disabled="${!editable}">CQP Animateur Périscolaire</option>
+                            <option value="5" th:disabled="${!editable}">BPJEPS</option>
+                            <option value="6" th:disabled="${!editable}">DEJEPS</option>
                         </select>
                     </div>
                     <div class="form-field col s6">
-                        <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences">
+                        <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences" th:disabled="${!editable}">
                     </div>
                     <div>
                         <textarea id="comment" name="comment" placeholder="Commentaires"></textarea>
                     </div>
                     <div class="form-field">
                         <label for="unavailability" title="Clique-ici">Indisponibilités</label>
-                        <input th:field="*{availability}" id="unavailability" type="date" class="datepicker" name="unavailability">
+                        <input th:field="*{availability}" id="unavailability" type="date" class="datepicker" name="unavailability" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
                         <label for="skill" type="text"  class="validate">Compétences</label>
-                        <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate">
+                        <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
                         <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
-                        <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019">
+                        <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
                         <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
-                        <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019">
+                        <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
                         <select multiple>
                             <option value="" disabled selected>Public concerné</option>
-                            <option value="1">3/6 ans</option>
-                            <option value="2">6/8 ans</option>
-                            <option value="3">9/12 ans</option>
-                            <option value="4">12/15 ans</option>
-                            <option value="5">16/18 ans</option>
-                            <option value="6">18/25 ans</option>
-                            <option value="7">25/35 ans</option>
-                            <option value="8">35/50 ans</option>
-                            <option value="9">65/+77 ans</option>
+                            <option value="1" th:disabled="${!editable}">3/6 ans</option>
+                            <option value="2" th:disabled="${!editable}">6/8 ans</option>
+                            <option value="3" th:disabled="${!editable}">9/12 ans</option>
+                            <option value="4" th:disabled="${!editable}">12/15 ans</option>
+                            <option value="5" th:disabled="${!editable}">16/18 ans</option>
+                            <option value="6" th:disabled="${!editable}">18/25 ans</option>
+                            <option value="7" th:disabled="${!editable}">25/35 ans</option>
+                            <option value="8" th:disabled="${!editable}">35/50 ans</option>
+                            <option value="9" th:disabled="${!editable}">65/+77 ans</option>
                         </select>
                     </div>
-                    <div class="form-field">
+                     <div class="form-field">
                         <select multiple>
                             <option value="" disabled selected>Valeurs</option>
                             <option value="1">Bienveillance</option>
@@ -107,7 +107,7 @@
                             <option value="4">Responsabilité</option>
                             <option value="5">Détermination</option>
                         </select>
-                        <input id="other" type="text" class="validate" placeholder="Autres valeurs">
+                        <input id="other" type="text" class="validate" placeholder="Autres valeurs" th:disabled="${!editable}">
                     </div>
                 </div>
             </div>
@@ -120,11 +120,11 @@
                 <p>Espace réservé (à ne pas remplir) :</p>
                 <div class="form-field">
                 <label for="startdate">Date de début de contrat</label>
-                <input  id="startdate" type="date" class="datepicker" value="05/03/2019">
+                <input  id="startdate" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                 </div>
                 <div class="form-field">
                 <label for="endDate">Date de fin de contrat</label>
-                <input id="endDate" type="date" class="datepicker" value="05/03/2019">
+                <input id="endDate" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                 </div>
             </div>
         </div>
@@ -133,10 +133,11 @@
 <div class="center-align">
     <button  class = "btn waves-effect waves-light" type = "submit">Enregistrer
         <i class = "material-icons right">save</i></button>
-    <button th:if="*{draft == true}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
+    <button th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
+
     <div id="modal1" class="modal">
         <div class="modal-content">
-            <p>Bonjour. Merci de cliquez sur ce lien et de ne valider qu'une fois seulement que tous les champs renseignés seront remplis.</p>
+            <p>Bonjour. Merci de ne cliquer sur ce lien pour valider qu'une fois que tous les champs renseignés sont remplis.</p>
         </div>
     </div>
 </div>

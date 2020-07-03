@@ -7,6 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -53,16 +56,16 @@ public class ActivityLeader {
     private Boolean disabled;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date startDate;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date endDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
-    private Location location;
+    private Location location = new Location();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "skill_activity_leader",
@@ -91,8 +94,8 @@ public class ActivityLeader {
     @Transient
     private Boolean active;
 
-    @Column(columnDefinition = "boolean default true")
-    private Boolean draft;
+    @Column(columnDefinition = "boolean default true", nullable = false)
+    private Boolean draft = true;
 
     @Transient
     private String skillList;
@@ -148,11 +151,11 @@ public class ActivityLeader {
         this.birthdate = birthdate;
     }
 
-    public boolean isHasACar() {
+    public Boolean isHasACar() {
         return hasACar;
     }
 
-    public void setHasACar(boolean hasACar) {
+    public void setHasACar(Boolean hasACar) {
         this.hasACar = hasACar;
     }
 
@@ -263,6 +266,21 @@ public class ActivityLeader {
 
     public void setSkillList(String skillList) {
         this.skillList = skillList;
+    }
+
+    public int getAge() {
+
+        if (this.birthdate != null) {
+            return Period.between(convertDate(this.birthdate), convertDate(new Date())).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+    public LocalDate convertDate(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
     public Boolean getDisabled() {
