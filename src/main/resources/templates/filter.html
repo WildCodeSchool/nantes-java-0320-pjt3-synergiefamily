@@ -13,6 +13,7 @@
 <body>
 <header th:replace="nav.html :: nav-bar"></header>
 <form action="/filter" method="post" th:object="${activityLeader}">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <div id="leader" class="row">
         <div class="col s12 m6 offset-l3">
             <div class="card white" id="card-white">
