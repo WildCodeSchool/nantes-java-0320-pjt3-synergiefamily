@@ -34,9 +34,10 @@
 
 /* PROFILE PAGE */
 .profileContent {
-    margin-left: 21rem;
+    margin-left: 5rem;
     margin-right: 10rem;
-    margin-top: 12rem;
+    margin-top: 8rem;
+    width: 80rem;
 }
 
 .saveButton {
@@ -48,14 +49,15 @@
 .user-management-body{
     display: flex;
     flex-direction: row;
-    margin-left: 18rem;
-    margin-top: 3rem;
 }
 
 .userManagementPageContent {
     margin-left: 4rem;
     margin-right: 5rem;
     width: 90%;
+}
+.striped {
+    margin-top: 2rem;
 }
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
@@ -74,7 +76,7 @@
 }
 #bloc-form-user-creation {
     width: 35rem;
-    margin-right: 7rem;
+    margin-left: 22rem;
 }
 
 #button-form-user-creation {
@@ -141,19 +143,6 @@ a i {
 .card_check{
    margin-left: 10vh;
 }
-
-/*FRAGMENT NAV*/
-.side-nav {
-    background-color: #f7f7f7;
-}
-header img {
-    width: 15rem;
-    height: 10rem;
-}
-header ul li:nth-child(2) {
-    margin-top: 3rem;
-}
-
 #card-action{
     display: flex;
     justify-content: flex-start;
@@ -199,6 +188,52 @@ header ul li:nth-child(2) {
     display: flex;
     margin-left: 48rem;
 }
+/*FRAGMENT NAV*/
+.side-nav {
+    background-color: #f7f7f7;
+}
+header {
+    width: 19rem;
+}
+header img {
+    width: 15rem;
+    height: 10rem;
+}
+header ul li:nth-child(1) {
+    margin-top: 3rem;
+}
+header ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 100vh;
+    height: 100%;
+    box-shadow: 3px 3px 3px gainsboro;
+}
+.bloc-li li i {
+    margin-right: 1.5rem;
+    margin-left: 2rem;
+    color: dimgrey;
+    font-weight: bold;
+}
+.bloc-li li a {
+    color: dimgrey;
+    font-weight: bold;
+}
+.bloc-li li {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+.bloc-li li:hover {
+    background-color: gainsboro;
+}
+.bloc-li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 22rem;
+}
+
+
 
 @media only screen and (min-width: 768px) {
     /*PAGE HOME 1*/
