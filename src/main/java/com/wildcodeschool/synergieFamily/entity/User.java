@@ -67,4 +67,32 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+    public static String randomPassword(int length) {
+
+        String password = "";
+        for (int i = 0; i < length - 2; i++) {
+
+            password = password + randomCharacter("abcdefghijklmnopqrstuvwxyz");
+        }
+        String randomDigit = randomCharacter(("0123456789"));
+        password = insertStringAtRandomPosition(password, randomDigit);
+        String randomSymbol = randomCharacter("+-*/?!@#$%&");
+        password = insertStringAtRandomPosition(password, randomSymbol);
+        return password;
+    }
+
+    public static String randomCharacter(String characters) {
+
+        int length = characters.length();
+        int randomIndex = (int) (length * Math.random());
+        return characters.substring(randomIndex, randomIndex + 1);
+    }
+
+    public static String insertStringAtRandomPosition(String stringDestination, String stringToInsert) {
+
+        int length = stringDestination.length();
+        int randomIndex = (int) ((length + 1) *  Math.random());
+        return stringDestination.substring(0, randomIndex) + stringToInsert + stringDestination.substring(randomIndex);
+    }
 }
