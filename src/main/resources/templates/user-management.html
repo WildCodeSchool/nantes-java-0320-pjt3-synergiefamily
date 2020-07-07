@@ -46,7 +46,7 @@
                                 </i>
                             </a>
                             <a class="subheader" th:href="@{user/delete(id=${user.id})}">
-                                <i class="small material-icons">
+                                <i class="small material-icons" onclick="ConfirmMessage()">
                                         delete
                                 </i>
                             </a>
@@ -64,5 +64,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+    function ConfirmMessage() {
+
+        if (confirm("Attention, cet·te utilisateur ou utilisatrice sera supprimé·e de la base de données. Confirmer la suppression ?")) {
+
+            document.body.style.backgroundColor="#ccc";
+        }
+    }
+</script>
 </body>
 </html>
