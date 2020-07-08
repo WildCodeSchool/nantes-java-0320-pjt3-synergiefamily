@@ -26,7 +26,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-
     @Autowired
     private RoleRepository roleRepository;
 
@@ -118,14 +117,21 @@ public class UserController {
     @GetMapping("/user-management")
     public String getUserManagement(Model out) {
 
-        out.addAttribute("users", userRepository.findAll());
+        out.addAttribute("users", userRepository.findAll()); //TODO replace by another query finding all the active users
         return "user-management";
     }
 
     @GetMapping("/user/delete")
     public String deleteUser(@RequestParam Long id) {
 
-        userRepository.deleteById(id);
+        userRepository.deleteById(id); //TODO: replace by a new query for disabling
+        return "redirect:/user-management";
+    }
+
+    @GetMapping("/user/disable")
+    public String disableUser(@RequestParam Long id) {
+
+        userRepository.disableById(id);
         return "redirect:/user-management";
     }
 
