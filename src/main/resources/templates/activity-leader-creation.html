@@ -17,7 +17,7 @@
 
     <input th:field="*{id}" type="hidden">
     <div id="leader" class="row">
-        <div class="col s12 m6 offset-l3">
+        <div class="col s12 m12 offset-l3">
             <div class="card white">
                 <div class="card-action black-text">
                     <h4 class="center-align">Information Animateur</h4>
@@ -30,7 +30,7 @@
                         <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
                     </div>
                     <div class="form-field col s6">
-                        <input th:field="*{birthdate}" id="birthdate" type="date" placeholder="Date de Naissance" th:disabled="${!editable}">
+                        <input th:field="*{birthdate}" id="birthdate" type="date" class="datepicker" placeholder="Date de Naissance" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
                         <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
@@ -100,34 +100,17 @@
             </div>
         </div>
     </div>
-<div class="row">
-    <div class="col s12 m6 offset-l3">
-        <div class="card white">
-            <div class="card-content">
-                <p>Espace réservé (à ne pas remplir) :</p>
-                <div class="form-field">
-                <label for="startdate">Date de début de contrat</label>
-                <input  id="startdate" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
-                </div>
-                <div class="form-field">
-                <label for="endDate">Date de fin de contrat</label>
-                <input id="endDate" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
-                </div>
+    <div class="center-align">
+        <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
+            <i class = "material-icons right">save</i></button>
+        <button th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <p>Bonjour. Merci de ne cliquer sur ce lien pour valider qu'une fois que tous les champs renseignés sont remplis.</p>
             </div>
         </div>
     </div>
-</div>
-<div class="center-align">
-    <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
-        <i class = "material-icons right">save</i></button>
-    <button th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
-
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <p>Bonjour. Merci de ne cliquer sur ce lien pour valider qu'une fois que tous les champs renseignés sont remplis.</p>
-        </div>
-    </div>
-</div>
 </form>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -136,27 +119,22 @@
         $('select').formSelect();
     });
     $(document).ready(function () {
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 2, // Creates a dropdown of 15 years to control year
-            labelMonthNext: 'Mois suivant',
-            labelMonthPrev: 'Mois précédent',
-            labelMonthSelect: 'Selectionner le mois',
-            labelYearSelect: 'Selectionner une année',
-            monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
-            monthsShort: [ 'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec' ],
-            weekdaysFull: [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
-            weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
-            weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
-            today: 'Aujourd\'hui',
-            clear: 'Réinitialiser',
-            close: 'Fermer',
-            format: 'dd/mm/yyyy'
+        $('.datepicker').datepicker({
+            firstDay: true,
+            format: 'yyyy-mm-dd',
+            i18n: {
+                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                monthsShort: ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Aoû", "Sep", "Oct", "Nov", "Dec"],
+                weekdays: ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+                weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"],
+                cancel:'Annuler'
+            }
         });
     });
     $(document).ready(function(){
         $('.modal-trigger').leanModal();
     });
-</script>$('select').formSelect();
+</script>
 </body>
 </html>
