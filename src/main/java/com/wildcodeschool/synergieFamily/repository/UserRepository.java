@@ -17,9 +17,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u ORDER BY u.id DESC")
     public List<User> findAll();
 
-    @Query("UPDATE User " +
-            "SET disabled = true " +
-            "WHERE id = :id")
-    public void disableById(@Param("id") Long id);
+    @Query(nativeQuery = true,
+            value = "SELECT u.* " +
+            "FROM user u " +
+            "WHERE u.disabled <> true " +
+            "ORDER BY u.id DESC")
+    public List<User> findAllActiveUsers();
 
 }
