@@ -288,4 +288,5 @@ public class ActivityLeader {
     public void setDisabled(Boolean disabled) {
         this.disabled = disabled;
     }
+
 }

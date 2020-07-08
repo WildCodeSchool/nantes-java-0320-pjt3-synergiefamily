@@ -21,8 +21,10 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private List<User> users = new ArrayList<>();
 
-    public Role() {
+    @Column
+    private String nameForDisplay;
 
+    public Role() {
     }
 
     public Role(String name) {
@@ -42,7 +44,9 @@ public class Role {
     }
 
     public void setName(String name) {
+
         this.name = name;
+        this.nameForDisplay = transformRoleForDisplay(name);
     }
 
     public List<User> getUsers() {
@@ -52,4 +56,21 @@ public class Role {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+    public String getNameForDisplay() {
+        return nameForDisplay;
+    }
+
+    public void setNameForDisplay(String nameForDisplay) {
+        this.nameForDisplay = nameForDisplay;
+    }
+
+    public static String transformRoleForDisplay(String roleName) {
+
+        int length = roleName.length();
+        String roleNameForDisplay = roleName.substring(4,length); // "ROLE_" deletion
+        return roleNameForDisplay;
+    }
+
+
 }

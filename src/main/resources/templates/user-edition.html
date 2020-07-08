@@ -16,7 +16,7 @@
         <div class="col s12 m6 offset-l3" id="bloc-form-user-creation">
             <div class="card">
                 <div class="card-action black-text">
-                    <h4 class="center-align" th:text="${user.id} ? 'Modification de compte' : 'Création de compte'">Informations Utilisateur</h4>
+                    <h4 class="center-align" th:text="${user.id} ? 'Modification de compte' : 'Création de compte'">Informations utilisateur</h4>
                     <form action="/user" method="post" th:action="@{/user-edition}" th:object="${user}">
                         <input th:field="*{id}" type="hidden"> <!--TODO: finir cette page edition pour modification user-->
                         <div class="row">

@@ -65,10 +65,14 @@ public class ActivityLeaderController {
             activityLeader.getSkills().add(skillItem);
         } // TODO voir avec bastien pourquoi quand on ne rentre pas de skill ça rentre un blanc dans la BDD?
          // TODO voir pour faire la même chose pour les valeurs
-
+        /*String valueList = activityLeader.getValueList();
+        String[] values = valueList.split(",");
+        for (String value : values) {
+            Value valueItem = new Value(value);
+            activityLeader.getValues().add(valueItem);
+        }*/
         activityLeader = activityLeaderRepository.save(activityLeader);
         return "redirect:/activity-leader-modification/" + activityLeader.getId();
-
     }
 
     @GetMapping("/activity-leader-modification/{id}")
