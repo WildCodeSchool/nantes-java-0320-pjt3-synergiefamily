@@ -35,19 +35,19 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="passwordConfirmation" type="password" class="validate" name="passwordConfirmation" onblur="checkPass()" />
+                    <input id="passwordConfirmation" type="password" class="validate"> <!--name="passwordConfirmation" onblur="checkPass()" />-->
                     <label for="passwordConfirmation">Confirmation du mot passe</label>
-                    <div id="divcomp"></div>
+                    <!--<div id="divcomp"></div>-->
                 </div>
             </div>
-            <div class="button-form" id="button-form-user-modification" th:if="${divcomp.equals()}">
+            <div class="button-form" id="button-form-user-modification">
                 <button type="submit" class="btn">ENREGISTRER<i class="material-icons right">save</i></button>
             </div>
         </form>
     </div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script>
+<!--<script>
     function checkPass()
     {
         var champA = document.getElementById("password").value;
@@ -63,6 +63,21 @@
             divcomp.innerHTML = "Erreur !";
         }
     }
+</script>-->
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("passwordConfirmation");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
 </script>
 </body>
 </html>
