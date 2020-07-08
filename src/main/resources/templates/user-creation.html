@@ -16,7 +16,7 @@
         <div class="col s12 m6 offset-l3" id="bloc-form-user-creation">
             <div class="card">
                 <div class="card-action black-text">
-                    <h4 class="center-align" th:text="${user.id} ? 'Modification de compte' : 'Création de compte'">Informations Utilisateur</h4>
+                    <h4 class="center-align" th:text="${user.id} ? 'Modification de compte' : 'Création de compte'">Informations utilisateur</h4>
                     <form class="card-content" th:action="@{/user-creation}" method="post" >
                         <div class="form-field" id="input-user-creation">
                             <input id="email" type="email" class="validate" placeholder="Email" name="email">
