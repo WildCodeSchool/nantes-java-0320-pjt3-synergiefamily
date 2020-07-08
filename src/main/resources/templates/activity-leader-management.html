@@ -63,7 +63,7 @@
                 </td>
                 <td>
                     <p><a class="subheader" th:href="@{'/activity-leader-modification/' + ${activityLeader.id}}"><i class="small material-icons">create</i>
-                    </a><a class="subheader" th:href="@{activity-leader/disable(id=${activityLeader.id})}"><i class="small material-icons">delete</i></a></p>
+                    </a><a class="subheader" th:href="@{activity-leader/disable(id=${activityLeader.id})}"><i class="small material-icons" onclick="ConfirmMessage()">delete</i></a></p>
                 </td>
             </tr>
         </tbody>
@@ -80,5 +80,14 @@
 </main>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    function ConfirmMessage() {
+
+        if (confirm("Attention, cet animateur sera supprimé de la base de données. Confirmer la suppression ?")) {
+
+            alert("L'animateur a bien été supprimé.")
+        }
+    }
+</script>
 </body>
 </html>

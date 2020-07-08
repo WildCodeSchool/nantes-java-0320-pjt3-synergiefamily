@@ -104,12 +104,6 @@
         <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
             <i class = "material-icons right">save</i></button>
         <button th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
-
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <p>Bonjour. Merci de ne cliquer sur ce lien pour valider qu'une fois que tous les champs renseignés sont remplis.</p>
-            </div>
-        </div>
     </div>
 </form>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
