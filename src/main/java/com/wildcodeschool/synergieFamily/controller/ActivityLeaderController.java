@@ -43,7 +43,7 @@ public class ActivityLeaderController {
     @GetMapping("/activity-leader-management")
     public String showAllActivityLeaders(Model out) {
 
-        out.addAttribute("activityLeaders", activityLeaderRepository.findAll());
+        out.addAttribute("activityLeaders", activityLeaderRepository.findAllActive());
         return "activity-leader-management";
     }
 

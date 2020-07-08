@@ -68,4 +68,7 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("experience") String experience);
     //TODO      @Param("startDate") Date startDate,
     //TODO       @Param("endDate") Date endDate);
+
+    @Query("SELECT a FROM ActivityLeader a  WHERE a.disabled <> true ORDER BY a.id DESC")
+    public List<ActivityLeader> findAllActive();
 }
