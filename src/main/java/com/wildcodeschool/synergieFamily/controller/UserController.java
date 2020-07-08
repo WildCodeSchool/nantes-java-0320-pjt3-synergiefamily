@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -112,6 +111,23 @@ public class UserController {
 
         userRepository.save(newUser);
         return "redirect:/user-management";
+    }
+
+    @GetMapping("/profile")
+    public String getProfileUser(Model out) {
+
+        User user = userService.getLoggedEmail();
+        out.addAttribute("user", user);
+        return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String modificationProfile(@ModelAttribute User user) {
+
+        User logged = userService.getLoggedEmail();
+        logged.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(logged);
+        return "profile";
     }
 
     @GetMapping("/user-management")
