@@ -31,7 +31,7 @@
                     <td th:text="${user.email}">test1@exemple.com</td>
                     <td>
                         <span th:each="role : ${user.roles}" th:text="${role.name}">ROLE</span>
-                    </td><!--TODO: faire afficher le role-->
+                    </td>
                     <td>
                         <p>
                             <a class="subheader" th:href="@{/user-edition(id=${user.id})}">

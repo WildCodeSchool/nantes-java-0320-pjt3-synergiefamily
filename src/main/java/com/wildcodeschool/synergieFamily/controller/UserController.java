@@ -81,8 +81,8 @@ public class UserController {
     public String postRegister(HttpServletRequest request,
                                @RequestParam String email,
                                @RequestParam(name = "role_id") Long roleId) {
-        String password = "test";//TODO génerer le mot de passe aléatoirement à envoyer  par mail
         User user = new User();
+        String password = user.randomPassword(8); // "test"
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
 
@@ -122,17 +122,11 @@ public class UserController {
         return "user-management";
     }
 
-
-
     @GetMapping("/user/delete")
     public String deleteUser(@RequestParam Long id) {
 
         userRepository.deleteById(id);
         return "redirect:/user-management";
-/*
-        TODO: create a popup to ask whether the deletion is really wanted
-        TODO: create a second popup to confirm the deletion
-*/
     }
 
     @GetMapping("/login")
