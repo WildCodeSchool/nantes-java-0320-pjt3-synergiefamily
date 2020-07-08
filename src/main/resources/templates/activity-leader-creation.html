@@ -120,7 +120,17 @@
     });
     $(document).ready(function () {
         $('.datepicker').datepicker({
+            autoClose: true,
+            today: 'Today',
+            clear: 'Réinitialiser',
+            close: 'Close',
             firstDay: true,
+            selectMonths: true,
+            yearRange: [1950,2020],
+            labelMonthNext: 'Mois suivant',
+            labelMonthPrev: 'Mois précédent',
+            labelMonthSelect: 'Selectionner le mois',
+            labelYearSelect: 'Selectionner une année',
             format: 'yyyy-mm-dd',
             i18n: {
                 months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],

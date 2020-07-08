@@ -2,6 +2,7 @@ package com.wildcodeschool.synergieFamily.repository;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -67,5 +68,4 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("experience") String experience);
     //TODO      @Param("startDate") Date startDate,
     //TODO       @Param("endDate") Date endDate);
-
 }

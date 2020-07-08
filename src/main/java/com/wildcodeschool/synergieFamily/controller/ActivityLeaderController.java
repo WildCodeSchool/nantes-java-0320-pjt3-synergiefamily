@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
 @Controller
@@ -97,5 +98,17 @@ public class ActivityLeaderController {
             out.addAttribute("editable", false);
         }
         return "activity-leader-creation";
+    }
+
+    @GetMapping("/activity-leader/disable")
+    public String disableActivityLeader(@RequestParam Long id) {
+
+        Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+        if (optionalActivityLeader.isPresent()) {
+            ActivityLeader activityLeader = optionalActivityLeader.get();
+            activityLeader.setDisabled(true);
+            activityLeaderRepository.save(activityLeader);
+        }
+        return "redirect:/activity-leader-management";
     }
 }
