@@ -281,6 +281,10 @@ public class ActivityLeader {
                 .toLocalDate();
     }
 
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
     public void setDisabled(Boolean disabled) {
         this.disabled = disabled;
     }
