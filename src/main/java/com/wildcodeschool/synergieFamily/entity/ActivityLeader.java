@@ -52,8 +52,8 @@ public class ActivityLeader {
     @Column
     private String comment;
 
-    @Column
-    private Boolean disabled;
+    @Column(columnDefinition = "boolean default true", nullable = false)
+    private Boolean disabled = false;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
@@ -279,6 +279,10 @@ public class ActivityLeader {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
+    }
+
+    public Boolean getDisabled() {
+        return disabled;
     }
 
     public void setDisabled(Boolean disabled) {
