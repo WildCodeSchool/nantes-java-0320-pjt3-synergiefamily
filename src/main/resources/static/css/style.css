@@ -184,10 +184,20 @@ a i {
     padding-top: 1rem;
 }
 
-#fiche{
+.checkandname{
     display: flex;
-    margin-left: 48rem;
+    flex-direction:row-reverse;
 }
+
+.check{
+    padding-left: 4rem;
+    padding-top: 1rem;
+}
+
+.card{
+    width: 48rem;
+}
+
 /*FRAGMENT NAV*/
 .side-nav {
     background-color: #f7f7f7;
