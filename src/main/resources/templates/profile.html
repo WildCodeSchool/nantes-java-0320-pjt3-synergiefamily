@@ -35,16 +35,34 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="passwordConfirmation" type="password" class="validate">
+                    <input id="passwordConfirmation" type="password" class="validate" name="passwordConfirmation" onblur="checkPass()" />
                     <label for="passwordConfirmation">Confirmation du mot passe</label>
+                    <div id="divcomp"></div>
                 </div>
             </div>
-            <div class="button-form" id="button-form-user-creation">
+            <div class="button-form" id="button-form-user-modification" th:if="${divcomp.equals()}">
                 <button type="submit" class="btn">ENREGISTRER<i class="material-icons right">save</i></button>
             </div>
         </form>
     </div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    function checkPass()
+    {
+        var champA = document.getElementById("password").value;
+        var champB = document.getElementById("passwordConfirmation").value;
+        var div_comp = document.getElementById("divcomp");
+
+        if(champA == champB)
+        {
+            divcomp.innerHTML = "Correct";
+        }
+        else
+        {
+            divcomp.innerHTML = "Erreur !";
+        }
+    }
+</script>
 </body>
 </html>
