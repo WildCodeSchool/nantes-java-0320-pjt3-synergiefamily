@@ -45,6 +45,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/init").permitAll()
 /*                .antMatchers("/register").permitAll()*/
                 .antMatchers("/activity-leader-creation").hasRole("ADMIN")
+                .antMatchers("/activity-leader-email/*").hasRole("ADMIN")
                 .antMatchers("/activity-leader-modification/*").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/activity-leader-management").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/filter").hasAnyRole("ADMIN", "COORDINATEUR")
