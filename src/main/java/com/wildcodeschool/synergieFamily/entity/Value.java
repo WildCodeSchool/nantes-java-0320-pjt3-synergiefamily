@@ -24,6 +24,11 @@ public class Value {
     public Value() {
     }
 
+    public Value(String name) {
+
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
@@ -47,4 +52,6 @@ public class Value {
     public void setActivityLeaders(List<ActivityLeader> activityLeaders) {
         this.activityLeaders = activityLeaders;
     }
+
+
 }

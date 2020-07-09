@@ -94,8 +94,7 @@
                             <option value="" disabled selected>Sélectionnez une valeur : </option>
                             <option th:each="value : ${valuesList}" th:value="${value.id}" th:text="${value.name}"></option>
                         </select>
-                        <input id="other" type="text" class="validate" placeholder="Autres valeurs" th:disabled="${!editable}">
-                    </div>
+                     </div>
                 </div>
             </div>
         </div>

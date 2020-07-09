@@ -64,15 +64,22 @@ public class ActivityLeaderController {
 
         String skillList = activityLeader.getSkillList();
         String[] skills = skillList.split(",");
-        for (String skill : skills) {
-            Skill skillItem = new Skill(skill);
-            activityLeader.getSkills().add(skillItem);
-        } // TODO voir avec bastien pourquoi quand on ne rentre pas de skill ça rentre un blanc dans la BDD?
-         // TODO voir pour faire la même chose pour les valeurs
-
+        if (!skillList.equals("")) { // TODO voir pour ne pas recréer de skill dans la BDD
+            for (String skill : skills) {
+                Skill skillItem = new Skill(skill.trim());
+                activityLeader.getSkills().add(skillItem);
+            }
+        }
+        /*String valueList = activityLeader.getValueList();
+        String[] values = valueList.split(",");
+        if (!valueList.equals("")) {
+            for (String value : values) {
+                Value valueItem = new Value(value);
+                activityLeader.getValues().add(valueItem);
+            }
+        }*/
         activityLeader = activityLeaderRepository.save(activityLeader);
         return "redirect:/activity-leader-modification/" + activityLeader.getId();
-
     }
 
     @GetMapping("/activity-leader-modification/{id}")
@@ -82,11 +89,17 @@ public class ActivityLeaderController {
         Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
         if (optionalActivityLeader.isPresent()) {
             ActivityLeader activityLeader = optionalActivityLeader.get();
+            String skills = "";
+            for (Skill skill : activityLeader.getSkills()) {
+                skills += skill.getName() + ",";
+            }
+            activityLeader.setSkillList(skills.substring(0, skills.length() - 1));
             out.addAttribute("activityLeader", activityLeader);
             out.addAttribute("valuesList", valueRepository.findAll());
             out.addAttribute("audiencesList", audienceRepository.findAll());
             out.addAttribute("diplomasList", diplomaRepository.findAll());
             out.addAttribute("editable", true);
+
         }
         return "activity-leader-creation";
     }

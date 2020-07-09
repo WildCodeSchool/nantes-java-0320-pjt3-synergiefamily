@@ -98,6 +98,9 @@ public class ActivityLeader {
     @Transient
     private String skillList;
 
+    @Transient
+    private String valueList;
+
     public ActivityLeader() {
     }
 
@@ -287,5 +290,13 @@ public class ActivityLeader {
 
     public void setDisabled(Boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public String getValueList() {
+        return valueList;
+    }
+
+    public void setValueList(String valueList) {
+        this.valueList = valueList;
     }
 }
