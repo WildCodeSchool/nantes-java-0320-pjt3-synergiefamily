@@ -18,9 +18,7 @@
         <div id="leader" class="row">
             <div class="col s12 m6 offset-l3">
                 <div class="card white" id="card-white">
-                    <div class="card-action black-text" id="card-action">
-                        <h4 class="center-align">Recherches</h4>
-                    </div>
+                    <span class="card-title">Recherches</span>
                     <div class="card-content">
                         <div class="form-field col s6">
                             <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom">
@@ -29,14 +27,11 @@
                             <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom">
                         </div>
                         <div class="form-field col s6">
-                            <input th:field="*{birthdate}" id="birthdate" type="date" placeholder="Date de Naissance">
-                        </div>
-                        <div class="form-field">
                             <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email">
                         </div>
                         <div class="form-field col s6">
                             <input th:field="*{phone}"id="phone" type="tel" class="validate" placeholder="Téléphone"></div>
-                        <div class="form-field">
+                        <div class="form-field col s6">
                             <input th:field="*{location.address1}" type="text" class="validate" placeholder="Adresse 1">
                         </div>
                         <div class="form-field col s6">
@@ -66,23 +61,23 @@
                         <div class="form-field col s6">
                             <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences">
                         </div>
-                        <div class="form-field">
+                        <div class="form-field col s6">
                             <label for="unavailability" title="Clique-ici">Indisponibilités</label>
                             <input th:field="*{availability}" id="unavailability" type="date" class="datepicker" name="unavailability">
                         </div>
-                        <div class="form-field">
+                        <div class="form-field col s6">
                             <label for="skill" type="text"  class="validate">Compétences</label>
                             <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate">
                         </div>
-                        <div class="form-field">
+                        <div class="form-field col s6">
                             <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
                             <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019">
                         </div>
-                        <div class="form-field">
+                        <div class="form-field col s6">
                             <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
                             <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019">
                         </div>
-                        <div class="form-field">
+                        <div class="form-field col s6">
                             <select multiple>
                                 <option value="" disabled selected>Public concerné</option>
                                 <option value="1">3/6 ans</option>
@@ -96,7 +91,7 @@
                                 <option value="9">65/+77 ans</option>
                             </select>
                         </div>
-                        <div class="form-field">
+                        <div class="form-field col s6">
                             <select multiple>
                                 <option value="" disabled selected>Valeurs</option>
                                 <option value="1">Bienveillance</option>
@@ -105,33 +100,45 @@
                                 <option value="4">Responsabilité</option>
                                 <option value="5">Détermination</option>
                             </select>
+                            <div class="form-field col s6">
                             <input id="other" type="text" class="validate" placeholder="Autres valeurs">
+                            </div>
+                        </div>
+                        <div class="form-field col s6">
+                            <label>
+                                <input type="checkbox" checked="checked" />
+                                <span>Véhiculé</span>
+                            </label>
+                        </div>
+                        <div class="center-align">
+                            <button  class = "btn waves-effect waves-light" type = "submit" id="search-button">Rechercher
+                                <i class = "material-icons right"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="center-align">
-            <button  class = "btn waves-effect waves-light" type = "submit" id="search-button">Rechercher
-                <i class = "material-icons right"></i></button>
-        </div>
     </form>
-    <div class="row">
-        <div class="col s12 m6 offset-l3">
-            <div class="container">
-                <span style="font-size: 1.2em;">1 élément sélectionné</span>
-                <button class="btn waves-effect waves-light right" type="submit" name="action">Envoyer un email
+    <div class="selectemail">
+        <span class="elementselect" style="font-size: 1.2em;">1 élément sélectionné</span>
+        <a href="#terms" class="btn waves-effect waves-light modal-trigger">Envoyer un email<i class="material-icons right">send</i></a>
+        <div class="modal" id="terms">
+            <div class="modal-content">
+                <h4>Envoie ton message</h4>
+                <div>
+                    <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
+                </div>
+                <button class="btn waves-effect waves-light right" type="submit" name="action">Valider
                     <i class="material-icons right">send</i>
                 </button>
-                <div class="row">
-                </div>
             </div>
         </div>
-        <div class="col s12 m6 offset-l3">
-            <div class="card horizontal" th:each="activityleader : ${activityleaders}">
-                <div class="card-content">
-                    <div class="content">
-                        <div class="checkandname">
+    </div>
+    <div class="col s12 m6 offset-l3" id="cardtest">
+        <div class="card horizontal" th:each="activityleader : ${activityleaders}">
+            <div class="card-content">
+                <div class="content">
+                    <div class="checkandname">
                         <p class="check">
                             <label>
                                 <input type="checkbox" class="filled-in" checked="checked" />
@@ -141,59 +148,63 @@
                         <div class="title-check">
                             <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Nom</h5>
                         </div>
-                        </div>
-                        <div class="phone-email-address">
-                            <p><i class="tiny material-icons">phone</i><span th:text="${activityleader.getPhone()}"></span></p>
-                            <p><i class="tiny material-icons">email</i><span th:text="${activityleader.getEmail()}"></span></p>
-                            <p><i class="tiny material-icons">home</i><span th:text="| ${activityleader.location.getAddress1()},|"></span><span th:text="| ${activityleader.location.getPostcode()} |">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
-                            <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
-                        </div>
-                        <br>
-                        <p>Age: <span th:text="|${activityleader.getAge()} ans|"></span></p>
-                        <p>EXP: <span th:text="${activityleader.experience}"> 7</span> ans</p>
-                        <br>
-                        <p class="collections-title">Diplômes</p>
-                        <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
-                            BAFA
-                        </div>
                     </div>
-                    <p class="collections-title">Publics concernés</p>
-                    <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
-                        3/6ans
+                    <div class="phone-email-address">
+                        <p><i class="tiny material-icons">phone</i><span th:text="${activityleader.getPhone()}"></span></p>
+                        <p><i class="tiny material-icons">email</i><span th:text="${activityleader.getEmail()}"></span></p>
+                        <p><i class="tiny material-icons">home</i><span th:text="| ${activityleader.location.getAddress1()},|"></span><span th:text="| ${activityleader.location.getPostcode()} |">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
+                        <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
                     </div>
                     <br>
+                    <p>Age: <span th:text="|${activityleader.getAge()} ans|"></span></p>
+                    <p>EXP: <span th:text="${activityleader.experience}"> 7</span> ans</p>
                     <br>
-                    <button class="btn waves-effect waves-light" type="submit" name="action" id="fiche"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
+                    <p class="collections-title">Diplômes</p>
+                    <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
+                        BAFA
+                    </div>
                 </div>
+                <p class="collections-title">Publics concernés</p>
+                <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
+                    3/6ans
+                </div>
+                <br>
+                <br>
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="fiche"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
+                <br>
+                <br>
             </div>
         </div>
+    </div>
 </div>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
-            $(document).ready(function () {
-                $("select").material_select();
+            $(document).ready(function(){
+                $('.modal').modal();
             });
             $(document).ready(function () {
-                $('.datepicker').pickadate({
-                    selectMonths: true, // Creates a dropdown to control month
-                    selectYears: 2, // Creates a dropdown of 15 years to control year
-                    labelMonthNext: 'Mois suivant',
-                    labelMonthPrev: 'Mois précédent',
-                    labelMonthSelect: 'Selectionner le mois',
-                    labelYearSelect: 'Selectionner une année',
-                    monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
-                    monthsShort: [ 'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec' ],
-                    weekdaysFull: [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
-                    weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
-                    weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
-                    today: 'Aujourd\'hui',
-                    clear: 'Réinitialiser',
-                    close: 'Fermer',
-                    format: 'dd/mm/yyyy'
-
+                $('select').formSelect();
+            });
+            $(document).ready(function () {
+                $('.datepicker').datepicker({
+                    firstDay: true,
+                    format: 'yyyy-mm-dd',
+                    i18n: {
+                        months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                        monthsShort: ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Aoû", "Sep", "Oct", "Nov", "Dec"],
+                        weekdays: ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+                        weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                        weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"],
+                        cancel:'Annuler'
+                    }
                 });
+            });
+            $(document).ready(function(){
+                $('.modal-trigger').leanModal();
             });
         </script>
 </body>
