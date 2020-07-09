@@ -94,15 +94,14 @@
                             <option value="" disabled selected>Sélectionnez une valeur : </option>
                             <option th:each="value : ${valuesList}" th:value="${value.id}" th:text="${value.name}"></option>
                         </select>
-                        <input id="other" type="text" class="validate" placeholder="Autres valeurs" th:disabled="${!editable}">
-                    </div>
+                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="center-align">
-        <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
-            <i class = "material-icons right">save</i></button>
+        <button class="btn waves-effect waves-light" type ="submit">Enregistrer
+            <i class= "material-icons right">save</i></button>
         <button th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
     </div>
 </form>

@@ -21,10 +21,12 @@ public class Value {
     @ManyToMany(mappedBy = "values")
     private List<ActivityLeader> activityLeaders = new ArrayList<>();
 
-    @Transient
-    private String valueList;
-
     public Value() {
+    }
+
+    public Value(String name) {
+
+        this.name = name;
     }
 
     public Long getId() {
@@ -51,15 +53,5 @@ public class Value {
         this.activityLeaders = activityLeaders;
     }
 
-    /*public Value(String valueList) {
-        this.valueList = valueList;
-    }
 
-    public String getValueList() {
-        return valueList;
-    }
-
-    public void setValueList(String valueList) {
-        this.valueList = valueList;
-    }*/
 }
