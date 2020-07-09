@@ -4,8 +4,11 @@ import com.wildcodeschool.synergieFamily.entity.Role;
 import com.wildcodeschool.synergieFamily.entity.User;
 import com.wildcodeschool.synergieFamily.repository.RoleRepository;
 import com.wildcodeschool.synergieFamily.repository.UserRepository;
+import com.wildcodeschool.synergieFamily.service.EmailService;
 import com.wildcodeschool.synergieFamily.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +24,9 @@ import java.util.Optional;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private UserRepository userRepository;
@@ -88,9 +94,11 @@ public class UserController {
         if (optionalRole.isPresent()) {
             user.getRoles().add(optionalRole.get());
             userRepository.save(user);
+            emailService.sendNewUserEmail(user.getEmail(), password);
         }
         return "redirect:/user-management";
     }
+
     @GetMapping("/user-edition")
     public String getUserCreation(Model out,
                                   @RequestParam(required = false) Long id) {

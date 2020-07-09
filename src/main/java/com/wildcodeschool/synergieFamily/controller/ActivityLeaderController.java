@@ -5,6 +5,7 @@ import com.wildcodeschool.synergieFamily.repository.ActivityLeaderRepository;
 import com.wildcodeschool.synergieFamily.repository.AudienceRepository;
 import com.wildcodeschool.synergieFamily.repository.DiplomaRepository;
 import com.wildcodeschool.synergieFamily.repository.ValueRepository;
+import com.wildcodeschool.synergieFamily.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,9 @@ import java.util.Optional;
 
 @Controller
 public class ActivityLeaderController {
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private DiplomaRepository diplomaRepository;
@@ -123,5 +127,16 @@ public class ActivityLeaderController {
             activityLeaderRepository.save(activityLeader);
         }
         return "redirect:/activity-leader-management";
+    }
+
+    @GetMapping("/activity-leader-email/{id}")
+    public String email(@PathVariable Long id){
+
+        Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+        if (optionalActivityLeader.isPresent()) {
+            ActivityLeader activityLeader = optionalActivityLeader.get();
+            emailService.sendNewActivityLeader(activityLeader);
+        }
+        return "redirect:/activity-leader-modification/" + id;
     }
 }

@@ -75,11 +75,11 @@
                         <label for="skill" type="text"  class="validate">Compétences</label>
                         <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate" th:disabled="${!editable}">
                     </div>
-                    <div class="form-field">
+                    <div class="form-field col s6">
                         <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
                         <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                     </div>
-                    <div class="form-field">
+                    <div class="form-field col s6">
                         <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
                         <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                     </div>
@@ -100,9 +100,9 @@
         </div>
     </div>
     <div class="center-align">
-        <button class="btn waves-effect waves-light" type ="submit">Enregistrer
-            <i class= "material-icons right">save</i></button>
-        <button th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></button>
+        <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
+            <i class = "material-icons right">save</i></button>
+        <a th:href="@{/activity-leader-email/{id}(id=${id})}" th:if="*{draft == true and id != null}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></a>
     </div>
 </form>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
