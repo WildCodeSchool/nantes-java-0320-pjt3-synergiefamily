@@ -4,6 +4,7 @@ import com.wildcodeschool.synergieFamily.entity.Role;
 import com.wildcodeschool.synergieFamily.entity.User;
 import com.wildcodeschool.synergieFamily.repository.RoleRepository;
 import com.wildcodeschool.synergieFamily.repository.UserRepository;
+import com.wildcodeschool.synergieFamily.service.EmailService;
 import com.wildcodeschool.synergieFamily.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -23,6 +24,9 @@ import java.util.Optional;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private UserRepository userRepository;
@@ -90,24 +94,9 @@ public class UserController {
         if (optionalRole.isPresent()) {
             user.getRoles().add(optionalRole.get());
             userRepository.save(user);
-            sendEmail(user.getEmail(), password);
+            emailService.sendNewUserEmail(user.getEmail(), password);
         }
         return "redirect:/user-management";
-    }
-
-    @Autowired
-    private JavaMailSender javaMailSender;
-
-    void sendEmail(String email, String password) {
-
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(email);
-
-        msg.setSubject("Inscription à Synergie Family");
-        msg.setText("Bonjour,\n Votre mot de passe est : " + password);
-
-        javaMailSender.send(msg);
-
     }
 
     @GetMapping("/user-edition")
