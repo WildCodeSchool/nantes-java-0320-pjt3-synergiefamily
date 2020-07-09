@@ -151,8 +151,7 @@ a i {
 }
 
 #card-white{
-    width: 80%;
-    margin: auto;
+    width: 48rem;
 }
 
 #search-button{
@@ -174,11 +173,13 @@ a i {
 .title-check{
     display: flex;
     flex-direction: row;
+    padding-right: 5rem;
 }
 
 .title-check h5 {
     display: flex;
     margin-right: 22rem;
+    width: 10rem;
 }
 
 .title-check p {
@@ -186,9 +187,46 @@ a i {
     padding-top: 1rem;
 }
 
-#fiche{
+.checkandname{
     display: flex;
-    margin-left: 48rem;
+    flex-direction:row-reverse;
+}
+
+.check{
+    padding-left: 4rem;
+    padding-top: 1rem;
+    margin-left: 2rem;
+}
+
+.card{
+    width: 48rem;
+}
+
+#cardtest{
+    display: flex;
+    justify-content: center;
+    padding-left: 26rem;
+}
+
+.selectemail{
+    display: flex;
+    justify-content: center;
+    padding-left: 3rem;
+}
+
+.elementselect{
+    padding-right: 3rem;
+}
+
+#leader{
+    display: flex;
+    justify-content: center;
+    padding-left: 5rem;
+}
+/* test */
+
+::placeholder {
+    color: black;
 }
 /*FRAGMENT NAV*/
 .side-nav {
