@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,7 +24,6 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
 
     @Autowired
     private RoleRepository roleRepository;
@@ -115,17 +113,41 @@ public class UserController {
         return "redirect:/user-management";
     }
 
+    @GetMapping("/profile")
+    public String getProfileUser(Model out) {
+
+        User user = userService.getLoggedEmail();
+        out.addAttribute("user", user);
+        return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String modificationProfile(@ModelAttribute User user) {
+
+        User logged = userService.getLoggedEmail();
+        logged.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(logged);
+        return "profile";
+    }
+
     @GetMapping("/user-management")
     public String getUserManagement(Model out) {
 
-        out.addAttribute("users", userRepository.findAll());
+        out.addAttribute("users", userRepository.findAllActiveUsers());
         return "user-management";
     }
 
-    @GetMapping("/user/delete")
-    public String deleteUser(@RequestParam Long id) {
+    @GetMapping("/user/disable")
+    public String disableUser(@RequestParam Long id) {
 
-        userRepository.deleteById(id);
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+
+            User user = optionalUser.get();
+            user.setDisabled(true);
+            userRepository.save(user);
+        }
+
         return "redirect:/user-management";
     }
 

@@ -28,6 +28,9 @@ public class User {
                 inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
+    @Column(columnDefinition = "boolean default false", nullable = false)
+    private Boolean disabled = false;
+
     public User() {
     }
 
@@ -66,6 +69,14 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
     }
 
     public static String randomPassword(int length) {
