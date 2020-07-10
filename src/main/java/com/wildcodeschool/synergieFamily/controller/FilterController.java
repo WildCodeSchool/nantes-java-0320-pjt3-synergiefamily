@@ -7,6 +7,8 @@ import com.wildcodeschool.synergieFamily.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -55,5 +57,26 @@ public class FilterController {
         return "filter";
     }
 
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    void sendEmail() {
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo("alan.raoul22@gmail.com");
+
+        msg.setSubject("Testing from Spring Boot");
+        msg.setText("Hello World \n Spring Boot Email");
+
+        javaMailSender.send(msg);
+
+    }
+
+    @GetMapping("/email")
+    @ResponseBody
+    public String email(){
+        sendEmail();
+        return "ok";
+    }
 }
 

@@ -6,19 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="user-management-body">
 <header th:replace="nav.html :: nav-bar"></header>
 <div class="bloc-user-creation">
     <div class="row">
         <div class="col s12 m6 offset-l3" id="bloc-form-user-creation">
             <div class="card">
                 <div class="card-action black-text">
-                    <h4 class="center-align" th:text="${user.id} ? 'Modification de compte' : 'Création de compte'">Informations Utilisateur</h4>
-                    <form action="/user" method="post" th:action="@{/user-edition}" th:object="${user}">
+                    <h4 class="center-align" th:text="${user.id} ? 'Modification de compte' : 'Création de compte'">Informations utilisateur</h4>
+                    <form class="card-content" method="post" th:action="@{/user-edition}" th:object="${user}"> <!--action="/user"-->
                         <input th:field="*{id}" type="hidden"> <!--TODO: finir cette page edition pour modification user-->
                         <div class="row">
                             <div class="card-content">
@@ -27,16 +26,11 @@
                                     <input required th:field="*{email}" id="email" type="email" class="validate">
                                 </div>
                                 <div class="form-field">
-                                    <input required th:field="*{password}" id="password" type="password" class="validate" placeholder="Mot de passe*">
-                                </div>
-                                <!--TODO: DELETE this password field, and replace by a random temporary password.
-                                       TODO: make a email sending for asking a new password to the new user
-                   -->
-                                <div class="form-field">
-                                    <select th:field="*{roles}"> <!--TODO: faire modifier les roles-->
+                                    <select name="roleId" id="role_id" required>
                                         <option value="" disabled selected>Rôle</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Coordinateur</option>
+                                        <option value="1">Coordinateur</option>
+                                        <option value="2">Admin</option>
+                                        <!--TODO : choisir le role par défaut ici-->
                                     </select>
                                 </div>
                                 <div class="button-form" id="button-form-user-creation">
@@ -50,5 +44,16 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').formSelect();
+    });
+    $(document).ready(function() {
+
+        $('.fixed-action-btn').floatingActionButton();
+    });
+</script>
 </body>
 </html>

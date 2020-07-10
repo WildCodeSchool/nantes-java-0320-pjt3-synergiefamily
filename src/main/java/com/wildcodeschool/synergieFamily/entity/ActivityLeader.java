@@ -52,15 +52,13 @@ public class ActivityLeader {
     @Column
     private String comment;
 
-    @Column
-    private Boolean disabled;
+    @Column(columnDefinition = "boolean default true", nullable = false)
+    private Boolean disabled = false;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -91,6 +89,9 @@ public class ActivityLeader {
             inverseJoinColumns = @JoinColumn(name = "audience_id"))
     private List<Audience> audiences = new ArrayList<>();
 
+    @OneToMany(mappedBy = "activityLeader")
+    private List<Availability> availabilities = new ArrayList<>();
+
     @Transient
     private Boolean active;
 
@@ -99,6 +100,9 @@ public class ActivityLeader {
 
     @Transient
     private String skillList;
+
+    @Transient
+    private String valueList;
 
     public ActivityLeader() {
     }
@@ -283,7 +287,27 @@ public class ActivityLeader {
                 .toLocalDate();
     }
 
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
     public void setDisabled(Boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public String getValueList() {
+        return valueList;
+    }
+
+    public void setValueList(String valueList) {
+        this.valueList = valueList;
+    }
+
+    public List<Availability> getAvailabilities() {
+        return availabilities;
+    }
+
+    public void setAvailabilities(List<Availability> availabilities) {
+        this.availabilities = availabilities;
     }
 }

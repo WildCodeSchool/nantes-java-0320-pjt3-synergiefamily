@@ -5,50 +5,79 @@
     <title>Profil</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
+<body class="user-management-body">
 
 <header th:replace="nav.html :: nav-bar"></header>
 
 
 <main class="profileContent">
     <h2>Profil</h2>
-    <!-- TODO: put the same font-size to all the h2 from the whole website. -->
-    <div class="row">
-        <form class="col s12">
+    <div class="row" id="row-profil">
+        <form class="col s12" action="/profile" method="post" th:action="@{/profile}" th:object="${user}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input th:field="*{id}" type="hidden">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email_inline" type="email" class="validate">
+                    <input disabled id="email_inline" type="email" class="validate" th:field="*{email}">
                     <label for="email_inline">Email</label>
                     <span data-error="wrong" data-success="right"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
+                    <input id="password" type="password" class="validate" name="password">
                     <label for="password">Nouveau mot de passe</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="passwordConfirmation" type="password" class="validate">
+                    <input id="passwordConfirmation" type="password" class="validate"> <!--name="passwordConfirmation" onblur="checkPass()" />-->
                     <label for="passwordConfirmation">Confirmation du mot passe</label>
+                    <!--<div id="divcomp"></div>-->
                 </div>
+            </div>
+            <div class="button-form" id="button-form-user-modification">
+                <button type="submit" class="btn">ENREGISTRER<i class="material-icons right">save</i></button>
             </div>
         </form>
     </div>
-
-    <div class="saveButton">
-     <a  class="waves-effect waves-light btn">SAUVEGARDER</a>
-    </div>
 </main>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--<script>
+    function checkPass()
+    {
+        var champA = document.getElementById("password").value;
+        var champB = document.getElementById("passwordConfirmation").value;
+        var div_comp = document.getElementById("divcomp");
+
+        if(champA == champB)
+        {
+            divcomp.innerHTML = "Correct";
+        }
+        else
+        {
+            divcomp.innerHTML = "Erreur !";
+        }
+    }
+</script>-->
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("passwordConfirmation");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
 </body>
 </html>

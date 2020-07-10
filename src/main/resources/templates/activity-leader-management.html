@@ -5,20 +5,19 @@
     <title>Gestion des animateurs</title>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="user-management-body">
 <header th:replace="nav.html :: nav-bar"></header>
 <main class="userManagementPageContent">
-    <h2>Gestion des Animateurs</h2>
+    <h2>Gestion des animateurs</h2>
     <!-- TODO: put the same font-size to all the h2 from the whole website. -->
     <div class="user-animator-ligne">
-        <a class="waves-effect waves-light btn black-text white darken-1" th:href="@{/activity-leader-creation}">
+        <a id="ajout-animateur" class="waves-effect waves-light btn black-text white darken-1" th:href="@{/activity-leader-creation}">
             <i class="material-icons left">add</i>AJOUTER UN ANIMATEUR</a>
-        <a class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL
+        <a id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL
             <i class="tiny material-icons right">send</i></a>
         <form method="get" action="/activity-leaders-search">
             <div class="search-wrapper" id="search-wrapper-animator">
@@ -63,7 +62,8 @@
                     <i  th:if="${activityLeader.active == false}" class="small material-icons">close</i>
                 </td>
                 <td>
-                    <p><a class="subheader" th:href="@{'/activity-leader-modification/' + ${activityLeader.id}}"><i class="small material-icons">create</i> </a><a class="subheader" href="/"><i class="small material-icons">delete</i></a></p>
+                    <p><a class="subheader" th:href="@{'/activity-leader-modification/' + ${activityLeader.id}}"><i class="small material-icons">create</i>
+                    </a><a class="subheader" th:href="@{activity-leader/disable(id=${activityLeader.id})}"><i class="small material-icons" onclick="ConfirmMessage()">delete</i></a></p>
                 </td>
             </tr>
         </tbody>
@@ -78,9 +78,16 @@
         <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
     </ul>
 </main>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    function ConfirmMessage() {
+
+        if (confirm("Attention, cet animateur sera supprimé de la base de données. Confirmer la suppression ?")) {
+
+            alert("L'animateur a bien été supprimé.")
+        }
+    }
+</script>
 </body>
 </html>

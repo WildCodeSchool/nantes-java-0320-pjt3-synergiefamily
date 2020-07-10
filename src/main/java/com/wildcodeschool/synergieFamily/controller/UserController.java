@@ -4,8 +4,11 @@ import com.wildcodeschool.synergieFamily.entity.Role;
 import com.wildcodeschool.synergieFamily.entity.User;
 import com.wildcodeschool.synergieFamily.repository.RoleRepository;
 import com.wildcodeschool.synergieFamily.repository.UserRepository;
+import com.wildcodeschool.synergieFamily.service.EmailService;
 import com.wildcodeschool.synergieFamily.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,8 +28,10 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private EmailService emailService;
 
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -81,8 +87,8 @@ public class UserController {
     public String postRegister(HttpServletRequest request,
                                @RequestParam String email,
                                @RequestParam(name = "role_id") Long roleId) {
-        String password = "test";//TODO génerer le mot de passe aléatoirement à envoyer  par mail
         User user = new User();
+        String password = user.randomPassword(8); // "test"
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
 
@@ -90,9 +96,11 @@ public class UserController {
         if (optionalRole.isPresent()) {
             user.getRoles().add(optionalRole.get());
             userRepository.save(user);
+            emailService.sendNewUserEmail(user.getEmail(), password);
         }
         return "redirect:/user-management";
     }
+
     @GetMapping("/user-edition")
     public String getUserCreation(Model out,
                                   @RequestParam(required = false) Long id) {
@@ -109,30 +117,59 @@ public class UserController {
     }
 
     @PostMapping("/user-edition")
-    public String postUser(@ModelAttribute User newUser) {
+    public String postUser(@RequestParam Long id,
+                    @RequestParam String email,
+                    @RequestParam Long roleId) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            Optional<Role> role = roleRepository.findById(roleId);
+            if (role.isPresent()) {
+                List<Role> roles = new ArrayList<>();
+                roles.add(role.get());
+                user.get().setRoles(roles);
+                userRepository.save(user.get());
+            }
+        }
 
-        userRepository.save(newUser);
         return "redirect:/user-management";
+    }
+
+    @GetMapping("/profile")
+    public String getProfileUser(Model out) {
+
+        User user = userService.getLoggedEmail();
+        out.addAttribute("user", user);
+        return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String modificationProfile(@ModelAttribute User user) {
+
+        User logged = userService.getLoggedEmail();
+        logged.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(logged);
+        return "profile";
     }
 
     @GetMapping("/user-management")
     public String getUserManagement(Model out) {
 
-        out.addAttribute("users", userRepository.findAll());
+        out.addAttribute("users", userRepository.findAllActiveUsers());
         return "user-management";
     }
 
+    @GetMapping("/user/disable")
+    public String disableUser(@RequestParam Long id) {
 
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
 
-    @GetMapping("/user/delete")
-    public String deleteUser(@RequestParam Long id) {
+            User user = optionalUser.get();
+            user.setDisabled(true);
+            userRepository.save(user);
+        }
 
-        userRepository.deleteById(id);
         return "redirect:/user-management";
-/*
-        TODO: create a popup to ask whether the deletion is really wanted
-        TODO: create a second popup to confirm the deletion
-*/
     }
 
     @GetMapping("/login")
