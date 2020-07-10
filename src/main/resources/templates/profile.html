@@ -16,7 +16,7 @@
 
 <main class="profileContent">
     <h2>Profil</h2>
-    <div class="row">
+    <div class="row" id="row-profil">
         <form class="col s12" action="/profile" method="post" th:action="@{/profile}" th:object="${user}">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <input th:field="*{id}" type="hidden">
