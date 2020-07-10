@@ -15,9 +15,9 @@
     <h2>Gestion des animateurs</h2>
     <!-- TODO: put the same font-size to all the h2 from the whole website. -->
     <div class="user-animator-ligne">
-        <a class="waves-effect waves-light btn black-text white darken-1" th:href="@{/activity-leader-creation}">
+        <a id="ajout-animateur" class="waves-effect waves-light btn black-text white darken-1" th:href="@{/activity-leader-creation}">
             <i class="material-icons left">add</i>AJOUTER UN ANIMATEUR</a>
-        <a class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL
+        <a id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL
             <i class="tiny material-icons right">send</i></a>
         <form method="get" action="/activity-leaders-search">
             <div class="search-wrapper" id="search-wrapper-animator">
