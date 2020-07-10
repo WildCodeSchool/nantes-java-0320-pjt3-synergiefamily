@@ -89,6 +89,9 @@ public class ActivityLeader {
             inverseJoinColumns = @JoinColumn(name = "audience_id"))
     private List<Audience> audiences = new ArrayList<>();
 
+    @OneToMany(mappedBy = "activityLeader")
+    private List<Availability> availabilities = new ArrayList<>();
+
     @Transient
     private Boolean active;
 
@@ -298,5 +301,13 @@ public class ActivityLeader {
 
     public void setValueList(String valueList) {
         this.valueList = valueList;
+    }
+
+    public List<Availability> getAvailabilities() {
+        return availabilities;
+    }
+
+    public void setAvailabilities(List<Availability> availabilities) {
+        this.availabilities = availabilities;
     }
 }
