@@ -26,6 +26,12 @@ public class Availability {
     public Availability() {
     }
 
+    public Availability(Date startDate, Date endDate, ActivityLeader activityLeader) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.activityLeader = activityLeader;
+    }
+
     public Long getId() {
         return id;
     }
