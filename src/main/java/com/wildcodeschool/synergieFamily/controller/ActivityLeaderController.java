@@ -93,7 +93,10 @@ public class ActivityLeaderController {
             for (Skill skill : activityLeader.getSkills()) {
                 skills += skill.getName() + ",";
             }
-            activityLeader.setSkillList(skills.substring(0, skills.length() - 1));
+            if (skills.length() > 0) {
+                skills = skills.substring(0, skills.length() - 1);
+            }
+            activityLeader.setSkillList(skills);
             out.addAttribute("activityLeader", activityLeader);
             out.addAttribute("valuesList", valueRepository.findAll());
             out.addAttribute("audiencesList", audienceRepository.findAll());
