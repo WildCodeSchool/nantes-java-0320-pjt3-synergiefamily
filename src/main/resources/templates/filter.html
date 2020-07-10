@@ -116,7 +116,7 @@
                 <i class = "material-icons right"></i></button>
         </div>
     </form>
-    <div class="selectemail">
+    <div class="selectemail" th:if="${activityleaders != null && activityleaders.size() != 0}">
         <span class="elementselect" style="font-size: 1.2em;">1 élément sélectionné</span>
         <a href="#terms" class="btn waves-effect waves-light modal-trigger">Envoyer un email<i class="material-icons right">send</i></a>
         <div class="modal" id="terms">
@@ -146,17 +146,17 @@
                             </p>
                         </div>
                         <div class="phone-email-address">
-                            <p><i class="tiny material-icons">phone</i><span th:text="${activityleader.getPhone()}"></span></p>
-                            <p><i class="tiny material-icons">email</i><span th:text="${activityleader.getEmail()}"></span></p>
-                            <p><i class="tiny material-icons">home</i><span th:text="| ${activityleader.location.getAddress1()},|"></span><span th:text="| ${activityleader.location.getPostcode()} |">Code postal</span> <span th:text="${activityleader.location.getCity()}">Ville</span></p>
+                            <p><i class="tiny material-icons">phone</i><span th:text="|${activityleader.getPhone() == null || activityleader.getPhone().isEmpty() ? 'Non renseigné' : activityleader.getPhone()}|"></span></p>
+                            <p><i class="tiny material-icons">email</i><span th:text="|${activityleader.getEmail() == null || activityleader.getEmail().isEmpty() ? 'Non renseigné' : activityleader.getEmail()}|"></span></p>
+                            <p><i class="tiny material-icons">home</i><span th:text="|${activityleader.location.getAddress1() == null || activityleader.location.getAddress1().isEmpty() ? 'Non renseigné' : activityleader.location.getAddress1()}|"></span><span th:text="|${activityleader.location.getPostcode() == null ? ' ' : activityleader.location.getPostcode()}|">Code postal</span> <span th:text="|${activityleader.location.getCity() == null ? ' ' : activityleader.location.getCity()}|">Ville</span></p>
                             <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
                         </div>
                         <br>
-                        <p>Age: <span th:text="|${activityleader.getAge()} ans|"></span></p>
-                        <p>EXP: <span th:text="${activityleader.experience}"> 7</span> ans</p>
+                        <p>Age: <span th:text="|${activityleader.getAge() == 0 ? 'Non renseigné' : activityleader.getAge()}|"></span></p>
+                        <p>EXP: <span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
                         <br>
                         <p class="collections-title">Diplômes</p>
-                        <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
+                        <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="|${diploma.getName() == null ? 'Non renseigné' : diploma.getName()}|">
                             BAFA
                         </div>
                     </div>
