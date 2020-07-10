@@ -67,9 +67,13 @@
                     <div>
                         <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
                     </div>
-                    <div class="form-field">
-                        <label for="unavailability" title="Clique-ici">Indisponibilités</label>
-                        <input th:field="*{availability}" id="unavailability" type="date" class="datepicker" name="unavailability" th:disabled="${!editable}">
+                    <div class="form-field col s6">
+                        <label for="unavailabilityStart" title="Clique-ici">Date de début d'indispo</label>
+                        <input id="unavailabilityStart" type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
+                    </div>
+                    <div class="form-field col s6">
+                        <label for="unavailabilityEnd" title="Clique-ici">Date de fin </label>
+                        <input id="unavailabilityEnd" type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
                     </div>
                     <div class="form-field">
                         <label for="skill" type="text"  class="validate">Compétences</label>
