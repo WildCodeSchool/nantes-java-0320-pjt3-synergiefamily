@@ -152,17 +152,23 @@
                             <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
                         </div>
                         <br>
-                        <p>Age: <span th:text="|${activityleader.getAge() == 0 ? 'Non renseigné' : activityleader.getAge()}|"></span></p>
-                        <p>EXP: <span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
+                        <p>Age: <span th:text="|${activityleader.getAge() == 0 ? 'Non renseigné' : activityleader.getAge() + ' ans'}|"></span></p>
+                        <p>EXP: <span th:text="|${activityleader.getExperience() == null || activityleader.getExperience().isEmpty() ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
                         <br>
                         <p class="collections-title">Diplômes</p>
-                        <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="|${diploma.getName() == null ? 'Non renseigné' : diploma.getName()}|">
+                        <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
                             BAFA
+                        </div>
+                        <div class="chip" th:if="${activityleader.diplomas.size() == 0}">
+                            Non renseigné
                         </div>
                     </div>
                     <p class="collections-title">Publics concernés</p>
                     <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
                         3/6ans
+                    </div>
+                    <div class="chip" th:if="${activityleader.audiences.size() == 0}">
+                        Non renseigné
                     </div>
                     <br>
                     <br>
