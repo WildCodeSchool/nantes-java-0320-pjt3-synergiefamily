@@ -1,20 +1,23 @@
 package com.wildcodeschool.synergieFamily.controller;
 
 import com.wildcodeschool.synergieFamily.entity.*;
-import com.wildcodeschool.synergieFamily.repository.ActivityLeaderRepository;
-import com.wildcodeschool.synergieFamily.repository.AudienceRepository;
-import com.wildcodeschool.synergieFamily.repository.DiplomaRepository;
-import com.wildcodeschool.synergieFamily.repository.ValueRepository;
+import com.wildcodeschool.synergieFamily.repository.*;
 import com.wildcodeschool.synergieFamily.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
 public class ActivityLeaderController {
+
+    @Autowired
+    private AvailabilityRepository availabilityRepository;
 
     @Autowired
     private EmailService emailService;
@@ -60,7 +63,9 @@ public class ActivityLeaderController {
     }
 
     @PostMapping("/activity-leader-creation")
-    public String postForm(@ModelAttribute ActivityLeader activityLeader) {
+    public String postForm(@ModelAttribute ActivityLeader activityLeader,
+                           @RequestParam String unavailabilityStart,
+                           @RequestParam String unavailabilityEnd) {
 
         String skillList = activityLeader.getSkillList();
         String[] skills = skillList.split(",");
@@ -79,6 +84,16 @@ public class ActivityLeaderController {
             }
         }*/
         activityLeader = activityLeaderRepository.save(activityLeader);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date start = format.parse(unavailabilityStart);
+            Date end = format.parse(unavailabilityEnd);
+            Availability availability = new Availability(start,end, activityLeader);
+            availability = availabilityRepository.save(availability);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         return "redirect:/activity-leader-modification/" + activityLeader.getId();
     }
 
@@ -93,7 +108,10 @@ public class ActivityLeaderController {
             for (Skill skill : activityLeader.getSkills()) {
                 skills += skill.getName() + ",";
             }
-            activityLeader.setSkillList(skills.substring(0, skills.length() - 1));
+            if (skills.length() > 0) {
+                skills = skills.substring(0, skills.length() - 1);
+            }
+            activityLeader.setSkillList(skills);
             out.addAttribute("activityLeader", activityLeader);
             out.addAttribute("valuesList", valueRepository.findAll());
             out.addAttribute("audiencesList", audienceRepository.findAll());
