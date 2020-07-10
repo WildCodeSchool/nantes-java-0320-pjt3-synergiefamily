@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -115,9 +117,20 @@ public class UserController {
     }
 
     @PostMapping("/user-edition")
-    public String postUser(@ModelAttribute User newUser) {
+    public String postUser(@RequestParam Long id,
+                    @RequestParam String email,
+                    @RequestParam Long roleId) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            Optional<Role> role = roleRepository.findById(roleId);
+            if (role.isPresent()) {
+                List<Role> roles = new ArrayList<>();
+                roles.add(role.get());
+                user.get().setRoles(roles);
+                userRepository.save(user.get());
+            }
+        }
 
-        userRepository.save(newUser);
         return "redirect:/user-management";
     }
 
