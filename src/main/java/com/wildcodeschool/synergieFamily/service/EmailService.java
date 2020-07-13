@@ -24,13 +24,14 @@ public class EmailService {
 
     }
 
-    public void sendNewActivityLeader(ActivityLeader activityLeader){
+    public void sendNewActivityLeader(String url, ActivityLeader activityLeader, String token){
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(activityLeader.getEmail());
 
         msg.setSubject("Valider votre fiche sur Synergie Family");
-        msg.setText("Bonjour,\n Merci de remplir vos informations sur le lien suivant");
+        msg.setText("Bonjour,\n Merci de remplir vos informations sur le lien suivant :\n" +
+                url + "/activity-leader-edit/" + token);
 
         javaMailSender.send(msg);
 
