@@ -160,8 +160,8 @@ public class ActivityLeaderController {
             ActivityLeader activityLeader = optionalActivityLeader.get();
             activityLeader.setToken(randomToken);
             activityLeader = activityLeaderRepository.save(activityLeader);
-            //String url = request.getContextPath();
-            String url = "http://localhost:8080"; // TODO : récupérer l'url du serveur
+            String url = request.getRequestURL().substring(0, request.getRequestURL().length()
+                    - request.getRequestURI().length()) + request.getContextPath();
             emailService.sendNewActivityLeader(url, activityLeader, randomToken);
         }
         return "redirect:/activity-leader-modification/" + id;
