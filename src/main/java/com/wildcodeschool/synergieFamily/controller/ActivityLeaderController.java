@@ -157,4 +157,17 @@ public class ActivityLeaderController {
         }
         return "redirect:/activity-leader-modification/" + id;
     }
+
+    @PostMapping("/activity-leader-management-email")
+    public String multiEmail(@RequestParam Long[] activityLeaders){
+
+        for (Long id : activityLeaders){
+            Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+            if (optionalActivityLeader.isPresent()) {
+                ActivityLeader activityLeader = optionalActivityLeader.get();
+                emailService.sendInformationActivityLeader(activityLeader);
+            }
+        }
+        return "redirect:/activity-leader-management";
+    }
 }
