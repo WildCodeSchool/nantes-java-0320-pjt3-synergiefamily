@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -202,5 +203,18 @@ public class ActivityLeaderController {
         activityLeader.setDraft(false);
         activityLeaderRepository.save(activityLeader);
         return "Votre fiche a bien été modifiée, merci.";
+    }
+
+    @PostMapping("/activity-leader-management-email")
+    public String multiEmail(@RequestParam List<Long> activityLeaders){
+
+       for (Long id : activityLeaders){
+            Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+            if (optionalActivityLeader.isPresent()) {
+                ActivityLeader activityLeader = optionalActivityLeader.get();
+                emailService.sendInformationActivityLeader(activityLeader);
+            }
+        }
+       return "redirect:/activity-leader-management";
     }
 }

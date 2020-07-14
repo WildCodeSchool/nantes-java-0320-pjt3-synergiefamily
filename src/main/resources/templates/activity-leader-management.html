@@ -17,9 +17,8 @@
     <div class="user-animator-ligne">
         <a id="ajout-animateur" class="waves-effect waves-light btn black-text white darken-1" th:href="@{/activity-leader-creation}">
             <i class="material-icons left">add</i>AJOUTER UN ANIMATEUR</a>
-        <a id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL
-            <i class="tiny material-icons right">send</i></a>
         <form method="get" action="/activity-leaders-search">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <div class="search-wrapper" id="search-wrapper-animator">
                 <button type="submit" class="searchButton"> <i class="material-icons left" id="search-user-animator">search<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">chercher</font></font></i></button>
                 <input type="text" id="search" placeholder="Chercher" name="search">
@@ -27,6 +26,10 @@
         </form>
 
     </div>
+    <form method="post" action="/activity-leader-management-email">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <button type="submit" id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL
+            <i class="tiny material-icons right">send</i></button>
     <table class="striped">
         <thead>
             <tr>
@@ -42,15 +45,12 @@
         </thead>
         <tbody>
             <tr th:each="activityLeader : ${activityLeaders}">
-                <td><form action="#">
-                    <p>
-                        <label>
-                            <input id="select" type="checkbox" class="filled-in" checked="checked" />
-                            <label for = "select"></label>
-                            <span></span>
-                        </label>
-                    </p>
-                </form></td>
+                <td>
+                    <label>
+                        <input name="activityLeaders" type="checkbox" th:value="${activityLeader.id}">
+                        <span></span>
+                    </label>
+                </td>
                 <td th:text="${activityLeader.lastName.toUpperCase()}">TEST1</td>
                 <td th:text="${activityLeader.firstName.toLowerCase()}">test1</td>
                 <td th:text="${activityLeader.email}">test1@exemple.com</td>
@@ -68,6 +68,7 @@
             </tr>
         </tbody>
     </table>
+    </form>
     <ul class="pagination">
         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
         <li class="active teal lighten-2"><a href="#!">1</a></li>
