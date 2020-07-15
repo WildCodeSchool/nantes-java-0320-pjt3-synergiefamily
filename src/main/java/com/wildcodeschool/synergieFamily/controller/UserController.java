@@ -123,13 +123,15 @@ public class UserController {
             }
         }
         out.addAttribute("user", user);
+        out.addAttribute("rolesList", roleRepository.findAll());
         return "user-edition";
     }
 
     @PostMapping("/user-edition")
     public String postUser(@RequestParam Long id,
                     @RequestParam String email,
-                    @RequestParam Long roleId) {
+                    @RequestParam(name = "roles") Long roleId) {
+
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             Optional<Role> role = roleRepository.findById(roleId);

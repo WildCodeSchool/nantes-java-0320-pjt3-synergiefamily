@@ -26,11 +26,9 @@
                                     <input required th:field="*{email}" id="email" type="email" class="validate">
                                 </div>
                                 <div class="form-field">
-                                    <select name="roleId" id="role_id" required>
-                                        <option value="" disabled selected>Rôle</option>
-                                        <option value="1">Coordinateur</option>
-                                        <option value="2">Admin</option>
-                                        <!--TODO : choisir le role par défaut ici-->
+                                    <select id="role_id" th:field="*{roles}" required>
+                                        <option value="0" disabled selected>Sélectionner un rôle</option>
+                                        <option th:each="role : ${rolesList}" th:value="${role.id}" th:text="${role.nameForDisplay}">ROLE</option>
                                     </select>
                                 </div>
                                 <div class="button-form" id="button-form-user-creation">
