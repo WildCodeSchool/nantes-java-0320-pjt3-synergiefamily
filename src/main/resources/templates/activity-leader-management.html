@@ -26,26 +26,27 @@
 
     </div>
 
-    <button data-target="modal1" id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1 btn modal-trigger">ENVOYER UN EMAIL
-        <i class="tiny material-icons right">send</i></button>
-
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Envoie ton message</h4>
-            <div>
-                <label for="subject">Objet: </label><br>
-                <input type="text" id="subject" name="subject"><br>
-                <textarea id="comment" name="comment"></textarea>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Send</a>
-        </div>
-    </div>
-
     <form method="post" action="/activity-leader-management-email">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <button data-target="modal1" id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1 btn modal-trigger">ENVOYER UN EMAIL
+            <i class="tiny material-icons right">send</i></button>
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Envoie ton message</h4>
+                <div>
+                    <label for="subject">Objet: </label><br>
+                    <input type="text" id="subject" name="subject"><br>
+                    <textarea id="content" name="content"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#close" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                <button type="submit">Envoyer</button>
+            </div>
+        </div>
+
     <table class="striped">
         <thead>
             <tr>

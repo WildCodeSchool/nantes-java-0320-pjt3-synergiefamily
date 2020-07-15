@@ -36,12 +36,13 @@ public class EmailService {
         javaMailSender.send(msg);
 
     }
-    public void sendInformationActivityLeader(ActivityLeader activityLeader){
+    public void sendInformationActivityLeader(ActivityLeader activityLeader,
+                                              String subject, String content){
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(activityLeader.getEmail());
-        msg.setSubject("Information");
-        msg.setText("Bonjour,\n Voici les informations suivantes pour la prochaine réunion : ");
+        msg.setSubject(subject);
+        msg.setText(content);
 
         javaMailSender.send(msg);
 
