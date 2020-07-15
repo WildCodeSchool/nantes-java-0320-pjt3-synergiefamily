@@ -134,7 +134,11 @@ public class ActivityLeaderController {
         if (optionalActivityLeader.isPresent()) {
             ActivityLeader activityLeader = optionalActivityLeader.get();
             out.addAttribute("activityLeader", activityLeader);
+            out.addAttribute("valuesList", valueRepository.findAll());
+            out.addAttribute("audiencesList", audienceRepository.findAll());
+            out.addAttribute("diplomasList", diplomaRepository.findAll());
             out.addAttribute("editable", false);
+            out.addAttribute("external", false);
         }
         return "activity-leader-creation";
     }
