@@ -14,7 +14,7 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
 
     Optional<ActivityLeader> findByToken(String token);
 
-    @Query("SELECT a FROM ActivityLeader a WHERE a.lastName= :lastName OR a.firstName= :firstName OR a.email= :email ORDER BY a.lastName asc, a.firstName asc, a.email asc")
+    @Query("SELECT a FROM ActivityLeader a WHERE (a.lastName= :lastName OR a.firstName= :firstName OR a.email= :email) AND a.disabled <> true ORDER BY a.lastName asc, a.firstName asc, a.email asc")
     List<ActivityLeader> findByLastNameContainingOrFirstNameContainingOrEmailContaining(@Param("lastName") String lastName , @Param("firstName") String firstName, @Param("email") String email);
 
     @Query("SELECT a FROM ActivityLeader a ORDER BY a.id DESC")
