@@ -86,19 +86,29 @@ public class UserController {
     public String postRegister(HttpServletRequest request,
                                @RequestParam String email,
                                @RequestParam(name = "role_id") Long roleId) {
-        User user = new User();
-        String password = user.randomPassword(8); // "test"
-        user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password));
 
-        Optional<Role> optionalRole = roleRepository.findById(roleId);
-        if (optionalRole.isPresent()) {
-            user.getRoles().add(optionalRole.get());
-            userRepository.save(user);
-            emailService.sendNewUserEmail(user.getEmail(), password);
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (!optionalUser.isPresent()) {
+            User user = new User();
+            String password = user.randomPassword(8);
+            user.setEmail(email);
+            user.setPassword(passwordEncoder.encode(password));
+
+            Optional<Role> optionalRole = roleRepository.findById(roleId);
+            if (optionalRole.isPresent()) {
+                user.getRoles().add(optionalRole.get());
+                userRepository.save(user);
+                emailService.sendNewUserEmail(user.getEmail(), password);
+
+                return "redirect:/user-management";
+            }
+
         }
-        return "redirect:/user-management";
+        return "redirect:/user-creation";
+        //TODO: display a message to inform that the email already exists.
+
     }
+
 
     @GetMapping("/user-edition")
     public String getUserCreation(Model out,
