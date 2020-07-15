@@ -57,7 +57,9 @@ public class FilterController {
 
     @GetMapping("/filter")
     public String showFilter(Model model){
+
         model.addAttribute("activityLeader", new ActivityLeader());
+        model.addAttribute("diplomasList", diplomaRepository.findAll());
         return "filter";
     }
 

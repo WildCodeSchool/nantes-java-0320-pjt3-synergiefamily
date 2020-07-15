@@ -35,7 +35,7 @@
                             <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email">
                         </div>
                         <div class="form-field col s6">
-                            <input th:field="*{phone}"id="phone" type="tel" class="validate" placeholder="Téléphone"></div>
+                            <input th:field="*{phone}" id="phone" type="tel" class="validate" placeholder="Téléphone"></div>
                         <div class="form-field">
                             <input th:field="*{location.address1}" type="text" class="validate" placeholder="Adresse 1">
                         </div>
@@ -55,14 +55,9 @@
                             </label>
                         </div>
                         <div class="form-field col s6" id="diploma1">
-                            <select multiple>
+                            <select multiple th:field="*{diplomas}">
                                 <option value="" disabled selected>Diplômes</option>
-                                <option value="1">BAFA</option>
-                                <option value="2">CAP petite enfance</option>
-                                <option value="3">BAFD</option>
-                                <option value="4">CQP Animateur Périscolaire</option>
-                                <option value="5">BPJEPS</option>
-                                <option value="6">DEJEPS</option>
+                                <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}">DIPLOMA</option>
                             </select>
                         </div>
                         <div class="form-field col s6">
