@@ -154,6 +154,7 @@ public class UserController {
     public String getUserManagement(Model out) {
 
         out.addAttribute("users", userRepository.findAllActiveUsers());
+        out.addAttribute("loggedId", userService.getLoggedUser().getId());
         return "user-management";
     }
 
