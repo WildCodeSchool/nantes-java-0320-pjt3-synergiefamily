@@ -6,9 +6,8 @@ import com.wildcodeschool.synergieFamily.repository.RoleRepository;
 import com.wildcodeschool.synergieFamily.repository.UserRepository;
 import com.wildcodeschool.synergieFamily.service.EmailService;
 import com.wildcodeschool.synergieFamily.service.UserService;
+import com.wildcodeschool.synergieFamily.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -137,7 +136,7 @@ public class UserController {
     @GetMapping("/profile")
     public String getProfileUser(Model out) {
 
-        User user = userService.getLoggedEmail();
+        User user = userService.getLoggedUser();
         out.addAttribute("user", user);
         return "profile";
     }
@@ -145,7 +144,7 @@ public class UserController {
     @PostMapping("/profile")
     public String modificationProfile(@ModelAttribute User user) {
 
-        User logged = userService.getLoggedEmail();
+        User logged = userService.getLoggedUser();
         logged.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(logged);
         return "profile";
@@ -155,6 +154,7 @@ public class UserController {
     public String getUserManagement(Model out) {
 
         out.addAttribute("users", userRepository.findAllActiveUsers());
+        out.addAttribute("loggedId", userService.getLoggedUser().getId());
         return "user-management";
     }
 
@@ -165,8 +165,15 @@ public class UserController {
         if (optionalUser.isPresent()) {
 
             User user = optionalUser.get();
-            user.setDisabled(true);
-            userRepository.save(user);
+
+            if (!user.getEmail().equals(userService.getLoggedUser().getEmail())) {
+
+                user.setDisabled(true);
+                userRepository.save(user);
+            } else {
+
+                //TODO: display a message to prevent the logged user that he can't delete his own account.
+            }
         }
 
         return "redirect:/user-management";
