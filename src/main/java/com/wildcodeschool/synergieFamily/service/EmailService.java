@@ -46,4 +46,15 @@ public class EmailService {
         javaMailSender.send(msg);
 
     }
+
+    public void sendActivityLeaderByFilter(ActivityLeader activityLeader){
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(activityLeader.getEmail());
+        msg.setSubject("Information");
+        msg.setText("Bonjour,\n Voici les informations pour votre prochaine mission : ");
+
+        javaMailSender.send(msg);
+
+    }
 }

@@ -12,11 +12,11 @@
 </head>
 <body class="user-management-body">
 <header th:replace="nav.html :: nav-bar"></header>
-<div class="block-filter">
+<div class="block-filter" >
     <form action="/filter" method="post" th:object="${activityLeader}">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div id="leader" class="row">
-            <div class="col s12 m6 offset-l3">
+            <div class="col s12 m6 offset-l2">
                 <div class="card white" id="card-white">
                     <div class="card-action black-text" id="card-action">
                         <h4 class="center-align">Recherches</h4>
@@ -29,9 +29,9 @@
                             <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom">
                         </div>
                         <div class="form-field col s6">
-                            <input th:field="*{birthdate}" id="birthdate" type="date" placeholder="Date de Naissance">
+                            <input th:field="*{birthdate}" id="birthdate" type="date"  class="datepicker" placeholder="Date de Naissance">
                         </div>
-                        <div class="form-field">
+                        <div class="form-field col s6">
                             <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email">
                         </div>
                         <div class="form-field col s6">
@@ -48,11 +48,13 @@
                         <div class="form-field col s6">
                             <input th:field="*{location.city}" type="text" class="validate" placeholder="Ville">
                         </div>
-                        <div class="form-field">
-                            <input id="vehicule" type="checkbox">
-                            <label for="vehicule">Véhiculé</label>
+                        <div class="form-field" id="car1">
+                            <label>
+                                <input name="hasACar" th:checked="*{hasACar}" id="car" type="checkbox">
+                                <span>Véhiculé</span>
+                            </label>
                         </div>
-                        <div class="form-field col s6">
+                        <div class="form-field col s6" id="diploma1">
                             <select multiple>
                                 <option value="" disabled selected>Diplômes</option>
                                 <option value="1">BAFA</option>
@@ -66,9 +68,13 @@
                         <div class="form-field col s6">
                             <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences">
                         </div>
+                        <div class="form-field col s6">
+                            <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilités</label>
+                            <input th:field="${activityLeader.availabilities}" id="unavailabilityStart" type="date" class="datepicker" name="unavailabilityStart">
+                        </div>
                         <div class="form-field">
-                            <label for="unavailability" title="Clique-ici">Indisponibilités</label>
-                            <input th:field="*{availability}" id="unavailability" type="date" class="datepicker" name="unavailability">
+                            <label for="unavailabilityEnd" title="Clique-ici">Date de fin d'indisponibilités</label>
+                            <input th:field="${activityLeader.availabilities}" id="unavailabilityEnd" type="date" class="datepicker" name="unavailabilityEnd">
                         </div>
                         <div class="form-field">
                             <label for="skill" type="text"  class="validate">Compétences</label>
@@ -105,7 +111,6 @@
                                 <option value="4">Responsabilité</option>
                                 <option value="5">Détermination</option>
                             </select>
-                            <input id="other" type="text" class="validate" placeholder="Autres valeurs">
                         </div>
                     </div>
                 </div>
@@ -116,45 +121,46 @@
                 <i class = "material-icons right"></i></button>
         </div>
     </form>
-    <div class="selectemail" th:if="${activityleaders != null && activityleaders.size() != 0}">
-        <span class="elementselect" style="font-size: 1.2em;">1 élément sélectionné</span>
-        <a href="#terms" class="btn waves-effect waves-light modal-trigger">Envoyer un email<i class="material-icons right">send</i></a>
-        <div class="modal" id="terms">
-            <div class="modal-content">
-                <h4>Envoie ton message</h4>
-                <div>
-                    <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
+    <form method="post" action="/filter-email">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div class="selectemail" th:if="${activityleaders != null && activityleaders.size() != 0}">
+            <span class="elementselect" style="font-size: 1.2em;">1 élément sélectionné</span>
+            <button type="submit" class="btn waves-effect waves-light modal-trigger">Envoyer un email<i class="material-icons right">send</i></button>
+            <div class="modal" id="terms">
+                <div class="modal-content">
+                    <h4>Envoie ton message</h4>
+                    <div>
+                        <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
+                    </div>
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">Valider
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
-                <button class="btn waves-effect waves-light right" type="submit" name="action">Valider
-                    <i class="material-icons right">send</i>
-                </button>
             </div>
         </div>
-    </div>
-            </div>
-        </div>
-        <div class="col s12 m6 offset-l3">
-            <div class="card horizontal" th:each="activityleader : ${activityleaders}">
-                <div class="card-content">
-                    <div class="content">
-                        <div class="title-check">
-                            <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Nom</h5>
-                            <p>
-                                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
-                                <label for="filled-in-box">
+            <div class="col s12 m6 offset-l3">
+                <div class="card horizontal" th:each="activityleader : ${activityleaders}">
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="title-check">
+                                <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Nom</h5>
+                                <label>
+                                    <input name="activityLeaders" type="checkbox" th:value="${activityLeader.id}">
+                                    <span></span>
                                 </label>
-                            </p>
-                        </div>
-                        <div class="phone-email-address">
-                            <p><i class="tiny material-icons">phone</i><span th:text="|${activityleader.getPhone() == null || activityleader.getPhone().isEmpty() ? 'Non renseigné' : activityleader.getPhone()}|"></span></p>
-                            <p><i class="tiny material-icons">email</i><span th:text="|${activityleader.getEmail() == null || activityleader.getEmail().isEmpty() ? 'Non renseigné' : activityleader.getEmail()}|"></span></p>
-                            <p><i class="tiny material-icons">home</i><span th:text="|${activityleader.location.getAddress1() == null || activityleader.location.getAddress1().isEmpty() ? 'Non renseigné' : activityleader.location.getAddress1()}|"></span><span th:text="|${activityleader.location.getPostcode() == null ? ' ' : activityleader.location.getPostcode()}|">Code postal</span> <span th:text="|${activityleader.location.getCity() == null ? ' ' : activityleader.location.getCity()}|">Ville</span></p>
-                            <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
-                        </div>
-                        <br>
-                        <p>Age: <span th:text="|${activityleader.getAge() == 0 ? 'Non renseigné' : activityleader.getAge()}|"></span></p>
-                        <p>EXP: <span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
-                        <br>
+                            </div>
+                            <div class="phone-email-address">
+                                <p><i class="tiny material-icons">phone</i><span th:text="|${activityleader.getPhone() == null || activityleader.getPhone().isEmpty() ? 'Non renseigné' : activityleader.getPhone()}|"></span></p>
+                                <p><i class="tiny material-icons">email</i><span th:text="|${activityleader.getEmail() == null || activityleader.getEmail().isEmpty() ? 'Non renseigné' : activityleader.getEmail()}|"></span></p>
+                                <p><i class="tiny material-icons">home</i><span th:text="|${activityleader.location.getAddress1() == null || activityleader.location.getAddress1().isEmpty() ? 'Non renseigné' : activityleader.location.getAddress1()}|"></span><span th:text="|${activityleader.location.getPostcode() == null ? ' ' : activityleader.location.getPostcode()}|">Code postal</span> <span th:text="|${activityleader.location.getCity() == null ? ' ' : activityleader.location.getCity()}|">Ville</span></p>
+                                <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
+                            </div>
+                            <br>
+                            <p>Age: <span th:text="|${activityleader.getAge() == 0 ? 'Non renseigné' : activityleader.getAge()}|"></span></p>
+                            <p>EXP: <span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
+                            <br>
+                        <button class="btn waves-effect waves-light" type="submit" name="action" id="fiche"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
+                    </div>
                         <p class="collections-title">Diplômes</p>
                         <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
                             BAFA
@@ -175,8 +181,7 @@
                     <button class="btn waves-effect waves-light" type="submit" name="action" id="fiche"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
                 </div>
             </div>
-        </div>
-    </div>
+    </form>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>

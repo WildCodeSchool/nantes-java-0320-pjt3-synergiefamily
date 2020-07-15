@@ -27,7 +27,7 @@
                     <div class="card-content">
                         <div class="name">
                             <div class="form-field col s6">
-                                <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
+                                <input th:field="*{firstName}" id="firstname" type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
                             </div>
                             <div class="form-field col s6">
                                 <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
@@ -76,18 +76,18 @@
                                 </select>
                             </div>
                             <div class="form-field col s6">
-                                <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences" th:disabled="${!editable}">
+                                <input th:field="*{experience}" id="xp" type="number" placeholder="Années d'expériences" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div>
-                            <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
+                            <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires" th:disabled="${!editable}"></textarea>
                         </div>
                         <div class="form-field col s6">
-                            <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilité</label>
+                            <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilités</label>
                             <input th:field="${activityLeader.availabilities}" id="unavailabilityStart" type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
                         </div>
                         <div class="form-field col s6">
-                            <label for="unavailabilityEnd" title="Clique-ici">Date de fin </label>
+                            <label for="unavailabilityEnd" title="Clique-ici">Date de fin d'indisponibilités</label>
                             <input th:field="${activityLeader.availabilities}" id="unavailabilityEnd" type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
                         </div>
                         <div class="form-field">
@@ -95,13 +95,13 @@
                             <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate" th:disabled="${!editable}">
                         </div>
                         <div class="start-date">
-                            <div class="form-field col s6" id="end-date2">
+                            <div class="form-field">
                                 <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
-                                <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
+                                <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019">
                             </div>
-                            <div class="form-field col s6">
+                            <div class="form-field">
                                 <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
-                                <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
+                                <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019">
                             </div>
                         </div>
                         <div class="values">
@@ -129,7 +129,6 @@
         </div>
     </form>
 </div>
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script type="text/javascript">
