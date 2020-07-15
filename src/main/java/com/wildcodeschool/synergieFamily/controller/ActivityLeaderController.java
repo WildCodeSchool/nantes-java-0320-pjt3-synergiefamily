@@ -20,7 +20,7 @@ import java.util.Optional;
 public class ActivityLeaderController {
 
     @Autowired
-    private AvailabilityRepository availabilityRepository;
+    private UnavailabilityRepository unavailabilityRepository;
 
     @Autowired
     private EmailService emailService;
@@ -90,8 +90,8 @@ public class ActivityLeaderController {
             try {
                 Date start = format.parse(unavailabilityStart);
                 Date end = format.parse(unavailabilityEnd);
-                Availability availability = new Availability(start, end, activityLeader);
-                availabilityRepository.save(availability);
+                Unavailability unavailability = new Unavailability(start, end, activityLeader);
+                unavailabilityRepository.save(unavailability);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
