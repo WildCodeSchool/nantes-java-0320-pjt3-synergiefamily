@@ -159,19 +159,26 @@
                             <p>Age: <span th:text="|${activityleader.getAge() == 0 ? 'Non renseigné' : activityleader.getAge()}|"></span></p>
                             <p>EXP: <span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
                             <br>
-                            <p class="collections-title">Diplômes</p>
-                            <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="|${diploma.getName() == null ? 'Non renseigné' : diploma.getName()}|">
-                                BAFA
-                            </div>
-                        </div>
-                        <p class="collections-title">Publics concernés</p>
-                        <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
-                            3/6ans
-                        </div>
-                        <br>
-                        <br>
                         <button class="btn waves-effect waves-light" type="submit" name="action" id="fiche"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
                     </div>
+                        <p class="collections-title">Diplômes</p>
+                        <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
+                            BAFA
+                        </div>
+                        <div class="chip" th:if="${activityleader.diplomas.size() == 0}">
+                            Non renseigné
+                        </div>
+                    </div>
+                    <p class="collections-title">Publics concernés</p>
+                    <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
+                        3/6ans
+                    </div>
+                    <div class="chip" th:if="${activityleader.audiences.size() == 0}">
+                        Non renseigné
+                    </div>
+                    <br>
+                    <br>
+                    <button class="btn waves-effect waves-light" type="submit" name="action" id="fiche"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
                 </div>
             </div>
     </form>
