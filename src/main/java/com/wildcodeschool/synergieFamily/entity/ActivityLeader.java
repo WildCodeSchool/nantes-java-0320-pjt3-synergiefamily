@@ -104,6 +104,9 @@ public class ActivityLeader {
     @Transient
     private String valueList;
 
+    @Column(nullable = false, columnDefinition = "varchar(255) default ''")
+    private String token = "";
+
     public ActivityLeader() {
     }
 
@@ -309,5 +312,13 @@ public class ActivityLeader {
 
     public void setAvailabilities(List<Availability> availabilities) {
         this.availabilities = availabilities;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

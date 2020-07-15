@@ -2,16 +2,17 @@ package com.wildcodeschool.synergieFamily.repository;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, Long> {
+
+    Optional<ActivityLeader> findByToken(String token);
 
     @Query("SELECT a FROM ActivityLeader a WHERE a.lastName= :lastName OR a.firstName= :firstName OR a.email= :email ORDER BY a.lastName asc, a.firstName asc, a.email asc")
     List<ActivityLeader> findByLastNameContainingOrFirstNameContainingOrEmailContaining(@Param("lastName") String lastName , @Param("firstName") String firstName, @Param("email") String email);
@@ -45,7 +46,7 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             " AND (location.address1 IS NULL OR (:address1='') OR location.address1 LIKE %:address1%)" +
             " AND (location.address2 IS NULL OR (:address2='') OR location.address2 LIKE %:address2%)" +
             " AND (location.city IS NULL OR (:city='') OR location.city LIKE %:city%)" +
-            " AND (location.postcode IS NULL OR :postcode IS NULL OR (:postcode=0) OR location.postcode = :postcode)" +
+            " AND (location.postcode IS NULL OR (:postcode='') OR location.postcode LIKE %:postcode%)" +
             /*
             " AND (hasACar IS NULL OR (:hasACar='0') OR hasACar LIKE %:hasACar%)" +
 */
@@ -64,7 +65,7 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("address1") String address1,
             @Param("address2") String address2,
             @Param("city") String city,
-            @Param("postcode") Integer postCode,
+            @Param("postcode") String postCode,
             @Param("experience") String experience);
     //TODO      @Param("startDate") Date startDate,
     //TODO       @Param("endDate") Date endDate);

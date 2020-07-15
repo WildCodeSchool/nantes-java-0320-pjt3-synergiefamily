@@ -24,13 +24,35 @@ public class EmailService {
 
     }
 
-    public void sendNewActivityLeader(ActivityLeader activityLeader){
+    public void sendNewActivityLeader(String url, ActivityLeader activityLeader, String token){
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(activityLeader.getEmail());
 
         msg.setSubject("Valider votre fiche sur Synergie Family");
-        msg.setText("Bonjour,\n Merci de remplir vos informations sur le lien suivant");
+        msg.setText("Bonjour,\n Merci de remplir vos informations sur le lien suivant :\n" +
+                url + "/activity-leader-edit/" + token);
+
+        javaMailSender.send(msg);
+
+    }
+    public void sendInformationActivityLeader(ActivityLeader activityLeader){
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(activityLeader.getEmail());
+        msg.setSubject("Information");
+        msg.setText("Bonjour,\n Voici les informations suivantes pour la prochaine réunion : ");
+
+        javaMailSender.send(msg);
+
+    }
+
+    public void sendActivityLeaderByFilter(ActivityLeader activityLeader){
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(activityLeader.getEmail());
+        msg.setSubject("Information");
+        msg.setText("Bonjour,\n Voici les informations pour votre prochaine mission : ");
 
         javaMailSender.send(msg);
 
