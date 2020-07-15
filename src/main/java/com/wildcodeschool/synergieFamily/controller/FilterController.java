@@ -61,6 +61,7 @@ public class FilterController {
         model.addAttribute("activityLeader", new ActivityLeader());
         model.addAttribute("diplomasList", diplomaRepository.findAll());
         model.addAttribute("audienceList", audienceRepository.findAll());
+        model.addAttribute("valuesList", valueRepository.findAll());
         return "filter";
     }
 

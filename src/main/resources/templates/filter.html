@@ -90,17 +90,10 @@
                             </select>
                         </div>
                         <div class="form-field">
-                            <select multiple>
-                                <option value="" disabled selected>Valeurs</option>
-                                <option value="1">Bienveillance</option>
-                                <option value="2">Optimisme</option>
-                                <option value="3">Proximité</option>
-                                <option value="4">Responsabilité</option>
-                                <option value="5">Détermination</option>
+                            <select multiple th:field="*{values}">
+                                <option value="" disabled selected>VALEURS</option>
+                                <option th:each="value: ${valuesList}" th:value="${value.id}" th:text="${value.name}">VALEUR</option>
                             </select>
-                            <!--
-                            TODO: replace by datas from the database
--->
                         </div>
                     </div>
                 </div>
