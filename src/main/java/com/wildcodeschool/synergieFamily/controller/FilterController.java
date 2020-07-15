@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import com.wildcodeschool.synergieFamily.service.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,9 @@ import java.util.logging.Filter;
 
 @Controller
 public class FilterController {
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private ActivityLeaderRepository activityLeaderRepository;
@@ -77,6 +81,19 @@ public class FilterController {
     public String email(){
         sendEmail();
         return "ok";
+    }
+
+    @PostMapping("/filter-email")
+    public String multiEmail(@RequestParam List<Long> activityLeaders){
+
+        for (Long id : activityLeaders){
+            Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+            if (optionalActivityLeader.isPresent()) {
+                ActivityLeader activityLeader = optionalActivityLeader.get();
+                emailService.sendActivityLeaderByFilter(activityLeader);
+            }
+        }
+        return "redirect:/filter";
     }
 }
 
