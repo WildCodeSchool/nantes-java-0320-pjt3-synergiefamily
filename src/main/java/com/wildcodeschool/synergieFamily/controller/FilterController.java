@@ -50,6 +50,7 @@ public class FilterController {
                 activityLeader.getLocation().getCity(),
                 activityLeader.getLocation().getPostcode(),
                 activityLeader.getExperience());
+
         //TODO  activityLeader.hasACar()
         model.addAttribute("activityleaders", list);
         return "filter";
@@ -58,6 +59,9 @@ public class FilterController {
     @GetMapping("/filter")
     public String showFilter(Model model){
         model.addAttribute("activityLeader", new ActivityLeader());
+        model.addAttribute("valuesList", valueRepository.findAll());
+        model.addAttribute("audiencesList", audienceRepository.findAll());
+        model.addAttribute("diplomasList", diplomaRepository.findAll());
         return "filter";
     }
 
