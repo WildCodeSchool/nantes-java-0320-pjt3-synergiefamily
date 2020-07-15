@@ -84,7 +84,7 @@ public class FilterController {
     }
 
     @PostMapping("/filter-email")
-    public String multiEmail(@RequestParam List<Long> activityLeaders){
+    public String multiEmailFilter(@RequestParam List<Long> activityLeaders){
 
         for (Long id : activityLeaders){
             Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);

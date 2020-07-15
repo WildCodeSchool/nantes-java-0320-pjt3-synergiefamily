@@ -145,7 +145,7 @@
                             <div class="title-check">
                                 <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Nom</h5>
                                 <label>
-                                    <input name="activityLeaders" type="checkbox" th:value="${activityLeader.id}">
+                                    <input name="activityLeaders" type="checkbox" th:value="${activityleader.id}">
                                     <span></span>
                                 </label>
                             </div>
@@ -170,7 +170,7 @@
                         </div>
                         <br>
                         <br>
-                        <button class="btn waves-effect waves-light" type="submit" name="action" id="fiche"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
+                        <button class="btn waves-effect waves-light"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
                     </div>
                 </div>
             </div>
