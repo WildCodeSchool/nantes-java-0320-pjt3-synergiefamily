@@ -210,15 +210,30 @@ public class ActivityLeaderController {
     }
 
     @PostMapping("/activity-leader-management-email")
-    public String multiEmail(@RequestParam List<Long> activityLeaders){
+    public String multiEmail(
+            @RequestParam(required = false) String subject,
+            @RequestParam(required = false) String content,
+            @RequestParam(required = false) List<Long> activityLeaders) {
 
-       for (Long id : activityLeaders){
-            Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
-            if (optionalActivityLeader.isPresent()) {
-                ActivityLeader activityLeader = optionalActivityLeader.get();
-                emailService.sendInformationActivityLeader(activityLeader);
+        if (activityLeaders != null) {
+            for (Long id : activityLeaders) {
+                Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
+                if (optionalActivityLeader.isPresent()) {
+                    ActivityLeader activityLeader = optionalActivityLeader.get();
+                    emailService.sendInformationActivityLeader(activityLeader, subject, content);
+                }
             }
         }
-       return "redirect:/activity-leader-management";
+        return "redirect:/activity-leader-management";
+    }
+
+    @PostMapping("/activity-leader-filter-email")
+    public String filterEmail(
+            @RequestParam(required = false) String subject,
+            @RequestParam(required = false) String content,
+            @RequestParam(required = false) List<Long> activityLeaders) {
+
+        multiEmail(subject, content, activityLeaders);
+        return "redirect:/filter";
     }
 }

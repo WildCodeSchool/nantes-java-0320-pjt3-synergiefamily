@@ -86,18 +86,5 @@ public class FilterController {
         sendEmail();
         return "ok";
     }
-
-    @PostMapping("/filter-email")
-    public String multiEmailFilter(@RequestParam List<Long> activityLeaders){
-
-        for (Long id : activityLeaders){
-            Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
-            if (optionalActivityLeader.isPresent()) {
-                ActivityLeader activityLeader = optionalActivityLeader.get();
-                emailService.sendActivityLeaderByFilter(activityLeader);
-            }
-        }
-        return "redirect:/filter";
-    }
 }
 

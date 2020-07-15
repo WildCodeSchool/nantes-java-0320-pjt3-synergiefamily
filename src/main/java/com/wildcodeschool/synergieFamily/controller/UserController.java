@@ -40,6 +40,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/autolog")
+    public String autolog(HttpServletRequest request) {
+
+        userService.autoLogin(request, "bastien@gmail.com", "tacos");
+
+        return "redirect:/profile";
+    }
+
     @GetMapping("/init")
     @ResponseBody
     public User init() {
