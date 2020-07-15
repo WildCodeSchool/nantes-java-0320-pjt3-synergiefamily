@@ -6,7 +6,6 @@ import com.wildcodeschool.synergieFamily.repository.RoleRepository;
 import com.wildcodeschool.synergieFamily.repository.UserRepository;
 import com.wildcodeschool.synergieFamily.service.EmailService;
 import com.wildcodeschool.synergieFamily.service.UserService;
-import com.wildcodeschool.synergieFamily.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -153,6 +152,7 @@ public class UserController {
     @GetMapping("/user-management")
     public String getUserManagement(Model out) {
 
+        User logged = userService.getLoggedUser();
         out.addAttribute("users", userRepository.findAllActiveUsers());
         out.addAttribute("loggedId", userService.getLoggedUser().getId());
         return "user-management";
