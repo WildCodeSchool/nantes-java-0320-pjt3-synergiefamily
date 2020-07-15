@@ -14,18 +14,19 @@ public class Location {
     private Long id;
 
     @NotNull
-    @Column
-    private String address1;
-
-    @Column
-    private String address2;
+    @Column(nullable = false, columnDefinition = "varchar(255) default ''")
+    private String address1 = "";
 
     @NotNull
-    @Column
-    private Integer postcode;
+    @Column(nullable = false, columnDefinition = "varchar(255) default ''")
+    private String address2 = "";
 
     @NotNull
-    @Column
+    @Column(nullable = false, columnDefinition = "varchar(255) default ''")
+    private String postcode = "";
+
+    @NotNull
+    @Column(nullable = false, columnDefinition = "varchar(255) default ''")
     private String city;
 
     public Location() {}
@@ -54,11 +55,11 @@ public class Location {
         this.address2 = adress2;
     }
 
-    public Integer getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(Integer postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 
