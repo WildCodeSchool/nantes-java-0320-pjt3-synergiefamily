@@ -12,7 +12,7 @@
 </head>
 <body class="user-management-body">
 <header th:replace="nav.html :: nav-bar"></header>
-<div class="block-filter" >
+<div class="block-filter">
     <form action="/filter" method="post" th:object="${activityLeader}">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div id="leader" class="row">
@@ -117,16 +117,14 @@
                             <!--
                             TODO: replace by datas from the database
 -->
-                            <input id="other" type="text" class="validate" placeholder="Autres valeurs">
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="center-align">
-            <button  class = "btn waves-effect waves-light" type = "submit" id="search-button">Rechercher
-                <i class = "material-icons right"></i></button>
+            <button  class= "btn waves-effect waves-light" type = "submit" id="search-button">Rechercher
+                <i class= "material-icons right"></i></button>
         </div>
     </form>
     <form method="post" action="/filter-email">
@@ -181,33 +179,35 @@
                         <button class="btn waves-effect waves-light"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
                      </div>
                 </div>
-        </form>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            <script>
-                $(document).ready(function(){
-                    $('.modal').modal();
-                });
-                $(document).ready(function () {
-                    $('select').formSelect();
-                });
-                $(document).ready(function () {
-                    $('.datepicker').datepicker({
-                        firstDay: true,
-                        format: 'yyyy-mm-dd',
-                        i18n: {
-                            months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-                            monthsShort: ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Aoû", "Sep", "Oct", "Nov", "Dec"],
-                            weekdays: ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
-                            weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-                            weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"],
-                            cancel:'Annuler'
-                        }
-                    });
-                });
-                $(document).ready(function(){
-                    $('.modal-trigger').leanModal();
-                });
-            </script>
-    </body>
-    </html>
+            </div>
+    </form>
+</div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+        });
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                firstDay: true,
+                format: 'yyyy-mm-dd',
+                i18n: {
+                    months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                    monthsShort: ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Aoû", "Sep", "Oct", "Nov", "Dec"],
+                    weekdays: ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+                    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                    weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"],
+                    cancel:'Annuler'
+                }
+            });
+        });
+        $(document).ready(function(){
+            $('.modal-trigger').leanModal();
+        });
+    </script>
+</body>
+</html>
