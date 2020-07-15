@@ -76,18 +76,18 @@
                                 </select>
                             </div>
                             <div class="form-field col s6">
-                                <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences" th:disabled="${!editable}">
+                                <input th:field="*{experience}" id="xp" type="number" placeholder="Années d'expériences" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div>
-                            <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
+                            <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires" th:disabled="${!editable}"></textarea>
                         </div>
                         <div class="form-field col s6">
-                            <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilité</label>
+                            <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilités</label>
                             <input th:field="${activityLeader.availabilities}" id="unavailabilityStart" type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
                         </div>
                         <div class="form-field col s6">
-                            <label for="unavailabilityEnd" title="Clique-ici">Date de fin d'indisponibilité</label>
+                            <label for="unavailabilityEnd" title="Clique-ici">Date de fin d'indisponibilités</label>
                             <input th:field="${activityLeader.availabilities}" id="unavailabilityEnd" type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
                         </div>
                         <div class="form-field">
@@ -129,7 +129,6 @@
         </div>
     </form>
 </div>
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script type="text/javascript">
