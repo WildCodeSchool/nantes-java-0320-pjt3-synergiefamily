@@ -22,106 +22,108 @@
             <input th:field="*{draft}" type="hidden">
             <div class="row" id="row-form">
                 <div class="card white">
-                    <div class="card-action black-text">
-                <div class="name">
-                    <div class="firstname">
-                        <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
+                    <div class="card-action black-text" id="card-action">
+                        <div class="name">
+                            <div class="firstname">
+                                <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
+                            </div>
+                            <div class="lastname">
+                                <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
+                            </div>
+                        </div>
+                        <div class="birthdate">
+                            <div>
+                                <input th:field="*{birthdate}" id="birthdate" type="date" class="datepicker" placeholder="Date de Naissance" th:disabled="${!editable}">
+                            </div>
+                            <div class="form-field">
+                                <input th:field="*{email}" id="email1" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
+                            </div>
+                        </div>
+                        <div class="phone">
+                            <div class="phone1" id="phone1">
+                                <input th:field="*{phone}"id="phone" type="tel" class="validate" placeholder="Téléphone" th:disabled="${!editable}">
+                            </div>
+                            <div class="adress1">
+                                <input th:field="*{location.address1}" id="adress1" type="text" class="validate" placeholder="Adresse 1" th:disabled="${!editable}">
+                            </div>
+                        </div>
+                        <div class="location">
+                            <div class="adress2">
+                                <input th:field="*{location.address2}" id="adress2" type="text" class="validate" placeholder="Adresse 2" th:disabled="${!editable}">
+                            </div>
+                            <div class="postcode">
+                                <input th:field="*{location.postcode}" id="postcode" type="number" class="validate" placeholder="Code postal" th:disabled="${!editable}">
+                            </div>
+                        </div>
+                        <div class="city">
+                            <div class="city1" id="city1">
+                                <input th:field="*{location.city}" id="city" type="text" class="validate" placeholder="Ville" th:disabled="${!editable}">
+                            </div>
+                            <div class="car1" id="car1">
+                                <label>
+                                    <input name="hasACar" th:checked="*{hasACar}" id="car" type="checkbox" th:disabled="${!editable}">
+                                        <span>Véhiculé</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="diploma">
+                            <div class="diploma1" id="diploma1">
+                                <select multiple th:field="${activityLeader.diplomas}" id="diploma">
+                                    <option value="" disabled selected>Diplômes</option>
+                                    <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}"></option>
+                                </select>
+                            </div>
+                            <div class="experience">
+                                <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences" th:disabled="${!editable}">
+                            </div>
+                         </div>
+                        <div>
+                            <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
+                        </div>
+                        <div class="unavailabilityStart">
+                            <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilité</label>
+                            <input th:field="${activityLeader.availabilities}" id="unavailabilityStart" type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
+                        </div>
+                        <div class="unavailabilityEnd">
+                            <label for="unavailabilityEnd" title="Clique-ici">Date de fin </label>
+                            <input th:field="${activityLeader.availabilities}" id="unavailabilityEnd" type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
+                        </div>
+                        <div class="form-field">
+                            <label for="skill" type="text"  class="validate">Compétences</label>
+                            <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate" th:disabled="${!editable}">
+                        </div>
+                        <div class="start-date">
+                            <div class="form-field col s6" id="end-date2">
+                                <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
+                                <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
+                            </div>
+                            <div class="end-date">
+                                <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
+                                <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
+                            </div>
+                        </div>
+                        <div class="values">
+                            <div class="form-field">
+                                <select multiple th:field="${activityLeader.audiences}">
+                                    <option value="" disabled selected>Public concerné : </option>
+                                    <option th:each="audience : ${audiencesList}" th:value="${audience.id}" th:text="${audience.ageBracket}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <select multiple th:field="*{values}">
+                                <option value="" disabled selected>Sélectionnez une valeur : </option>
+                                <option th:each="value : ${valuesList}" th:value="${value.id}" th:text="${value.name}"></option>
+                            </select>
+                        </div>
+                        <div class="center-align-button">
+                            <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
+                            <i class = "material-icons right">save</i></button>
+                            <a th:href="@{/activity-leader-email/{id}(id=${id})}" th:if="${activityLeader.draft == true and activityLeader.id != null and !external}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></a>
+                        </div>
                     </div>
-                    <div class="lastname">
-                        <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
-                    </div>
-                    <div class="birthdate">
-                    <div>
-                        <input th:field="*{birthdate}" id="birthdate" type="date" class="datepicker" placeholder="Date de Naissance" th:disabled="${!editable}">
-                    </div>
-                    <div class="form-field">
-                        <input th:field="*{email}" id="email1" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
-                    </div>
-                </div>
-                <div class="phone">
-                    <div class="phone1" id="phone1">
-                        <input th:field="*{phone}"id="phone" type="tel" class="validate" placeholder="Téléphone" th:disabled="${!editable}">
-                    </div>
-                    <div class="adress1">
-                        <input th:field="*{location.address1}" id="adress1" type="text" class="validate" placeholder="Adresse 1" th:disabled="${!editable}">
-                    </div>
-                </div>
-                <div class="location">
-                    <div class="adress2">
-                        <input th:field="*{location.address2}" id="adress2" type="text" class="validate" placeholder="Adresse 2" th:disabled="${!editable}">
-                    </div>
-                    <div class="postcode">
-                        <input th:field="*{location.postcode}" id="postcode" type="number" class="validate" placeholder="Code postal" th:disabled="${!editable}">
-                    </div>
-                </div>
-                <div class="city">
-                    <div class="city1" id="city1">
-                        <input th:field="*{location.city}" id="city" type="text" class="validate" placeholder="Ville" th:disabled="${!editable}">
-                    </div>
-                    <div class="car1" id="car1">
-                        <label>
-                            <input name="hasACar" th:checked="*{hasACar}" id="car" type="checkbox" th:disabled="${!editable}">
-                            <span>Véhiculé</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="diploma">
-                    <div class="diploma1" id="diploma1">
-                        <select multiple th:field="${activityLeader.diplomas}" id="diploma">
-                            <option value="" disabled selected>Diplômes</option>
-                            <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}"></option>
-                        </select>
-                    </div>
-                    <div class="experience">
-                        <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences" th:disabled="${!editable}">
-                    </div>
-                </div>
-                <div>
-                    <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
-                </div>
-                <div class="unavailabilityStart">
-                    <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilité</label>
-                    <input th:field="${activityLeader.availabilities}" id="unavailabilityStart" type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
-                </div>
-                <div class="unavailabilityEnd">
-                    <label for="unavailabilityEnd" title="Clique-ici">Date de fin </label>
-                    <input th:field="${activityLeader.availabilities}" id="unavailabilityEnd" type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
-                </div>
-                <div class="form-field">
-                    <label for="skill" type="text"  class="validate">Compétences</label>
-                    <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate" th:disabled="${!editable}">
-                </div>
-                <div class="start-date">
-                    <div class="form-field col s6" id="end-date2">
-                        <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
-                        <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
-                    </div>
-                    <div class="end-date">
-                        <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
-                        <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
-                    </div>
-                </div>
-                <div class="values">
-                    <div class="form-field">
-                        <select multiple th:field="${activityLeader.audiences}">
-                            <option value="" disabled selected>Public concerné : </option>
-                            <option th:each="audience : ${audiencesList}" th:value="${audience.id}" th:text="${audience.ageBracket}"></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <select multiple th:field="*{values}">
-                        <option value="" disabled selected>Sélectionnez une valeur : </option>
-                        <option th:each="value : ${valuesList}" th:value="${value.id}" th:text="${value.name}"></option>
-                    </select>
                 </div>
             </div>
-           
-        <div class="center-align">
-            <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
-                <i class = "material-icons right">save</i></button>
-            <a th:href="@{/activity-leader-email/{id}(id=${id})}" th:if="${activityLeader.draft == true and activityLeader.id != null and !external}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></a>
-        </div>
     </form>
 </div>
 </main>
