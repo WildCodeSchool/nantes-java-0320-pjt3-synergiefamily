@@ -21,12 +21,13 @@
                         <div class="form-field" id="input-user-creation">
                             <input id="email" type="email" class="validate" placeholder="Email" name="email">
                         </div>
-                        <div class="form-field">
-                            <select name="role_id" id="role_id" required>
-                                <option value="" disabled selected>Rôle</option>
-                                <option value="1">Coordinateur</option>
-                                <option value="2">Administrateur</option><!--TODO remplacer par les roles d la base données-->
+                        <div class = "form-field">
+
+                            <select id="role_id" th:field="*{user.roles}" required>
+                                <option value="0" disabled selected>Sélectionner un rôle</option>
+                                <option th:each="role : ${rolesList}" th:value="${role.id}" th:text="${role.nameForDisplay}">ROLE</option>
                             </select>
+
                         </div>
                         <div class="button-form" id="button-form-user-creation">
                             <button type="submit" class="btn">ENREGISTRER<i class="material-icons right">save</i></button>

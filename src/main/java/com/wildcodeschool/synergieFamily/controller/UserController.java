@@ -79,13 +79,14 @@ public class UserController {
             }
         }
         out.addAttribute("user", user);
+        out.addAttribute("rolesList", roleRepository.findAll());
         return "user-creation";
     }
 
     @PostMapping("/user-creation")
     public String postRegister(HttpServletRequest request,
                                @RequestParam String email,
-                               @RequestParam(name = "role_id") Long roleId) {
+                               @RequestParam(name = "roles") Long roleId) {
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (!optionalUser.isPresent()) {
