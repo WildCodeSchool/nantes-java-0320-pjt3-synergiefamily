@@ -101,6 +101,9 @@
                                 <option value="8">35/50 ans</option>
                                 <option value="9">65/+77 ans</option>
                             </select>
+<!--
+                            TODO: replace by datas from the database
+-->
                         </div>
                         <div class="form-field">
                             <select multiple>
@@ -111,6 +114,11 @@
                                 <option value="4">Responsabilité</option>
                                 <option value="5">Détermination</option>
                             </select>
+                            <!--
+                            TODO: replace by datas from the database
+-->
+                            <input id="other" type="text" class="validate" placeholder="Autres valeurs">
+
                         </div>
                     </div>
                 </div>
@@ -160,7 +168,7 @@
                             <p>EXP: <span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
                             <br>
                             <p class="collections-title">Diplômes</p>
-                            <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="|${diploma.getName() == null ? 'Non renseigné' : diploma.getName()}|">
+                            <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
                                 BAFA
                             </div>
                         </div>
@@ -171,36 +179,35 @@
                         <br>
                         <br>
                         <button class="btn waves-effect waves-light"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
-                    </div>
+                     </div>
                 </div>
-            </div>
-    </form>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $('.modal').modal();
-            });
-            $(document).ready(function () {
-                $('select').formSelect();
-            });
-            $(document).ready(function () {
-                $('.datepicker').datepicker({
-                    firstDay: true,
-                    format: 'yyyy-mm-dd',
-                    i18n: {
-                        months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-                        monthsShort: ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Aoû", "Sep", "Oct", "Nov", "Dec"],
-                        weekdays: ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
-                        weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-                        weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"],
-                        cancel:'Annuler'
-                    }
+        </form>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $('.modal').modal();
                 });
-            });
-            $(document).ready(function(){
-                $('.modal-trigger').leanModal();
-            });
-        </script>
-</body>
-</html>
+                $(document).ready(function () {
+                    $('select').formSelect();
+                });
+                $(document).ready(function () {
+                    $('.datepicker').datepicker({
+                        firstDay: true,
+                        format: 'yyyy-mm-dd',
+                        i18n: {
+                            months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                            monthsShort: ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Aoû", "Sep", "Oct", "Nov", "Dec"],
+                            weekdays: ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+                            weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                            weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"],
+                            cancel:'Annuler'
+                        }
+                    });
+                });
+                $(document).ready(function(){
+                    $('.modal-trigger').leanModal();
+                });
+            </script>
+    </body>
+    </html>

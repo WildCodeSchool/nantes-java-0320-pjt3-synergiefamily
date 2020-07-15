@@ -173,9 +173,30 @@ a i {
 
 
 /*PAGE FORMULAIRE CREATION ANIMATEUR*/
-
-
-
+.title-center {
+    text-align: center;
+}
+#row-activity-leader-creation {
+    margin: 1rem;
+}
+#comment {
+    height: 5rem;
+}
+#end-date2 {
+    margin-left: 0rem;
+    width: 15rem;
+    padding-left: 0;
+}
+.start-date {
+    display: flex;
+    flex-direction: column;
+}
+#startdate1 {
+    width: 15rem;
+}
+.center-align-button {
+    text-align: center;
+}
 
 
 
@@ -501,21 +522,34 @@ header ul {
 
 
     /*PAGE FORMULAIRE CREATION ANIMATEUR*/
+    .title-center {
+        text-align: center;
+        margin-top: 4rem;
+    }
     .activity-leader-bloc {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 100%;
     }
-    .name {
-        height: 4rem;
+    #row-activity-leader-creation {
+        width: 60rem;
+        margin-top: 4rem;
     }
-    .birthdate, .phone, .location, .city, .diploma {
+    .card-action {
+        margin: 3rem;
+
+    }
+    .birthdate, .phone, .location, .city, .diploma, .name {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
     }
     #birthdate, #email1, #firstname, #last_name, #phone, #adress1, #adress2, #postcode, #city, #car1, #diploma, #xp {
-        width: 20rem;
+        width: 24rem;
+    }
+    #email1, #last_name, #adress1, #postcode, #xp, #car1 {
+        margin-left: 4rem;
+    }
+    #car1 {
+        margin-left: 5rem;
     }
     #phone1, #city1, #diploma1, #end-date2 {
         margin-left: 0;
@@ -529,6 +563,16 @@ header ul {
     }
     #diploma1 {
         margin-bottom: 1.5rem;
+    }
+    .center-align-button button {
+        margin-bottom: 4rem;
+
+    }
+    .center-align-button {
+        text-align: center;
+    }
+    #diploma1 input {
+        width: 24rem;
     }
 
 

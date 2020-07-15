@@ -35,9 +35,8 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="passwordConfirmation" type="password" class="validate"> <!--name="passwordConfirmation" onblur="checkPass()" />-->
+                    <input id="passwordConfirmation" type="password" class="validate">
                     <label for="passwordConfirmation">Confirmation du mot passe</label>
-                    <!--<div id="divcomp"></div>-->
                 </div>
             </div>
             <div class="button-form" id="button-form-user-modification">
@@ -47,23 +46,7 @@
     </div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<!--<script>
-    function checkPass()
-    {
-        var champA = document.getElementById("password").value;
-        var champB = document.getElementById("passwordConfirmation").value;
-        var div_comp = document.getElementById("divcomp");
-
-        if(champA == champB)
-        {
-            divcomp.innerHTML = "Correct";
-        }
-        else
-        {
-            divcomp.innerHTML = "Erreur !";
-        }
-    }
-</script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     var password = document.getElementById("password")
         , confirm_password = document.getElementById("passwordConfirmation");
