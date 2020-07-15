@@ -127,20 +127,24 @@
                 <i class= "material-icons right"></i></button>
         </div>
     </form>
-    <form method="post" action="/filter-email">
+    <form method="post" action="/activity-leader-filter-email">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="selectemail" th:if="${activityleaders != null && activityleaders.size() != 0}">
             <span class="elementselect" style="font-size: 1.2em;">1 élément sélectionné</span>
-            <button type="submit" class="btn waves-effect waves-light modal-trigger">Envoyer un email<i class="material-icons right">send</i></button>
-            <div class="modal" id="terms">
+            <button data-target="modal1" id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1 btn modal-trigger">ENVOYER UN EMAIL
+                <i class="tiny material-icons right">send</i></button>
+            <div id="modal1" class="modal">
                 <div class="modal-content">
                     <h4>Envoie ton message</h4>
                     <div>
-                        <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
+                        <label for="subject">Objet: </label><br>
+                        <input type="text" id="subject" name="subject"><br>
+                        <textarea id="content" name="content"></textarea>
                     </div>
-                    <button class="btn waves-effect waves-light right" type="submit" name="action">Valider
-                        <i class="material-icons right">send</i>
-                    </button>
+                </div>
+                <div class="modal-footer">
+                    <a href="#close" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                    <button type="submit">Envoyer</button>
                 </div>
             </div>
         </div>
@@ -204,9 +208,6 @@
                     cancel:'Annuler'
                 }
             });
-        });
-        $(document).ready(function(){
-            $('.modal-trigger').leanModal();
         });
     </script>
 </body>

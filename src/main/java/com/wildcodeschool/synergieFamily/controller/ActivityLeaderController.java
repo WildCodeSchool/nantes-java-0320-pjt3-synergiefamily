@@ -226,4 +226,14 @@ public class ActivityLeaderController {
         }
         return "redirect:/activity-leader-management";
     }
+
+    @PostMapping("/activity-leader-filter-email")
+    public String filterEmail(
+            @RequestParam(required = false) String subject,
+            @RequestParam(required = false) String content,
+            @RequestParam(required = false) List<Long> activityLeaders) {
+
+        multiEmail(subject, content, activityLeaders);
+        return "redirect:/filter";
+    }
 }
