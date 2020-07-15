@@ -84,21 +84,10 @@
                             <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019">
                         </div>
                         <div class="form-field">
-                            <select multiple>
+                            <select multiple th:field="*{audiences}">
                                 <option value="" disabled selected>Public concerné</option>
-                                <option value="1">3/6 ans</option>
-                                <option value="2">6/8 ans</option>
-                                <option value="3">9/12 ans</option>
-                                <option value="4">12/15 ans</option>
-                                <option value="5">16/18 ans</option>
-                                <option value="6">18/25 ans</option>
-                                <option value="7">25/35 ans</option>
-                                <option value="8">35/50 ans</option>
-                                <option value="9">65/+77 ans</option>
+                                <option th:each="audience : ${audienceList}" th:value="${audience.id}" th:text="${audience.ageBracket}">AUDIENCE</option>
                             </select>
-<!--
-                            TODO: replace by datas from the database
--->
                         </div>
                         <div class="form-field">
                             <select multiple>
