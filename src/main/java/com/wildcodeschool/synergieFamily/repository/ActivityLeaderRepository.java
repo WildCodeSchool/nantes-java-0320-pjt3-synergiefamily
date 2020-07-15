@@ -1,6 +1,7 @@
 package com.wildcodeschool.synergieFamily.repository;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
+import com.wildcodeschool.synergieFamily.entity.Diploma;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -47,6 +48,7 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             " AND (location.address2 IS NULL OR (:address2='') OR location.address2 LIKE %:address2%)" +
             " AND (location.city IS NULL OR (:city='') OR location.city LIKE %:city%)" +
             " AND (location.postcode IS NULL OR (:postcode='') OR location.postcode LIKE %:postcode%)" +
+            " AND (diploma.id in (:diplomasIds) OR (:diplomasIds IS NULL))" +
             /*
             " AND (hasACar IS NULL OR (:hasACar='0') OR hasACar LIKE %:hasACar%)" +
 */
@@ -66,7 +68,8 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("address2") String address2,
             @Param("city") String city,
             @Param("postcode") String postCode,
-            @Param("experience") String experience);
+            @Param("experience") String experience,
+            @Param("diplomasIds") Long[] diplomasIds);
     //TODO      @Param("startDate") Date startDate,
     //TODO       @Param("endDate") Date endDate);
 
