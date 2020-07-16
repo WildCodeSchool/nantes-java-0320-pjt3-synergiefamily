@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -82,7 +83,16 @@ public class ActivityLeaderController {
                 activityLeader.getSkills().add(skillItem);
             }
         }
+
+        if (activityLeader.getId() != null) {
+            unavailabilityRepository.deleteAllByActivityLeader(activityLeader);
+            for (Unavailability unavailability : activityLeader.getUnavailabilities()) {
+                unavailability.setActivityLeader(activityLeader);
+                unavailabilityRepository.save(unavailability);
+            }
+        }
         activityLeader = activityLeaderRepository.save(activityLeader);
+
         if (unavailabilityStart != null && !unavailabilityStart.isEmpty()
                 && unavailabilityEnd != null && !unavailabilityEnd.isEmpty()
         ) {

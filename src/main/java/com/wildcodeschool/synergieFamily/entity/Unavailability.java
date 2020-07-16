@@ -55,4 +55,12 @@ public class Unavailability {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    public ActivityLeader getActivityLeader() {
+        return activityLeader;
+    }
+
+    public void setActivityLeader(ActivityLeader activityLeader) {
+        this.activityLeader = activityLeader;
+    }
 }
