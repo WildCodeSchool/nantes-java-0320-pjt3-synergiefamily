@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ import java.util.Optional;
 public class ActivityLeaderController {
 
     @Autowired
-    private AvailabilityRepository availabilityRepository;
+    private UnavailabilityRepository unavailabilityRepository;
 
     @Autowired
     private EmailService emailService;
@@ -82,7 +83,16 @@ public class ActivityLeaderController {
                 activityLeader.getSkills().add(skillItem);
             }
         }
+
+        if (activityLeader.getId() != null) {
+            unavailabilityRepository.deleteAllByActivityLeader(activityLeader);
+            for (Unavailability unavailability : activityLeader.getUnavailabilities()) {
+                unavailability.setActivityLeader(activityLeader);
+                unavailabilityRepository.save(unavailability);
+            }
+        }
         activityLeader = activityLeaderRepository.save(activityLeader);
+
         if (unavailabilityStart != null && !unavailabilityStart.isEmpty()
                 && unavailabilityEnd != null && !unavailabilityEnd.isEmpty()
         ) {
@@ -90,8 +100,8 @@ public class ActivityLeaderController {
             try {
                 Date start = format.parse(unavailabilityStart);
                 Date end = format.parse(unavailabilityEnd);
-                Availability availability = new Availability(start, end, activityLeader);
-                availabilityRepository.save(availability);
+                Unavailability unavailability = new Unavailability(start, end, activityLeader);
+                unavailabilityRepository.save(unavailability);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
