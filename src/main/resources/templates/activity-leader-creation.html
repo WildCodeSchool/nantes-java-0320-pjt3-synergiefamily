@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="user-management-body">
+<script type="text/javascript">
+    function removeUnavailability(id) {
+        document.getElementById(id).remove();
+    }
+</script>
 <th:block th:if="${!external}">
     <header th:replace="nav.html :: nav-bar"></header>
 </th:block>
@@ -80,13 +85,35 @@
                         <div>
                             <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
                         </div>
-                        <div class="unavailabilityStart">
-                            <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilité</label>
-                            <input th:field="${activityLeader.availabilities}" id="unavailabilityStart" type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
+                        <div>
+                            <label>Ajouter une nouvelle indisponibilité</label>
+                            <div class="unavailabilityStart">
+                                <label title="Clique-ici">Date de début d'indisponibilité</label>
+                                <input type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
+                            </div>
+                            <div class="unavailabilityEnd">
+                                <label title="Clique-ici">Date de fin d'indisponibilité</label>
+                                <input type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
+                            </div>
                         </div>
-                        <div class="unavailabilityEnd">
-                            <label for="unavailabilityEnd" title="Clique-ici">Date de fin </label>
-                            <input th:field="${activityLeader.availabilities}" id="unavailabilityEnd" type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
+                        <div th:if="${activityLeader.unavailabilities.size() > 0}">
+                            <label>Indisponibilités</label>
+                            <div th:each="unavailability, itemStat : *{unavailabilities}">
+                                <div th:id="'unavailability-' + ${unavailability.getId()}">
+                                    <div class="unavailabilityStart">
+                                        <label title="Clique-ici">Date de début d'indisponibilité</label>
+                                        <input th:field="*{unavailabilities[__${itemStat.index}__].startDate}"
+                                               type="date" class="datepicker" name="unavailabilityStart"
+                                               th:disabled="${!editable}">
+                                    </div>
+                                    <div class="unavailabilityEnd">
+                                        <label title="Clique-ici">Date de fin d'indisponibilité</label>
+                                        <input th:field="*{unavailabilities[__${itemStat.index}__].endDate}" type="date"
+                                               class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
+                                    </div>
+                                    <a href="#remove" th:onclick="'removeUnavailability(\'unavailability-' + ${unavailability.getId()} + '\')'">Supprimer cette indisponibilité</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-field">
                             <label for="skill" type="text"  class="validate">Compétences</label>
@@ -156,9 +183,6 @@
                 cancel:'Annuler'
             }
         });
-    });
-    $(document).ready(function(){
-        $('.modal-trigger').leanModal();
     });
 </script>
 <script type="text/javascript" th:if="${external}">
