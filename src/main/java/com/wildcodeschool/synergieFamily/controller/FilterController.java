@@ -1,6 +1,7 @@
 package com.wildcodeschool.synergieFamily.controller;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
+import com.wildcodeschool.synergieFamily.entity.Audience;
 import com.wildcodeschool.synergieFamily.entity.Diploma;
 import com.wildcodeschool.synergieFamily.entity.Value;
 import com.wildcodeschool.synergieFamily.repository.*;
@@ -41,6 +42,46 @@ public class FilterController {
 
     @PostMapping("/filter")
     public String filter(Model model, @ModelAttribute ActivityLeader activityLeader){
+
+        List<Diploma> diplomas = activityLeader.getDiplomas();
+        Long[] diplomasIds;
+        if (diplomas.size() > 0) {
+            diplomasIds = new Long[diplomas.size()];
+            for (int i = 0; i < diplomas.size(); i++) {
+                Diploma diploma = diplomas.get(i);
+                Long id = diploma.getId();
+                diplomasIds[i] = id;
+            }
+        } else {
+            diplomasIds = null;
+        }
+
+        List<Value> values = activityLeader.getValues();
+        Long[] valuesIds;
+        if (values.size() > 0) {
+            valuesIds = new Long[values.size()];
+            for (int i = 0; i < values.size(); i++) {
+                Value value = values.get(i);
+                Long id = value.getId();
+                valuesIds[i] = id;
+            }
+        } else {
+            valuesIds = null;
+        }
+
+        List<Audience> audiences = activityLeader.getAudiences();
+        Long[] audiencesIds;
+        if (audiences.size() > 0) {
+            audiencesIds = new Long[audiences.size()];
+            for (int i = 0; i < audiences.size(); i++) {
+                Audience audience = audiences.get(i);
+                Long id = audience.getId();
+                audiencesIds[i] = id;
+            }
+        } else {
+            audiencesIds = null;
+        }
+
         List<ActivityLeader> list = activityLeaderRepository.findAllByFilter(activityLeader.getFirstName(),
                 activityLeader.getLastName(),
                 activityLeader.getEmail(),
@@ -49,7 +90,12 @@ public class FilterController {
                 activityLeader.getLocation().getAddress2(),
                 activityLeader.getLocation().getCity(),
                 activityLeader.getLocation().getPostcode(),
-                activityLeader.getExperience());
+                activityLeader.getExperience(),
+                diplomasIds,
+                valuesIds,
+                audiencesIds
+                );
+
         //TODO  activityLeader.hasACar()
         model.addAttribute("activityleaders", list);
         return "filter";
@@ -57,7 +103,11 @@ public class FilterController {
 
     @GetMapping("/filter")
     public String showFilter(Model model){
+
         model.addAttribute("activityLeader", new ActivityLeader());
+        model.addAttribute("audienceList", audienceRepository.findAll());
+        model.addAttribute("valuesList", valueRepository.findAll());
+        model.addAttribute("diplomasList", diplomaRepository.findAll());
         return "filter";
     }
 
@@ -81,19 +131,6 @@ public class FilterController {
     public String email(){
         sendEmail();
         return "ok";
-    }
-
-    @PostMapping("/filter-email")
-    public String multiEmail(@RequestParam List<Long> activityLeaders){
-
-        for (Long id : activityLeaders){
-            Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
-            if (optionalActivityLeader.isPresent()) {
-                ActivityLeader activityLeader = optionalActivityLeader.get();
-                emailService.sendActivityLeaderByFilter(activityLeader);
-            }
-        }
-        return "redirect:/filter";
     }
 }
 

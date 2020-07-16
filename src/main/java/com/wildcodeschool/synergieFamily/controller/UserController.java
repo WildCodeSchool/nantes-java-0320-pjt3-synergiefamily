@@ -7,8 +7,6 @@ import com.wildcodeschool.synergieFamily.repository.UserRepository;
 import com.wildcodeschool.synergieFamily.service.EmailService;
 import com.wildcodeschool.synergieFamily.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -41,6 +39,14 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/autolog")
+    public String autolog(HttpServletRequest request) {
+
+        userService.autoLogin(request, "bastien@gmail.com", "tacos");
+
+        return "redirect:/profile";
+    }
 
     @GetMapping("/init")
     @ResponseBody
@@ -80,26 +86,37 @@ public class UserController {
             }
         }
         out.addAttribute("user", user);
+        out.addAttribute("rolesList", roleRepository.findAll());
         return "user-creation";
     }
 
     @PostMapping("/user-creation")
     public String postRegister(HttpServletRequest request,
                                @RequestParam String email,
-                               @RequestParam(name = "role_id") Long roleId) {
-        User user = new User();
-        String password = user.randomPassword(8); // "test"
-        user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password));
+                               @RequestParam(name = "roles") Long roleId) {
 
-        Optional<Role> optionalRole = roleRepository.findById(roleId);
-        if (optionalRole.isPresent()) {
-            user.getRoles().add(optionalRole.get());
-            userRepository.save(user);
-            emailService.sendNewUserEmail(user.getEmail(), password);
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (!optionalUser.isPresent()) {
+            User user = new User();
+            String password = user.randomPassword(8);
+            user.setEmail(email);
+            user.setPassword(passwordEncoder.encode(password));
+
+            Optional<Role> optionalRole = roleRepository.findById(roleId);
+            if (optionalRole.isPresent()) {
+                user.getRoles().add(optionalRole.get());
+                userRepository.save(user);
+                emailService.sendNewUserEmail(user.getEmail(), password);
+
+                return "redirect:/user-management";
+            }
+
         }
-        return "redirect:/user-management";
+        return "redirect:/user-creation";
+        //TODO: display a message to inform that the email already exists.
+
     }
+
 
     @GetMapping("/user-edition")
     public String getUserCreation(Model out,
@@ -113,13 +130,15 @@ public class UserController {
             }
         }
         out.addAttribute("user", user);
+        out.addAttribute("rolesList", roleRepository.findAll());
         return "user-edition";
     }
 
     @PostMapping("/user-edition")
     public String postUser(@RequestParam Long id,
                     @RequestParam String email,
-                    @RequestParam Long roleId) {
+                    @RequestParam(name = "roles") Long roleId) {
+
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             Optional<Role> role = roleRepository.findById(roleId);
@@ -137,7 +156,7 @@ public class UserController {
     @GetMapping("/profile")
     public String getProfileUser(Model out) {
 
-        User user = userService.getLoggedEmail();
+        User user = userService.getLoggedUser();
         out.addAttribute("user", user);
         return "profile";
     }
@@ -145,7 +164,7 @@ public class UserController {
     @PostMapping("/profile")
     public String modificationProfile(@ModelAttribute User user) {
 
-        User logged = userService.getLoggedEmail();
+        User logged = userService.getLoggedUser();
         logged.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(logged);
         return "profile";
@@ -154,7 +173,9 @@ public class UserController {
     @GetMapping("/user-management")
     public String getUserManagement(Model out) {
 
+        User logged = userService.getLoggedUser();
         out.addAttribute("users", userRepository.findAllActiveUsers());
+        out.addAttribute("loggedId", userService.getLoggedUser().getId());
         return "user-management";
     }
 
@@ -165,8 +186,15 @@ public class UserController {
         if (optionalUser.isPresent()) {
 
             User user = optionalUser.get();
-            user.setDisabled(true);
-            userRepository.save(user);
+
+            if (!user.getEmail().equals(userService.getLoggedUser().getEmail())) {
+
+                user.setDisabled(true);
+                userRepository.save(user);
+            } else {
+
+                //TODO: display a message to prevent the logged user that he can't delete his own account.
+            }
         }
 
         return "redirect:/user-management";

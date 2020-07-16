@@ -34,8 +34,7 @@ h2 {
 }
 
 #card2 {
-    width: 42rem;
-    margin-right: 4rem;
+    margin: 0rem;
 }
 .center-align {
     margin-top: 4rem;
@@ -98,7 +97,7 @@ h2 {
 
 }
 .bloc-user-creation h4 {
-    margin-top: 0rem;
+    margin-top: 2rem;
 }
 .bloc-user-creation form {
     padding-bottom: 0rem;
@@ -196,6 +195,8 @@ a i {
 }
 .center-align-button {
     text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -297,7 +298,7 @@ a i {
     background-color: #f7f7f7;
 }
 header {
-    width: 10rem;
+    width: 13rem;
 }
 header img {
     width: 8rem;
@@ -401,6 +402,7 @@ header ul {
         margin-top: 3rem;
         margin-right: 3rem;
         width: 80rem;
+        display: contents;
     }
     #card {
         width: 30rem;
@@ -525,9 +527,17 @@ header ul {
     .title-center {
         text-align: center;
         margin-top: 4rem;
+        margin-bottom: 4rem;
     }
     .activity-leader-bloc {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #card-action {
+        padding: 0rem;
     }
     #row-activity-leader-creation {
         width: 60rem;
@@ -566,7 +576,7 @@ header ul {
     }
     .center-align-button button {
         margin-bottom: 4rem;
-
+        margin-top: 3rem;
     }
     .center-align-button {
         text-align: center;
@@ -574,6 +584,7 @@ header ul {
     #diploma1 input {
         width: 24rem;
     }
+
 
 
 

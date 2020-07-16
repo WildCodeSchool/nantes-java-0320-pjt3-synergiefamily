@@ -10,5 +10,5 @@ public interface UserService {
 
     void autoLogin(HttpServletRequest request, String email, String password);
 
-    User getLoggedEmail();
+    User getLoggedUser();
 }
