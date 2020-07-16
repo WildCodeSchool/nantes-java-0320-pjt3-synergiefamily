@@ -76,9 +76,10 @@ public class FilterController {
 
     @GetMapping("/filter")
     public String showFilter(Model model){
+
         model.addAttribute("activityLeader", new ActivityLeader());
+        model.addAttribute("audienceList", audienceRepository.findAll());
         model.addAttribute("valuesList", valueRepository.findAll());
-        model.addAttribute("audiencesList", audienceRepository.findAll());
         model.addAttribute("diplomasList", diplomaRepository.findAll());
         return "filter";
     }

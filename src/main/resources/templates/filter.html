@@ -35,7 +35,7 @@
                             <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email">
                         </div>
                         <div class="form-field col s6">
-                            <input th:field="*{phone}"id="phone" type="tel" class="validate" placeholder="Téléphone"></div>
+                            <input th:field="*{phone}" id="phone" type="tel" class="validate" placeholder="Téléphone"></div>
                         <div class="form-field">
                             <input th:field="*{location.address1}" type="text" class="validate" placeholder="Adresse 1">
                         </div>
@@ -55,9 +55,9 @@
                             </label>
                         </div>
                         <div class="form-field col s6" id="diploma1">
-                            <select multiple th:field="${activityLeader.diplomas}" id="diploma">
+                            <select multiple th:field="*{diplomas}">
                                 <option value="" disabled selected>Diplômes</option>
-                                <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}"></option>
+                                <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}">DIPLOMA</option>
                             </select>
                         </div>
                         <div class="form-field col s6">
@@ -84,15 +84,15 @@
                             <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019">
                         </div>
                         <div class="form-field">
-                            <select multiple th:field="${activityLeader.audiences}">
-                                <option value="" disabled selected>Public concerné : </option>
-                                <option th:each="audience : ${audiencesList}" th:value="${audience.id}" th:text="${audience.ageBracket}"></option>
+                            <select multiple th:field="*{audiences}">
+                                <option value="" disabled selected>Public concerné</option>
+                                <option th:each="audience : ${audienceList}" th:value="${audience.id}" th:text="${audience.ageBracket}">AUDIENCE</option>
                             </select>
                         </div>
                         <div class="form-field">
                             <select multiple th:field="*{values}">
-                                <option value="" disabled selected>Sélectionnez une valeur : </option>
-                                <option th:each="value : ${valuesList}" th:value="${value.id}" th:text="${value.name}"></option>
+                                <option value="" disabled selected>VALEURS</option>
+                                <option th:each="value: ${valuesList}" th:value="${value.id}" th:text="${value.name}">VALEUR</option>
                             </select>
                         </div>
                     </div>
