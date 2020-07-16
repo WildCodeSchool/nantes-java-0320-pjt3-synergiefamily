@@ -93,7 +93,8 @@ public class FilterController {
                 activityLeader.getExperience(),
                 diplomasIds,
                 valuesIds,
-                audiencesIds
+                audiencesIds,
+                activityLeader.getHasACar()
                 );
 
         //TODO  activityLeader.hasACar()
