@@ -14,7 +14,6 @@
     <header th:replace="nav.html :: nav-bar"></header>
 </th:block>
 <main class="activity-leader-bloc">
-    <h2 class="title-center">Information animateur</h2>
     <div class="row" id="row-activity-leader-creation">
         <form action="/activity-leader-creation" method="post" th:object="${activityLeader}">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -23,6 +22,7 @@
             <div class="row" id="row-form">
                 <div class="card white">
                     <div class="card-action black-text" id="card-action">
+                        <h4 class="title-center">Information animateur</h4>
                         <div class="name">
                             <div class="firstname">
                                 <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">

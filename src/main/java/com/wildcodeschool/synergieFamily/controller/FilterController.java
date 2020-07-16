@@ -41,6 +41,20 @@ public class FilterController {
 
     @PostMapping("/filter")
     public String filter(Model model, @ModelAttribute ActivityLeader activityLeader){
+
+        List<Diploma> diplomas = activityLeader.getDiplomas();
+        Long[] diplomasIds;
+        if (diplomas.size() > 0) {
+            diplomasIds = new Long[diplomas.size()];
+            for (int i = 0; i < diplomas.size(); i++) {
+                Diploma diploma = diplomas.get(i);
+                Long id = diploma.getId();
+                diplomasIds[i] = id;
+            }
+        } else {
+            diplomasIds = null;
+        }
+
         List<ActivityLeader> list = activityLeaderRepository.findAllByFilter(activityLeader.getFirstName(),
                 activityLeader.getLastName(),
                 activityLeader.getEmail(),
@@ -49,7 +63,12 @@ public class FilterController {
                 activityLeader.getLocation().getAddress2(),
                 activityLeader.getLocation().getCity(),
                 activityLeader.getLocation().getPostcode(),
-                activityLeader.getExperience());
+                activityLeader.getExperience(),
+                diplomasIds
+                // TODO audience
+                // TODO value
+                );
+
         //TODO  activityLeader.hasACar()
         model.addAttribute("activityleaders", list);
         return "filter";
@@ -59,9 +78,9 @@ public class FilterController {
     public String showFilter(Model model){
 
         model.addAttribute("activityLeader", new ActivityLeader());
-        model.addAttribute("diplomasList", diplomaRepository.findAll());
         model.addAttribute("audienceList", audienceRepository.findAll());
         model.addAttribute("valuesList", valueRepository.findAll());
+        model.addAttribute("diplomasList", diplomaRepository.findAll());
         return "filter";
     }
 
@@ -85,19 +104,6 @@ public class FilterController {
     public String email(){
         sendEmail();
         return "ok";
-    }
-
-    @PostMapping("/filter-email")
-    public String multiEmailFilter(@RequestParam List<Long> activityLeaders){
-
-        for (Long id : activityLeaders){
-            Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
-            if (optionalActivityLeader.isPresent()) {
-                ActivityLeader activityLeader = optionalActivityLeader.get();
-                emailService.sendActivityLeaderByFilter(activityLeader);
-            }
-        }
-        return "redirect:/filter";
     }
 }
 
