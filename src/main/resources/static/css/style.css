@@ -209,85 +209,39 @@ a i {
 
 /*PAGE RECHERCHE*/
 
-/*.card_check{
-   margin-left: 10vh;
+#skill-filter {
+    margin-bottom: 0;
+    height: 2rem;
 }
-#card-action{
+.center-align-filter {
+    text-align: center;
+    margin-top: 2rem;
+}
+.block-filter {
+    margin: 1rem;
+}
+.selectemail {
     display: flex;
-    justify-content: flex-start;
-}
-
-#card-white{
-    width: 48rem;
-}
-
-#search-button{
-    margin: 3rem;}
-
-#card-check.card_check{
-    display: flex;
-    margin: auto;
-}
-
-.phone-email-address{
-    display: flex;
-}
-
-.card .card-content p{
-    margin-right: 2rem;
-}
-
-.title-check{
-    display: flex;
-    flex-direction: row;
-    padding-right: 5rem;
-}
-
-.title-check h5 {
-    display: flex;
-    margin-right: 22rem;
-    width: 10rem;
-}
-
-.title-check p {
-    padding-left: 30rem;
-    padding-top: 1rem;
-}
-
-.checkandname{
-    display: flex;
-    flex-direction:row-reverse;
-}
-
-.check{
-    padding-left: 4rem;
-    padding-top: 1rem;
-    margin-left: 2rem;
-}
-
-
-
-#cardtest{
-    display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding-left: 26rem;
+    align-items: center;
+    margin-bottom: 2rem;
 }
-
-.selectemail{
+#card-filter {
+    margin: 1rem;
+}
+.title-check {
     display: flex;
-    justify-content: center;
-    padding-left: 3rem;
+    justify-content: space-between;
 }
-
-.elementselect{
-    padding-right: 3rem;
+.title-check label {
+    margin-top: 1rem;
 }
-
-#leader{
-    display: flex;
-    justify-content: center;
-    padding-left: 5rem;
-}*/
+.show-activity-leader {
+    margin-top: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
 /* test */
 
 ::placeholder {
@@ -598,5 +552,148 @@ header ul {
 
 
     /*PAGE RECHERCHE*/
+    #leader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .block-filter {
+        width: 100%;
+    }
+    #bloc-form-filter {
+        margin-left: 0;
+        max-width: 80rem;
+    }
+    .bloc1, .bloc2, .bloc3, .bloc4, .bloc6 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .bloc5 {
+        display: flex;
+        justify-content: space-between;
+    }
+    #firstname-filter, #last_name-filter, #birthdate-filter, #email-filter, #phone-filter, #location1-filter, #location2-filter, #postcode-filter, #city-filter, #car-filter, #diploma-filter, #xp-filter, #unavailabilityStart-filter, #unavailabilityEnd-filter, #startdate1-filter, #endDate1-filter, #audience-filter, #values-filter {
+        width: 24rem;
+    }
+    #last_name-filter, #postcode-filter {
+        margin-left: 0;
+    }
+    .car-filter {
+        margin-top: 1rem;
+    }
+    .car-filter span {
+        width: 24rem;
+    }
+    .bloc1, .bloc2, .bloc3, .values-filter {
+    height: 5rem;
+    }
+    .bloc6, .values-filter {
+        margin-top: 1rem;
+    }
+    .start-date-filter, .endDate-filter {
+        width: 24rem;
+    }
+    .audience-filter {
+        width: 24rem;
+        margin-top: 1.5rem;
+    }
+    .center-align-filter {
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .firstname-filter, .lastname-filter, .birthdate-filter, .email-filter, .phone-filter, .location1-filter, .location2-filter, .postcode-filter, .city-filter, .car-filter, .diploma-filter, .xp-filter, .start-date-filter, .endDate-filter, .audience-filter, .values-filter {
+        width: 25rem;
+    }
+    .skill-filter {
+        display: flex;
+        flex-direction: column;
+    }
+    #skill-filter {
+        width: 49rem;
+    }
+    .values-filter {
+        margin-top: 0;
+    }
+    #card-filter{
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+    .color {
+        background-color: greenyellow;
+        width: 2rem;
+    }
+    .bloc-card-filter {
+        margin-left: 1.5rem;
+        width: 76rem;
+    }
+    .form-card-filter {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #card-horizontal {
+        width: 80rem;
+    }
+    .title-check label {
+        margin-top: 1rem;
+    }
+    .title-check {
+        display: flex;
+        justify-content: space-between;
+    }
+    .bloc-phone {
+        display: flex;
+        justify-content: space-between;
+    }
+    .phone-email-address {
+        display: flex;
+        justify-content: space-between;
+        width: 60rem;
+    }
+    .phone-email-address i {
+        margin-right: 0.5rem;
+    }
+    .vehicule {
+        width: 15rem;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .bloc-phone, .bloc-age {
+        border-bottom: 1px solid gainsboro;
+    }
+    .bloc-age {
+        display: flex;
+        padding-bottom: 1rem;
+    }
+    .age, .exp, .competence {
+        margin-right: 5rem;
+    }
+    .bloc-competences {
+        display: flex;
+        justify-content: space-between;
+    }
+    .competences-filter {
+        display: flex;
+    }
+    .show-activity-leader {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+    }
+    .selectemail {
+        width: 80rem;
+        display: flex;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .selectemail p {
+        margin-right: 1rem;
+    }
 
 }

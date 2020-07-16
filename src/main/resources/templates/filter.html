@@ -16,98 +16,102 @@
     <form action="/filter" method="post" th:object="${activityLeader}">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div id="leader" class="row">
-            <div class="col s12 m6 offset-l2">
+            <div class="bloc-form-filter" id="bloc-form-filter">
                 <div class="card white" id="card-white">
                     <div class="card-action black-text" id="card-action">
                         <h4 class="center-align">Recherches</h4>
                     </div>
                     <div class="card-content">
-                        <div class="form-field col s6">
-                            <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom">
+                        <div class="bloc1">
+                            <div class="firstname-filter">
+                                <input th:field="*{firstName}" id="firstname-filter" type="text" class="validate" placeholder="Prénom">
+                            </div>
+                            <div class="lastname-filter">
+                                <input th:field="*{lastName}" id="last_name-filter" type="text" class="validate" placeholder="Nom">
+                            </div>
+                            <div class="birthdate-filter">
+                                <input th:field="*{birthdate}" id="birthdate-filter" type="date"  class="datepicker" placeholder="Date de Naissance">
+                            </div>
                         </div>
-                        <div class="form-field col s6">
-                            <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom">
+                        <div class="bloc2">
+                            <div class="email-filter">
+                                <input th:field="*{email}" id="email-filter" type="email" class="validate" placeholder="Email">
+                            </div>
+                            <div class="phone-filter">
+                                <input th:field="*{phone}" id="phone-filter" type="tel" class="validate" placeholder="Téléphone">
+                            </div>
+                            <div class="location1-filter">
+                                <input th:field="*{location.address1}" id="location1-filter" type="text" class="validate" placeholder="Adresse 1">
+                            </div>
                         </div>
-                        <div class="form-field col s6">
-                            <input th:field="*{birthdate}" id="birthdate" type="date"  class="datepicker" placeholder="Date de Naissance">
+                        <div class="bloc3">
+                            <div class="location2-filter">
+                                <input th:field="*{location.address2}" id="location2-filter" type="text" class="validate" placeholder="Adresse 2">
+                            </div>
+                            <div class="postcode-filter">
+                                <input th:field="*{location.postcode}" id="postcode-filter" type="text" class="validate" placeholder="Code postal">
+                            </div>
+                            <div class="city-filter">
+                                <input th:field="*{location.city}" id="city-filter" type="text" class="validate" placeholder="Ville">
+                            </div>
                         </div>
-                        <div class="form-field col s6">
-                            <input th:field="*{email}" id="email" type="email" class="validate" placeholder="Email">
+                        <div class="bloc4">
+                            <div class="car-filter">
+                                <label>
+                                    <input name="hasACar" th:checked="*{hasACar}" id="car-filter" type="checkbox">
+                                    <span>Véhiculé</span>
+                                </label>
+                            </div>
+                            <div class="diploma-filter" id="diploma1">
+                                <select multiple th:field="*{diplomas}" id="diploma-filter">
+                                    <option value="" disabled selected>Diplômes</option>
+                                    <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}">DIPLOMA</option>
+                                </select>
+                            </div>
+                            <div class="xp-filter">
+                                <input th:field="*{experience}"  id="xp-filter" type="number" placeholder="Années d'expériences">
+                            </div>
                         </div>
-                        <div class="form-field col s6">
-                            <input th:field="*{phone}" id="phone" type="tel" class="validate" placeholder="Téléphone"></div>
-                        <div class="form-field">
-                            <input th:field="*{location.address1}" type="text" class="validate" placeholder="Adresse 1">
+                        <div class="bloc5">
+                            <div class="skill-filter">
+                                <label for="skill-filter" type="text"  class="validate">Compétences</label>
+                                <input th:field="*{skillList}" id="skill-filter" type="text" autocomplete="off" class="validate">
+                            </div>
+                            <div class="values-filter">
+                                <select multiple th:field="*{values}" id="values-filter">
+                                    <option value="" disabled selected>VALEURS</option>
+                                    <option th:each="value: ${valuesList}" th:value="${value.id}" th:text="${value.name}">VALEUR</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-field col s6">
-                            <input th:field="*{location.address2}"type="text" class="validate" placeholder="Adresse 2">
+                        <div class="bloc6">
+                            <div class="start-date-filter">
+                                <label for="startdate1-filter" title="Clique-ici">Date de début de contrat</label>
+                                <input th:field="*{startDate}" id="startdate1-filter" type="date" class="datepicker" value="05/03/2019">
+                            </div>
+                            <div class="endDate-filter">
+                                <label for="endDate1-filter" title="Clique-ici">Date de fin de contrat</label>
+                                <input th:field="*{endDate}" id="endDate1-filter" type="date" class="datepicker" value="05/03/2019">
+                            </div>
+                            <div class="audience-filter">
+                                <select multiple th:field="*{audiences}" id="audience-filter">
+                                    <option value="" disabled selected>Public concerné</option>
+                                    <option th:each="audience : ${audienceList}" th:value="${audience.id}" th:text="${audience.ageBracket}">AUDIENCE</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-field col s6">
-                            <input th:field="*{location.postcode}" type="text" class="validate" placeholder="Code postal">
-                        </div>
-                        <div class="form-field col s6">
-                            <input th:field="*{location.city}" type="text" class="validate" placeholder="Ville">
-                        </div>
-                        <div class="form-field" id="car1">
-                            <label>
-                                <input name="hasACar" th:checked="*{hasACar}" id="car" type="checkbox">
-                                <span>Véhiculé</span>
-                            </label>
-                        </div>
-                        <div class="form-field col s6" id="diploma1">
-                            <select multiple th:field="*{diplomas}">
-                                <option value="" disabled selected>Diplômes</option>
-                                <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}">DIPLOMA</option>
-                            </select>
-                        </div>
-                        <div class="form-field col s6">
-                            <input th:field="*{experience}"  id="xp" type="number" placeholder="Années d'expériences">
-                        </div>
-                        <div class="form-field col s6">
-                            <label for="unavailabilityStart" title="Clique-ici">Date de début d'indisponibilités</label>
-                            <input th:field="${activityLeader.availabilities}" id="unavailabilityStart" type="date" class="datepicker" name="unavailabilityStart">
-                        </div>
-                        <div class="form-field">
-                            <label for="unavailabilityEnd" title="Clique-ici">Date de fin d'indisponibilités</label>
-                            <input th:field="${activityLeader.availabilities}" id="unavailabilityEnd" type="date" class="datepicker" name="unavailabilityEnd">
-                        </div>
-                        <div class="form-field">
-                            <label for="skill" type="text"  class="validate">Compétences</label>
-                            <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate">
-                        </div>
-                        <div class="form-field">
-                            <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
-                            <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019">
-                        </div>
-                        <div class="form-field">
-                            <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
-                            <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019">
-                        </div>
-                        <div class="form-field">
-                            <select multiple th:field="*{audiences}">
-                                <option value="" disabled selected>Public concerné</option>
-                                <option th:each="audience : ${audienceList}" th:value="${audience.id}" th:text="${audience.ageBracket}">AUDIENCE</option>
-                            </select>
-                        </div>
-                        <div class="form-field">
-                            <select multiple th:field="*{values}">
-                                <option value="" disabled selected>VALEURS</option>
-                                <option th:each="value: ${valuesList}" th:value="${value.id}" th:text="${value.name}">VALEUR</option>
-                            </select>
+                        <div class="center-align-filter">
+                            <button  class= "btn waves-effect waves-light" type = "submit" id="search-button">Rechercher
+                                <i class= "material-icons right"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="center-align">
-            <button  class= "btn waves-effect waves-light" type = "submit" id="search-button">Rechercher
-                <i class= "material-icons right"></i></button>
-        </div>
     </form>
-    <form method="post" action="/activity-leader-filter-email">
+    <form method="post" action="/activity-leader-filter-email" class="form-card-filter">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="selectemail" th:if="${activityleaders != null && activityleaders.size() != 0}">
-            <span class="elementselect" style="font-size: 1.2em;">1 élément sélectionné</span>
             <button data-target="modal1" id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1 btn modal-trigger">ENVOYER UN EMAIL
                 <i class="tiny material-icons right">send</i></button>
             <div id="modal1" class="modal">
@@ -125,42 +129,64 @@
                 </div>
             </div>
         </div>
-            <div class="col s12 m6 offset-l3">
-                <div class="card horizontal" th:each="activityleader : ${activityleaders}">
-                    <div class="card-content">
-                        <div class="content">
-                            <div class="title-check">
-                                <h5 th:text="|${activityleader.firstName} ${activityleader.lastName}|">Nom</h5>
-                                <label>
-                                    <input name="activityLeaders" type="checkbox" th:value="${activityleader.id}">
-                                    <span></span>
-                                </label>
-                            </div>
-                            <div class="phone-email-address">
-                                <p><i class="tiny material-icons">phone</i><span th:text="|${activityleader.getPhone() == null || activityleader.getPhone().isEmpty() ? 'Non renseigné' : activityleader.getPhone()}|"></span></p>
-                                <p><i class="tiny material-icons">email</i><span th:text="|${activityleader.getEmail() == null || activityleader.getEmail().isEmpty() ? 'Non renseigné' : activityleader.getEmail()}|"></span></p>
-                                <p><i class="tiny material-icons">home</i><span th:text="|${activityleader.location.getAddress1() == null || activityleader.location.getAddress1().isEmpty() ? 'Non renseigné' : activityleader.location.getAddress1()}|"></span><span th:text="|${activityleader.location.getPostcode() == null ? ' ' : activityleader.location.getPostcode()}|">Code postal</span> <span th:text="|${activityleader.location.getCity() == null ? ' ' : activityleader.location.getCity()}|">Ville</span></p>
-                                <p><i class="tiny material-icons">directions_car</i>Véhiculé</p>
-                            </div>
-                            <br>
-                            <p>Age: <span th:text="|${activityleader.getAge() == 0 ? 'Non renseigné' : activityleader.getAge()}|"></span></p>
-                            <p>EXP: <span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
-                            <br>
+        <div class="card horizontal" id="card-horizontal" th:each="activityleader : ${activityleaders}">
+            <div class="card-filter" id="card-filter">
+                <div class="color"></div>
+                <div class="bloc-card-filter">
+                    <div class="title-check">
+                        <h5 th:text="|${activityleader.firstName.substring(0, 1).toUpperCase() + activityleader.firstName.substring(1, activityleader.firstName.length())} ${activityleader.lastName.toUpperCase()}|">Nom</h5>
+                        <label>
+                            <input name="activityLeaders" type="checkbox" th:value="${activityleader.id}">
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="bloc-phone">
+                        <div class="phone-email-address">
+                            <p><i class="tiny material-icons">phone</i><span th:text="|${activityleader.getPhone() == null || activityleader.getPhone().isEmpty() ? 'Non renseigné' : activityleader.getPhone()}|"></span></p>
+                            <p><i class="tiny material-icons">email</i><span th:text="|${activityleader.getEmail() == null || activityleader.getEmail().isEmpty() ? 'Non renseigné' : activityleader.getEmail()}|"></span></p>
+                            <p><i class="tiny material-icons">home</i><span th:text="|${activityleader.location.getAddress1() == null || activityleader.location.getAddress1().isEmpty() ? 'Non renseigné' : activityleader.location.getAddress1()}|"></span><span th:text="|${activityleader.location.getPostcode() == null ? ' ' : activityleader.location.getPostcode()}|">Code postal</span> <span th:text="|${activityleader.location.getCity() == null ? ' ' : activityleader.location.getCity()}|">Ville</span></p>
+                        </div>
+                        <div class="vehicule">
+                            <!--<p><i class="tiny material-icons">directions_car</i><span th:text="|${activityLeader.hasACar ? 'Oui' : 'Non'}|">Oui</span></p>-->
+                        </div>
+                    </div>
+                    <div class="bloc-age">
+                        <div class="age">
+                            <p>Age</p>
+                            <p><span th:text="|${activityleader.getAge() == 0 ? 'Non renseigné' : activityleader.getAge()}|"></span></p>
+                        </div>
+                        <div class="exp">
+                            <p>EXP</p>
+                            <p><span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
+                        </div>
+                        <div class="diploma-card">
                             <p class="collections-title">Diplômes</p>
                             <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
                                 BAFA
                             </div>
                         </div>
-                        <p class="collections-title">Publics concernés</p>
-                        <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
-                            3/6ans
+                    </div>
+                    <div class="bloc-competences">
+                        <div class="competences-filter">
+                            <div class="competence">
+                                <p class="competences">Compétences</p>
+                                <div class="chips">
+                                </div>
+                            </div>
+                            <div class="collections-title-filter">
+                                <p class="collections-title">Publics concernés</p>
+                                <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
+                                    3/6ans
+                                </div>
+                            </div>
                         </div>
-                        <br>
-                        <br>
-                        <button class="btn waves-effect waves-light"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
-                     </div>
+                        <div class="show-activity-leader">
+                            <button class="btn waves-effect waves-light"><a style="color: white" th:href="@{'/activity-leader-showcard/' + ${activityleader.getId()}}">Voir la fiche</a></button>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
     </form>
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
