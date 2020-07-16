@@ -1,6 +1,7 @@
 package com.wildcodeschool.synergieFamily.controller;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
+import com.wildcodeschool.synergieFamily.entity.Audience;
 import com.wildcodeschool.synergieFamily.entity.Diploma;
 import com.wildcodeschool.synergieFamily.entity.Value;
 import com.wildcodeschool.synergieFamily.repository.*;
@@ -55,6 +56,32 @@ public class FilterController {
             diplomasIds = null;
         }
 
+        List<Value> values = activityLeader.getValues();
+        Long[] valuesIds;
+        if (values.size() > 0) {
+            valuesIds = new Long[values.size()];
+            for (int i = 0; i < values.size(); i++) {
+                Value value = values.get(i);
+                Long id = value.getId();
+                valuesIds[i] = id;
+            }
+        } else {
+            valuesIds = null;
+        }
+
+        List<Audience> audiences = activityLeader.getAudiences();
+        Long[] audiencesIds;
+        if (audiences.size() > 0) {
+            audiencesIds = new Long[audiences.size()];
+            for (int i = 0; i < audiences.size(); i++) {
+                Audience audience = audiences.get(i);
+                Long id = audience.getId();
+                audiencesIds[i] = id;
+            }
+        } else {
+            audiencesIds = null;
+        }
+
         List<ActivityLeader> list = activityLeaderRepository.findAllByFilter(activityLeader.getFirstName(),
                 activityLeader.getLastName(),
                 activityLeader.getEmail(),
@@ -64,9 +91,9 @@ public class FilterController {
                 activityLeader.getLocation().getCity(),
                 activityLeader.getLocation().getPostcode(),
                 activityLeader.getExperience(),
-                diplomasIds
-                // TODO audience
-                // TODO value
+                diplomasIds,
+                valuesIds,
+                audiencesIds
                 );
 
         //TODO  activityLeader.hasACar()
