@@ -198,6 +198,13 @@ a i {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
+#send-email-condition {
+    margin-top: 2rem;
+    width: 20rem;
+}
+#send-email-condition i {
+    color: white;
+}
 
 
 
@@ -457,18 +464,21 @@ header ul {
     }
     .user-animator-ligne {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-items: flex-end;
         margin-top: 4rem;
     }
-
-    .pagination {
-        display: flex;
-        justify-content: flex-end;
+    #ajout-animateur {
+        margin-right: 3rem;
     }
     .searchButton {
         border: none;
         background-color: transparent;
     }
+    #send-email-animator {
+        margin-top: 3rem;
+    }
+
 
 
 
@@ -537,6 +547,14 @@ header ul {
     }
     #diploma1 input {
         width: 24rem;
+    }
+    #send-email-condition {
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+        margin-top: 0rem;
+    }
+    #send-email-condition i {
+        color: white;
     }
 
 
