@@ -40,8 +40,8 @@ public class ActivityLeader {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
-    @Column
-    private Boolean hasACar;
+    @Column(columnDefinition = "boolean default false", nullable = false)
+    private Boolean hasACar = false;
 
     @Column
     private String experience;
@@ -49,7 +49,7 @@ public class ActivityLeader {
     @Column
     private String comment;
 
-    @Column(columnDefinition = "boolean default true", nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private Boolean disabled = false;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

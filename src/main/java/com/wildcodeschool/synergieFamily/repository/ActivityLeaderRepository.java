@@ -51,15 +51,13 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             " AND (diploma.id in (:diplomasIds) OR (:diplomasIds IS NULL))" +
             "AND (value.id in (:valuesIds) OR (:valuesIds IS NULL))" +
             "AND (audience.id in (:audiencesIds) OR (:audiencesIds is NULL))" +
-            /*
-            " AND (hasACar IS NULL OR (:hasACar='0') OR hasACar LIKE %:hasACar%)" +
-*/
-            " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)"
-/*
-            TODO " AND (`value`.name IS NULL OR (:valeur='') OR `value`.name LIKE %:valeur%)" VOIR POUR PLUSIEURS VALEURS
-*/
+            " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)"+
+
             // TODO    " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
             // todo    " AND (endDate IS NULL OR (:endDate='') OR endDate LIKE %:endDate%)"
+
+            "AND (hasACar IS NULL OR hasACar= :hasACar)"
+
     )
     public List<ActivityLeader> findAllByFilter(
             @Param("firstName") String firstName,
@@ -73,7 +71,8 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("experience") String experience,
             @Param("diplomasIds") Long[] diplomasIds,
             @Param("valuesIds") Long[] valuesIds,
-            @Param("audiencesIds") Long[] audiencesIds);
+            @Param("audiencesIds") Long[] audiencesIds,
+            @Param("hasACar") Boolean hasACar);
     //TODO      @Param("startDate") Date startDate,
     //TODO       @Param("endDate") Date endDate);
 
