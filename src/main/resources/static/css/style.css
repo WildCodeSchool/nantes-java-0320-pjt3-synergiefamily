@@ -62,10 +62,6 @@ h2 {
 
 
 
-
-/* PROFILE PAGE */
-
-
 /* USER MANAGEMENT PAGE */
 
 .user-management-body{
@@ -82,6 +78,7 @@ h2 {
     margin-top: 2rem;
 }
 
+
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
 #buttonSave {
@@ -94,7 +91,6 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 .bloc-user-creation h4 {
     margin-top: 2rem;
@@ -104,7 +100,6 @@ h2 {
 }
 #bloc-form-user-creation {
     margin-right: 1rem;
-
 }
 
 #button-form-user-creation {
@@ -115,9 +110,6 @@ h2 {
 #input-user-creation {
     margin-bottom: 1rem;
 }
-
-
-
 
 
 
@@ -168,9 +160,6 @@ a i {
 
 
 
-
-
-
 /*PAGE FORMULAIRE CREATION ANIMATEUR*/
 .title-center {
     text-align: center;
@@ -198,12 +187,13 @@ a i {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
-
-
-
-
-
-
+#send-email-condition {
+    margin-top: 2rem;
+    width: 20rem;
+}
+#send-email-condition i {
+    color: white;
+}
 
 
 
@@ -247,6 +237,7 @@ a i {
 ::placeholder {
     color: black;
 }
+
 /*FRAGMENT NAV*/
 .side-nav {
     background-color: #f7f7f7;
@@ -299,6 +290,7 @@ header ul {
     h2 {
         font-size: 4rem;
     }
+
     /*FRAGMENT NAV*/
     .side-nav {
         background-color: #f7f7f7;
@@ -364,8 +356,6 @@ header ul {
 
 
 
-
-
     /*PAGE PROFIL 2*/
     .profileContent {
         margin-left: 5rem;
@@ -377,11 +367,6 @@ header ul {
     .saveButton {
         text-align: right;
     }
-
-
-
-
-
 
 
     /*PAGE UTILISATEURS 3*/
@@ -398,12 +383,6 @@ header ul {
     .striped {
         margin-top: 2rem;
     }
-
-
-
-
-
-
 
 
     /*PAGE FORMULAIRE CREATION UTILISATEUR*/
@@ -437,12 +416,6 @@ header ul {
     }
 
 
-
-
-
-
-
-
     /*PAGE ANIMATEUR 4*/
     a i {
         color: black;
@@ -457,25 +430,20 @@ header ul {
     }
     .user-animator-ligne {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-items: flex-end;
         margin-top: 4rem;
     }
-
-    .pagination {
-        display: flex;
-        justify-content: flex-end;
+    #ajout-animateur {
+        margin-right: 3rem;
     }
     .searchButton {
         border: none;
         background-color: transparent;
     }
-
-
-
-
-
-
-
+    #send-email-animator {
+        margin-top: 3rem;
+    }
 
     /*PAGE FORMULAIRE CREATION ANIMATEUR*/
     .title-center {
@@ -499,7 +467,6 @@ header ul {
     }
     .card-action {
         margin: 3rem;
-
     }
     .birthdate, .phone, .location, .city, .diploma, .name {
         display: flex;
@@ -538,17 +505,14 @@ header ul {
     #diploma1 input {
         width: 24rem;
     }
-
-
-
-
-
-
-
-
-
-
-
+    #send-email-condition {
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+        margin-top: 0rem;
+    }
+    #send-email-condition i {
+        color: white;
+    }
 
 
     /*PAGE RECHERCHE*/
