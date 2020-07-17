@@ -75,7 +75,7 @@
                             <div class="diploma1" id="diploma1">
                                 <select multiple th:field="${activityLeader.diplomas}" id="diploma">
                                     <option value="" disabled selected>Diplômes</option>
-                                    <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}"></option>
+                                    <option th:each="diploma : ${diplomasList}" th:value="${diploma.id}" th:text="${diploma.name}" th:disabled="${!editable}"></option>
                                 </select>
                             </div>
                             <div class="experience">
@@ -83,7 +83,7 @@
                             </div>
                          </div>
                         <div>
-                            <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires"></textarea>
+                            <textarea th:field="${activityLeader.comment}" id="comment" name="comment" placeholder="Commentaires" th:disabled="${!editable}"></textarea>
                         </div>
                         <div>
                             <label>Ajouter une nouvelle indisponibilité</label>
@@ -133,14 +133,14 @@
                             <div class="form-field">
                                 <select multiple th:field="${activityLeader.audiences}">
                                     <option value="" disabled selected>Public concerné : </option>
-                                    <option th:each="audience : ${audiencesList}" th:value="${audience.id}" th:text="${audience.ageBracket}"></option>
+                                    <option th:each="audience : ${audiencesList}" th:value="${audience.id}" th:text="${audience.ageBracket}" th:disabled="${!editable}"></option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-field">
                             <select multiple th:field="*{values}">
                                 <option value="" disabled selected>Sélectionnez une valeur : </option>
-                                <option th:each="value : ${valuesList}" th:value="${value.id}" th:text="${value.name}"></option>
+                                <option th:each="value : ${valuesList}" th:value="${value.id}" th:text="${value.name}" th:disabled="${!editable}"></option>
                             </select>
                         </div>
                         <div class="center-align-button">
