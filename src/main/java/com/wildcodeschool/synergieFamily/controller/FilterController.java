@@ -6,8 +6,6 @@ import com.wildcodeschool.synergieFamily.entity.Diploma;
 import com.wildcodeschool.synergieFamily.entity.Value;
 import com.wildcodeschool.synergieFamily.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import com.wildcodeschool.synergieFamily.service.EmailService;
@@ -15,11 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.Filter;
 
 @Controller
 public class FilterController {
@@ -96,7 +90,7 @@ public class FilterController {
             audiencesIds = null;
         }
 
-        List<ActivityLeader> list = activityLeaderRepository.findAllByFilter(activityLeader.getFirstName(),
+        List<ActivityLeader> list = activityLeaderRepository.findAllActiveByFilter(activityLeader.getFirstName(),
                 activityLeader.getLastName(),
                 activityLeader.getEmail(),
                 activityLeader.getPhone(),

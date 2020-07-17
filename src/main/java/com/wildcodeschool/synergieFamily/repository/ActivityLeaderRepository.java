@@ -49,14 +49,15 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             " AND (location.city IS NULL OR (:city='') OR location.city LIKE %:city%)" +
             " AND (location.postcode IS NULL OR (:postcode='') OR location.postcode LIKE %:postcode%)" +
             " AND (diploma.id in (:diplomasIds) OR (:diplomasIds IS NULL))" +
-            "AND (value.id in (:valuesIds) OR (:valuesIds IS NULL))" +
-            "AND (audience.id in (:audiencesIds) OR (:audiencesIds is NULL))" +
+            " AND (value.id in (:valuesIds) OR (:valuesIds IS NULL))" +
+            " AND (audience.id in (:audiencesIds) OR (:audiencesIds is NULL))" +
             " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)"+
             " AND ((:startDate IS NULL) OR (startDate= :startDate))" +
-            "AND ((:endDate IS NULL) OR (endDate= :endDate))"+
-            "AND (hasACar IS NULL OR hasACar= :hasACar)"
+            " AND ((:endDate IS NULL) OR (endDate= :endDate))"+
+            " AND (hasACar IS NULL OR hasACar= :hasACar)" +
+            " AND (activity_leader.disabled <> true)"
     )
-    public List<ActivityLeader> findAllByFilter(
+    public List<ActivityLeader> findAllActiveByFilter(
             @Param("firstName") String firstName,
             @Param("lastName") String lastName,
             @Param("email") String email,
