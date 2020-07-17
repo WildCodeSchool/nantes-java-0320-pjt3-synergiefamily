@@ -20,7 +20,7 @@
 </th:block>
 <main class="activity-leader-bloc">
     <div class="row" id="row-activity-leader-creation">
-        <form action="/activity-leader-creation" method="post" th:object="${activityLeader}">
+        <form th:action="${external} ? '/activity-leader-edit/' : '/activity-leader-creation'" method="post" th:object="${activityLeader}">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <input th:field="*{id}" type="hidden">
             <input th:field="*{draft}" type="hidden">
