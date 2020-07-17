@@ -22,7 +22,6 @@
                         <h4 class="center-align">Recherches</h4>
                     </div>
                     <div class="card-content">
-
                         <div class="bloc1">
                             <div class="firstname-filter">
                                 <input th:field="*{firstName}" id="firstname-filter" type="text" class="validate" placeholder="Prénom">
@@ -44,7 +43,6 @@
                             <div class="location1-filter">
                                 <input th:field="*{location.address1}" id="location1-filter" type="text" class="validate" placeholder="Adresse 1">
                             </div>
-
                         </div>
                         <div class="bloc3">
                             <div class="location2-filter">
@@ -131,7 +129,6 @@
                 </div>
             </div>
         </div>
-
         <div class="card horizontal" id="card-horizontal" th:each="activityleader : ${activityleaders}">
             <div class="card-filter" id="card-filter">
                 <div class="color"></div>
@@ -163,8 +160,6 @@
                             <p><span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
                         </div>
                         <div class="diploma-card">
-
-           
                             <p class="collections-title">Diplômes</p>
                             <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
                                 BAFA
