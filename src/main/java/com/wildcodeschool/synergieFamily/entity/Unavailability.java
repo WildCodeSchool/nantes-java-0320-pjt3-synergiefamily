@@ -27,6 +27,7 @@ public class Unavailability {
     }
 
     public Unavailability(Date startDate, Date endDate, ActivityLeader activityLeader) {
+
         this.startDate = startDate;
         this.endDate = endDate;
         this.activityLeader = activityLeader;

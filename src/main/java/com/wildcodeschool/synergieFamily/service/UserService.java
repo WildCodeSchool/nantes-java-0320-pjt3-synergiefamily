@@ -9,6 +9,5 @@ import javax.servlet.http.HttpServletRequest;
 public interface UserService {
 
     void autoLogin(HttpServletRequest request, String email, String password);
-
     User getLoggedUser();
 }
