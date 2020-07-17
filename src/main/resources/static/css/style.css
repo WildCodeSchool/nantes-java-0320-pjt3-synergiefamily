@@ -40,8 +40,6 @@ h2 {
     margin-top: 4rem;
 }
 
-
-
 /*PAGE PROFIL 2*/
 #button-form-user-modification {
     text-align: end;
@@ -52,15 +50,6 @@ h2 {
 #row-profil {
     margin-top: 3rem;
 }
-
-
-
-
-
-/*PAGE UTILISATEURS 3*/
-
-
-
 
 /* USER MANAGEMENT PAGE */
 
@@ -77,7 +66,6 @@ h2 {
 .striped {
     margin-top: 2rem;
 }
-
 
 /*PAGE FORMULAIRE CREATION UTILISATEUR*/
 
@@ -111,10 +99,7 @@ h2 {
     margin-bottom: 1rem;
 }
 
-
-
-
-/*PAGE ANIMATEUR 4*/
+/* ACTIVITY LEADER PAGE */
 .userManagementPageContent {
     overflow: scroll;
 }
@@ -159,8 +144,7 @@ a i {
 }
 
 
-
-/*PAGE FORMULAIRE CREATION ANIMATEUR*/
+/* ACTIVITY LEADER FORM PAGE */
 .title-center {
     text-align: center;
 }
@@ -196,8 +180,7 @@ a i {
 }
 
 
-
-/*PAGE RECHERCHE*/
+/* FILTER PAGE */
 
 #skill-filter {
     margin-bottom: 0;
@@ -232,13 +215,12 @@ a i {
     text-align: center;
     margin-bottom: 2rem;
 }
-/* test */
 
 ::placeholder {
     color: black;
 }
 
-/*FRAGMENT NAV*/
+/* FRAGMENT NAV */
 .side-nav {
     background-color: #f7f7f7;
 }
@@ -283,8 +265,6 @@ header ul {
     justify-content: space-around;
     height: 22rem;
 }
-
-
 
 @media only screen and (min-width: 768px) {
     h2 {

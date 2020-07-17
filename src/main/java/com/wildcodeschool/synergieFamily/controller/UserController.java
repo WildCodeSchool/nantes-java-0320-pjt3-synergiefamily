@@ -77,7 +77,8 @@ public class UserController {
 
     @GetMapping("/user-creation")
     public String getRegister(Model out,
-                              @RequestParam(required = false) Long id) {
+                              @RequestParam(required = false) Long id,
+                              @RequestParam(required = false) boolean emailError) {
         User user = new User();
         if (id != null) {
             Optional<User> optionalUser = userRepository.findById(id);
@@ -87,6 +88,10 @@ public class UserController {
         }
         out.addAttribute("user", user);
         out.addAttribute("rolesList", roleRepository.findAll());
+        if (emailError) {
+
+            out.addAttribute("emailError", true);
+        }
         return "user-creation";
     }
 
@@ -97,24 +102,21 @@ public class UserController {
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (!optionalUser.isPresent()) {
+
             User user = new User();
             String password = user.randomPassword(8);
             user.setEmail(email);
             user.setPassword(passwordEncoder.encode(password));
-
             Optional<Role> optionalRole = roleRepository.findById(roleId);
             if (optionalRole.isPresent()) {
+
                 user.getRoles().add(optionalRole.get());
                 userRepository.save(user);
                 emailService.sendNewUserEmail(user.getEmail(), password);
-
                 return "redirect:/user-management";
             }
-
         }
-        return "redirect:/user-creation";
-        //TODO: display a message to inform that the email already exists.
-
+        return "redirect:/user-creation?emailError=true";
     }
 
 
