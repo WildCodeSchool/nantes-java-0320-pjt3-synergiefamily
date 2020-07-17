@@ -144,9 +144,9 @@
                             </select>
                         </div>
                         <div class="center-align-button">
-                            <button  class ="btn waves-effect waves-light" type ="submit">Enregistrer
-                            <i class = "material-icons right">save</i></button>
-                            <a id="send-email-condition" th:href="@{/activity-leader-email/{id}(id=${id})}" th:if="${activityLeader.draft == true and activityLeader.id != null and !external}" class="waves-effect waves-light btn modal-trigger" data-target="modal1">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></a>
+                            <button  class ="btn waves-effect waves-light" type ="submit" th:disabled="${!editable}">Enregistrer
+                            <i class = "material-icons right" >save</i></button>
+                            <a id="send-email-condition" th:href="@{/activity-leader-email/{id}(id=${id})}" th:if="${activityLeader.draft == true and activityLeader.id != null and !external}" class="waves-effect waves-light btn modal-trigger" data-target="modal1" th:disabled="${!editable}">Envoyer la fiche par mail<i class="tiny material-icons right">send</i></a>
                         </div>
                     </div>
                 </div>
