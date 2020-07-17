@@ -39,36 +39,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/autolog")
-    public String autolog(HttpServletRequest request) {
-
-        userService.autoLogin(request, "bastien@gmail.com", "tacos");
-
-        return "redirect:/profile";
-    }
-
-    @GetMapping("/init")
-    @ResponseBody
-    public User init() {
-
-        if (!roleRepository.findByName("ROLE_COORDINATEUR").isPresent()) {
-
-            roleRepository.save(new Role("ROLE_COORDINATEUR"));
-        }
-        if (!roleRepository.findByName("ROLE_ADMIN").isPresent()) {
-
-            roleRepository.save(new Role("ROLE_ADMIN"));
-        }
-
-        Optional<Role> optionalRole =roleRepository.findByName("ROLE_ADMIN");
-        User user = new User("bastien@gmail.com", passwordEncoder.encode("tacos"));
-        if (optionalRole.isPresent()) {
-
-            user.getRoles().add(optionalRole.get());
-        }
-        return userRepository.save(user);
-    }
-
     @GetMapping(value = "/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 
