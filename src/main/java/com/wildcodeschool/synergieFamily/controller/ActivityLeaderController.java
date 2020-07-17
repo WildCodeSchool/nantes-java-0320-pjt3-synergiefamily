@@ -77,16 +77,20 @@ public class ActivityLeaderController {
 
         String skillList = activityLeader.getSkillList();
         String[] skills = skillList.split(",");
-        if (!skillList.equals("")) { // TODO voir pour ne pas recréer de skill dans la BDD
+        if (!skillList.equals("")) {
+
             for (String skill : skills) {
+
                 Skill skillItem = new Skill(skill.trim());
                 activityLeader.getSkills().add(skillItem);
             }
         }
 
         if (activityLeader.getId() != null) {
+
             unavailabilityRepository.deleteAllByActivityLeader(activityLeader);
             for (Unavailability unavailability : activityLeader.getUnavailabilities()) {
+
                 unavailability.setActivityLeader(activityLeader);
                 unavailabilityRepository.save(unavailability);
             }
@@ -96,17 +100,19 @@ public class ActivityLeaderController {
         if (unavailabilityStart != null && !unavailabilityStart.isEmpty()
                 && unavailabilityEnd != null && !unavailabilityEnd.isEmpty()
         ) {
+
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             try {
+
                 Date start = format.parse(unavailabilityStart);
                 Date end = format.parse(unavailabilityEnd);
                 Unavailability unavailability = new Unavailability(start, end, activityLeader);
                 unavailabilityRepository.save(unavailability);
             } catch (ParseException e) {
+
                 e.printStackTrace();
             }
         }
-
         return "redirect:/activity-leader-modification/" + activityLeader.getId();
     }
 
@@ -116,12 +122,15 @@ public class ActivityLeaderController {
 
         Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
         if (optionalActivityLeader.isPresent()) {
+
             ActivityLeader activityLeader = optionalActivityLeader.get();
             String skills = "";
             for (Skill skill : activityLeader.getSkills()) {
+
                 skills += skill.getName() + ",";
             }
             if (skills.length() > 0) {
+
                 skills = skills.substring(0, skills.length() - 1);
             }
             activityLeader.setSkillList(skills);
@@ -131,7 +140,6 @@ public class ActivityLeaderController {
             out.addAttribute("diplomasList", diplomaRepository.findAll());
             out.addAttribute("editable", true);
             out.addAttribute("external", false);
-
         }
         return "activity-leader-creation";
     }
@@ -142,6 +150,7 @@ public class ActivityLeaderController {
 
         Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
         if (optionalActivityLeader.isPresent()) {
+
             ActivityLeader activityLeader = optionalActivityLeader.get();
             out.addAttribute("activityLeader", activityLeader);
             out.addAttribute("valuesList", valueRepository.findAll());
@@ -158,6 +167,7 @@ public class ActivityLeaderController {
 
         Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
         if (optionalActivityLeader.isPresent()) {
+
             ActivityLeader activityLeader = optionalActivityLeader.get();
             activityLeader.setDisabled(true);
             activityLeaderRepository.save(activityLeader);
@@ -166,12 +176,12 @@ public class ActivityLeaderController {
     }
 
     @GetMapping("/activity-leader-email/{id}")
-    public String email(HttpServletRequest request,  @PathVariable Long id){
+    public String email(HttpServletRequest request,  @PathVariable Long id) {
 
         String randomToken = tokenService.randomToken(16, 4);
-
         Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
         if (optionalActivityLeader.isPresent()) {
+
             ActivityLeader activityLeader = optionalActivityLeader.get();
             activityLeader.setToken(randomToken);
             activityLeader = activityLeaderRepository.save(activityLeader);
@@ -188,12 +198,15 @@ public class ActivityLeaderController {
 
         Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findByToken(token);
         if (optionalActivityLeader.isPresent()) {
+
             ActivityLeader activityLeader = optionalActivityLeader.get();
             String skills = "";
             for (Skill skill : activityLeader.getSkills()) {
+
                 skills += skill.getName() + ",";
             }
             if (skills.length() > 0) {
+
                 skills = skills.substring(0, skills.length() - 1);
             }
             activityLeader.setSkillList(skills);
@@ -226,9 +239,12 @@ public class ActivityLeaderController {
             @RequestParam(required = false) List<Long> activityLeaders) {
 
         if (activityLeaders != null) {
+
             for (Long id : activityLeaders) {
+
                 Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
                 if (optionalActivityLeader.isPresent()) {
+
                     ActivityLeader activityLeader = optionalActivityLeader.get();
                     emailService.sendInformationActivityLeader(activityLeader, subject, content);
                 }

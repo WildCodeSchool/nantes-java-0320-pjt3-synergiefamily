@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
 @Controller
 public class UserController {
 
@@ -51,16 +50,20 @@ public class UserController {
     @GetMapping("/init")
     @ResponseBody
     public User init() {
+
         if (!roleRepository.findByName("ROLE_COORDINATEUR").isPresent()) {
+
             roleRepository.save(new Role("ROLE_COORDINATEUR"));
         }
         if (!roleRepository.findByName("ROLE_ADMIN").isPresent()) {
+
             roleRepository.save(new Role("ROLE_ADMIN"));
         }
 
         Optional<Role> optionalRole =roleRepository.findByName("ROLE_ADMIN");
         User user = new User("bastien@gmail.com", passwordEncoder.encode("tacos"));
         if (optionalRole.isPresent()) {
+
             user.getRoles().add(optionalRole.get());
         }
         return userRepository.save(user);
@@ -68,8 +71,10 @@ public class UserController {
 
     @GetMapping(value = "/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
+
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/index?logout";
@@ -79,10 +84,13 @@ public class UserController {
     public String getRegister(Model out,
                               @RequestParam(required = false) Long id,
                               @RequestParam(required = false) boolean emailError) {
+
         User user = new User();
         if (id != null) {
+
             Optional<User> optionalUser = userRepository.findById(id);
             if (optionalUser.isPresent()) {
+
                 user = optionalUser.get();
             }
         }
@@ -119,7 +127,6 @@ public class UserController {
         return "redirect:/user-creation?emailError=true";
     }
 
-
     @GetMapping("/user-edition")
     public String getUserCreation(Model out,
                                   @RequestParam(required = false) Long id) {
@@ -143,15 +150,16 @@ public class UserController {
 
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
+
             Optional<Role> role = roleRepository.findById(roleId);
             if (role.isPresent()) {
+
                 List<Role> roles = new ArrayList<>();
                 roles.add(role.get());
                 user.get().setRoles(roles);
                 userRepository.save(user.get());
             }
         }
-
         return "redirect:/user-management";
     }
 
@@ -188,17 +196,12 @@ public class UserController {
         if (optionalUser.isPresent()) {
 
             User user = optionalUser.get();
-
             if (!user.getEmail().equals(userService.getLoggedUser().getEmail())) {
 
                 user.setDisabled(true);
                 userRepository.save(user);
-            } else {
-
-                //TODO: display a message to prevent the logged user that he can't delete his own account.
             }
         }
-
         return "redirect:/user-management";
     }
 
@@ -207,7 +210,6 @@ public class UserController {
 
         return "login";
     }
-
 }
 
 

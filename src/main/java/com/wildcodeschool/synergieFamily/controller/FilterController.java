@@ -29,56 +29,70 @@ public class FilterController {
 
     @Autowired
     private ActivityLeaderRepository activityLeaderRepository;
+
     @Autowired
     private AudienceRepository audienceRepository;
+
     @Autowired
     private LocationRepository locationRepository;
+
     @Autowired
     private DiplomaRepository diplomaRepository;
+
     @Autowired
     private SkillRepository skillRepository;
+
     @Autowired
     private ValueRepository valueRepository;
 
     @PostMapping("/filter")
-    public String filter(Model model, @ModelAttribute ActivityLeader activityLeader){
+    public String filter(Model model, @ModelAttribute ActivityLeader activityLeader) {
 
         List<Diploma> diplomas = activityLeader.getDiplomas();
         Long[] diplomasIds;
         if (diplomas.size() > 0) {
+
             diplomasIds = new Long[diplomas.size()];
             for (int i = 0; i < diplomas.size(); i++) {
+
                 Diploma diploma = diplomas.get(i);
                 Long id = diploma.getId();
                 diplomasIds[i] = id;
             }
         } else {
+
             diplomasIds = null;
         }
 
         List<Value> values = activityLeader.getValues();
         Long[] valuesIds;
         if (values.size() > 0) {
+
             valuesIds = new Long[values.size()];
             for (int i = 0; i < values.size(); i++) {
+
                 Value value = values.get(i);
                 Long id = value.getId();
                 valuesIds[i] = id;
             }
         } else {
+
             valuesIds = null;
         }
 
         List<Audience> audiences = activityLeader.getAudiences();
         Long[] audiencesIds;
         if (audiences.size() > 0) {
+
             audiencesIds = new Long[audiences.size()];
             for (int i = 0; i < audiences.size(); i++) {
+
                 Audience audience = audiences.get(i);
                 Long id = audience.getId();
                 audiencesIds[i] = id;
             }
         } else {
+
             audiencesIds = null;
         }
 
@@ -98,14 +112,12 @@ public class FilterController {
                 activityLeader.getStartDate(),
                 activityLeader.getEndDate()
                 );
-
-        //TODO  activityLeader.hasACar()
         model.addAttribute("activityleaders", list);
         return "filter";
     }
 
     @GetMapping("/filter")
-    public String showFilter(Model model){
+    public String showFilter(Model model) {
 
         model.addAttribute("activityLeader", new ActivityLeader());
         model.addAttribute("audienceList", audienceRepository.findAll());
@@ -121,17 +133,16 @@ public class FilterController {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo("alan.raoul22@gmail.com");
-
         msg.setSubject("Testing from Spring Boot");
         msg.setText("Hello World \n Spring Boot Email");
-
         javaMailSender.send(msg);
 
     }
 
     @GetMapping("/email")
     @ResponseBody
-    public String email(){
+    public String email() {
+
         sendEmail();
         return "ok";
     }
