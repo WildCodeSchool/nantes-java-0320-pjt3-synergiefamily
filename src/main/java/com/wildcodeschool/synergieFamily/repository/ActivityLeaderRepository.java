@@ -53,8 +53,8 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             "AND (value.id in (:valuesIds) OR (:valuesIds IS NULL))" +
             "AND (audience.id in (:audiencesIds) OR (:audiencesIds is NULL))" +
             " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)"+
-            " AND ((:startDate IS NULL) OR (startDate= :startDate))" +
-            "AND ((:endDate IS NULL) OR (:endDate= :endDate))"+
+            "AND ((:startDate IS NULL) OR (startDate= :startDate))" +
+            "AND ((:endDate IS NULL) OR (endDate= :endDate))"+
             "AND (hasACar IS NULL OR hasACar= :hasACar)"
 
     )
