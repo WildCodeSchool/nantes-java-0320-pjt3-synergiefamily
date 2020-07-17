@@ -22,7 +22,6 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
     @Query("SELECT a FROM ActivityLeader a ORDER BY a.id DESC")
     public List<ActivityLeader> findAll();
 
-
     @Query(nativeQuery = true, value = "SELECT DISTINCT activity_leader.* FROM activity_leader" +
             " LEFT JOIN audience_activity_leader ON activity_leader.id=audience_activity_leader.activity_leader_id" +
             " LEFT JOIN audience" +
@@ -56,7 +55,6 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             " AND ((:startDate IS NULL) OR (startDate= :startDate))" +
             "AND ((:endDate IS NULL) OR (:endDate= :endDate))"+
             "AND (hasACar IS NULL OR hasACar= :hasACar)"
-
     )
     public List<ActivityLeader> findAllByFilter(
             @Param("firstName") String firstName,
