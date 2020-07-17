@@ -157,12 +157,15 @@
                         </div>
                         <div class="exp">
                             <p>EXP</p>
-                            <p><span th:text="|${activityleader.getExperience() == 0 ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
+                            <p><span th:text="|${activityleader.getExperience() == null || activityleader.getExperience().isEmpty() ? 'Non renseigné' : activityleader.getExperience()}|"></span></p>
                         </div>
                         <div class="diploma-card">
                             <p class="collections-title">Diplômes</p>
                             <div class="chip" th:each="diploma : ${activityleader.diplomas}" th:text="${diploma.getName()}">
                                 BAFA
+                            </div>
+                            <div class="chip" th:if="${activityleader.diplomas.size() == 0}">
+                                Non renseigné
                             </div>
                         </div>
                     </div>
@@ -170,13 +173,16 @@
                         <div class="competences-filter">
                             <div class="competence">
                                 <p class="competences">Compétences</p>
-                                <div class="chips">
+                                <div class="chip" th:each="skill : ${activityleader.skills}" th:text="${skill.getName()}"></div>
+                                <div class="chip" th:if="${activityleader.skills.size() == 0}">
+                                    Non renseigné
                                 </div>
                             </div>
                             <div class="collections-title-filter">
                                 <p class="collections-title">Publics concernés</p>
-                                <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}">
-                                    3/6ans
+                                <div class="chip" th:each="audience : ${activityleader.audiences}" th:text="${audience.getAgeBracket()}"></div>
+                                <div class="chip" th:if="${activityleader.audiences.size() == 0}">
+                                    Non renseigné
                                 </div>
                             </div>
                         </div>

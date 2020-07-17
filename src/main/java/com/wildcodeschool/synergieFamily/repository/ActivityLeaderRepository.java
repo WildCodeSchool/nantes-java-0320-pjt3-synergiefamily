@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,10 +53,8 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             "AND (value.id in (:valuesIds) OR (:valuesIds IS NULL))" +
             "AND (audience.id in (:audiencesIds) OR (:audiencesIds is NULL))" +
             " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)"+
-
-            // TODO    " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
-            // todo    " AND (endDate IS NULL OR (:endDate='') OR endDate LIKE %:endDate%)"
-
+            " AND ((:startDate IS NULL) OR (startDate= :startDate))" +
+            "AND ((:endDate IS NULL) OR (:endDate= :endDate))"+
             "AND (hasACar IS NULL OR hasACar= :hasACar)"
 
     )
@@ -72,9 +71,9 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("diplomasIds") Long[] diplomasIds,
             @Param("valuesIds") Long[] valuesIds,
             @Param("audiencesIds") Long[] audiencesIds,
-            @Param("hasACar") Boolean hasACar);
-    //TODO      @Param("startDate") Date startDate,
-    //TODO       @Param("endDate") Date endDate);
+            @Param("hasACar") Boolean hasACar,
+            @Param("startDate") Date startDate,
+            @Param("endDate") Date endDate);
 
     @Query("SELECT a FROM ActivityLeader a  WHERE a.disabled <> true ORDER BY a.id DESC")
     public List<ActivityLeader> findAllActive();

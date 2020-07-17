@@ -94,7 +94,9 @@ public class FilterController {
                 diplomasIds,
                 valuesIds,
                 audiencesIds,
-                activityLeader.getHasACar()
+                activityLeader.getHasACar(),
+                activityLeader.getStartDate(),
+                activityLeader.getEndDate()
                 );
 
         //TODO  activityLeader.hasACar()
