@@ -20,6 +20,7 @@
                     <form class="card-content" th:action="@{/user-creation}" method="post" >
                         <div class="form-field" id="input-user-creation">
                             <input id="email" type="email" class="validate" placeholder="Email" name="email">
+                            <a th:if="${emailError}">Un compte a déjà été créé avec cette adresse e-mail.</a>
                         </div>
                         <div class = "form-field">
                             <select id="role_id" th:field="*{user.roles}" required>
