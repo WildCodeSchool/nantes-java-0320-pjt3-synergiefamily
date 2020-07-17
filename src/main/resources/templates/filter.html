@@ -147,7 +147,7 @@
                             <p><i class="tiny material-icons">home</i><span th:text="|${activityleader.location.getAddress1() == null || activityleader.location.getAddress1().isEmpty() ? 'Non renseigné' : activityleader.location.getAddress1()}|"></span><span th:text="|${activityleader.location.getPostcode() == null ? ' ' : activityleader.location.getPostcode()}|">Code postal</span> <span th:text="|${activityleader.location.getCity() == null ? ' ' : activityleader.location.getCity()}|">Ville</span></p>
                         </div>
                         <div class="vehicule">
-                            <!--<p><i class="tiny material-icons">directions_car</i><span th:text="|${activityLeader.hasACar ? 'Oui' : 'Non'}|">Oui</span></p>-->
+                            <p><i class="tiny material-icons">directions_car</i><span th:text="|${activityLeader.hasACar ? 'Oui' : 'Non'}|">Oui</span></p>
                         </div>
                     </div>
                     <div class="bloc-age">

@@ -616,7 +616,7 @@ header ul {
     .phone-email-address {
         display: flex;
         justify-content: space-between;
-        width: 60rem;
+        width: 45rem;
     }
     .phone-email-address i {
         margin-right: 0.5rem;
@@ -625,6 +625,9 @@ header ul {
         width: 15rem;
         display: flex;
         justify-content: flex-start;
+    }
+    .vehicule p i {
+        margin-right: 0.5rem;
     }
     .bloc-phone, .bloc-age {
         border-bottom: 1px solid gainsboro;
