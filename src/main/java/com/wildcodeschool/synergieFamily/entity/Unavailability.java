@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "availability")
-public class Availability {
+@Table(name = "unavailability")
+public class Unavailability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,11 @@ public class Availability {
     @JoinColumn(name = "activity_leader_id")
     private ActivityLeader activityLeader;
 
-    public Availability() {
+    public Unavailability() {
     }
 
-    public Availability(Date startDate, Date endDate, ActivityLeader activityLeader) {
+    public Unavailability(Date startDate, Date endDate, ActivityLeader activityLeader) {
+
         this.startDate = startDate;
         this.endDate = endDate;
         this.activityLeader = activityLeader;
@@ -54,5 +55,13 @@ public class Availability {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public ActivityLeader getActivityLeader() {
+        return activityLeader;
+    }
+
+    public void setActivityLeader(ActivityLeader activityLeader) {
+        this.activityLeader = activityLeader;
     }
 }

@@ -1,11 +1,13 @@
 package com.wildcodeschool.synergieFamily.repository;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
+import com.wildcodeschool.synergieFamily.entity.Diploma;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,12 +16,11 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
 
     Optional<ActivityLeader> findByToken(String token);
 
-    @Query("SELECT a FROM ActivityLeader a WHERE a.lastName= :lastName OR a.firstName= :firstName OR a.email= :email ORDER BY a.lastName asc, a.firstName asc, a.email asc")
+    @Query("SELECT a FROM ActivityLeader a WHERE (a.lastName= :lastName OR a.firstName= :firstName OR a.email= :email) AND a.disabled <> true ORDER BY a.lastName asc, a.firstName asc, a.email asc")
     List<ActivityLeader> findByLastNameContainingOrFirstNameContainingOrEmailContaining(@Param("lastName") String lastName , @Param("firstName") String firstName, @Param("email") String email);
 
     @Query("SELECT a FROM ActivityLeader a ORDER BY a.id DESC")
     public List<ActivityLeader> findAll();
-
 
     @Query(nativeQuery = true, value = "SELECT DISTINCT activity_leader.* FROM activity_leader" +
             " LEFT JOIN audience_activity_leader ON activity_leader.id=audience_activity_leader.activity_leader_id" +
@@ -47,17 +48,16 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             " AND (location.address2 IS NULL OR (:address2='') OR location.address2 LIKE %:address2%)" +
             " AND (location.city IS NULL OR (:city='') OR location.city LIKE %:city%)" +
             " AND (location.postcode IS NULL OR (:postcode='') OR location.postcode LIKE %:postcode%)" +
-            /*
-            " AND (hasACar IS NULL OR (:hasACar='0') OR hasACar LIKE %:hasACar%)" +
-*/
-            " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)"
-/*
-            TODO " AND (`value`.name IS NULL OR (:valeur='') OR `value`.name LIKE %:valeur%)" VOIR POUR PLUSIEURS VALEURS
-*/
-            // TODO    " AND (startDate IS NULL OR (:startDate='') OR startDate LIKE %:startDate%)" +
-            // todo    " AND (endDate IS NULL OR (:endDate='') OR endDate LIKE %:endDate%)"
+            " AND (diploma.id in (:diplomasIds) OR (:diplomasIds IS NULL))" +
+            " AND (value.id in (:valuesIds) OR (:valuesIds IS NULL))" +
+            " AND (audience.id in (:audiencesIds) OR (:audiencesIds is NULL))" +
+            " AND (experience IS NULL OR (:experience='') OR experience LIKE %:experience%)"+
+            " AND ((:startDate IS NULL) OR (startDate= :startDate))" +
+            " AND ((:endDate IS NULL) OR (endDate= :endDate))"+
+            " AND (hasACar IS NULL OR hasACar= :hasACar)" +
+            " AND (activity_leader.disabled <> true)"
     )
-    public List<ActivityLeader> findAllByFilter(
+    public List<ActivityLeader> findAllActiveByFilter(
             @Param("firstName") String firstName,
             @Param("lastName") String lastName,
             @Param("email") String email,
@@ -66,9 +66,13 @@ public interface ActivityLeaderRepository extends JpaRepository<ActivityLeader, 
             @Param("address2") String address2,
             @Param("city") String city,
             @Param("postcode") String postCode,
-            @Param("experience") String experience);
-    //TODO      @Param("startDate") Date startDate,
-    //TODO       @Param("endDate") Date endDate);
+            @Param("experience") String experience,
+            @Param("diplomasIds") Long[] diplomasIds,
+            @Param("valuesIds") Long[] valuesIds,
+            @Param("audiencesIds") Long[] audiencesIds,
+            @Param("hasACar") Boolean hasACar,
+            @Param("startDate") Date startDate,
+            @Param("endDate") Date endDate);
 
     @Query("SELECT a FROM ActivityLeader a  WHERE a.disabled <> true ORDER BY a.id DESC")
     public List<ActivityLeader> findAllActive();

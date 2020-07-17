@@ -34,14 +34,11 @@ h2 {
 }
 
 #card2 {
-    width: 42rem;
-    margin-right: 4rem;
+    margin: 0rem;
 }
 .center-align {
     margin-top: 4rem;
 }
-
-
 
 /*PAGE PROFIL 2*/
 #button-form-user-modification {
@@ -53,19 +50,6 @@ h2 {
 #row-profil {
     margin-top: 3rem;
 }
-
-
-
-
-
-/*PAGE UTILISATEURS 3*/
-
-
-
-
-
-/* PROFILE PAGE */
-
 
 /* USER MANAGEMENT PAGE */
 
@@ -95,17 +79,15 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 .bloc-user-creation h4 {
-    margin-top: 0rem;
+    margin-top: 2rem;
 }
 .bloc-user-creation form {
     padding-bottom: 0rem;
 }
 #bloc-form-user-creation {
     margin-right: 1rem;
-
 }
 
 #button-form-user-creation {
@@ -117,13 +99,7 @@ h2 {
     margin-bottom: 1rem;
 }
 
-
-
-
-
-
-
-/*PAGE ANIMATEUR 4*/
+/* ACTIVITY LEADER PAGE */
 .userManagementPageContent {
     overflow: scroll;
 }
@@ -168,115 +144,88 @@ a i {
 }
 
 
-
-
-
-
-/*PAGE FORMULAIRE CREATION ANIMATEUR*/
-
-
-
-
-
-
-
-
-
-
-
-
-/*PAGE RECHERCHE*/
-
-/*.card_check{
-   margin-left: 10vh;
+/* ACTIVITY LEADER FORM PAGE */
+.title-center {
+    text-align: center;
 }
-#card-action{
+#row-activity-leader-creation {
+    margin: 1rem;
+}
+#comment {
+    height: 5rem;
+}
+#end-date2 {
+    margin-left: 0rem;
+    width: 15rem;
+    padding-left: 0;
+}
+.start-date {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+}
+#startdate1 {
+    width: 15rem;
+}
+.center-align-button {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+#send-email-condition {
+    margin-top: 2rem;
+    width: 20rem;
+}
+#send-email-condition i {
+    color: white;
 }
 
-#card-white{
-    width: 48rem;
+
+/* FILTER PAGE */
+
+#skill-filter {
+    margin-bottom: 0;
+    height: 2rem;
 }
-
-#search-button{
-    margin: 3rem;}
-
-#card-check.card_check{
+.center-align-filter {
+    text-align: center;
+    margin-top: 2rem;
+}
+.block-filter {
+    margin: 1rem;
+}
+.selectemail {
     display: flex;
-    margin: auto;
-}
-
-.phone-email-address{
-    display: flex;
-}
-
-.card .card-content p{
-    margin-right: 2rem;
-}
-
-.title-check{
-    display: flex;
-    flex-direction: row;
-    padding-right: 5rem;
-}
-
-.title-check h5 {
-    display: flex;
-    margin-right: 22rem;
-    width: 10rem;
-}
-
-.title-check p {
-    padding-left: 30rem;
-    padding-top: 1rem;
-}
-
-.checkandname{
-    display: flex;
-    flex-direction:row-reverse;
-}
-
-.check{
-    padding-left: 4rem;
-    padding-top: 1rem;
-    margin-left: 2rem;
-}
-
-
-
-#cardtest{
-    display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding-left: 26rem;
+    align-items: center;
+    margin-bottom: 2rem;
 }
-
-.selectemail{
+#card-filter {
+    margin: 1rem;
+}
+.title-check {
     display: flex;
-    justify-content: center;
-    padding-left: 3rem;
+    justify-content: space-between;
 }
-
-.elementselect{
-    padding-right: 3rem;
+.title-check label {
+    margin-top: 1rem;
 }
-
-#leader{
-    display: flex;
-    justify-content: center;
-    padding-left: 5rem;
-}*/
-/* test */
+.show-activity-leader {
+    margin-top: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
 
 ::placeholder {
     color: black;
 }
-/*FRAGMENT NAV*/
+
+/* FRAGMENT NAV */
 .side-nav {
     background-color: #f7f7f7;
 }
 header {
-    width: 10rem;
+    width: 13rem;
 }
 header img {
     width: 8rem;
@@ -317,12 +266,11 @@ header ul {
     height: 22rem;
 }
 
-
-
 @media only screen and (min-width: 768px) {
     h2 {
         font-size: 4rem;
     }
+
     /*FRAGMENT NAV*/
     .side-nav {
         background-color: #f7f7f7;
@@ -380,12 +328,11 @@ header ul {
         margin-top: 3rem;
         margin-right: 3rem;
         width: 80rem;
+        display: contents;
     }
     #card {
         width: 30rem;
     }
-
-
 
 
 
@@ -402,11 +349,6 @@ header ul {
     }
 
 
-
-
-
-
-
     /*PAGE UTILISATEURS 3*/
     .user-management-body{
         display: flex;
@@ -421,12 +363,6 @@ header ul {
     .striped {
         margin-top: 2rem;
     }
-
-
-
-
-
-
 
 
     /*PAGE FORMULAIRE CREATION UTILISATEUR*/
@@ -460,12 +396,6 @@ header ul {
     }
 
 
-
-
-
-
-
-
     /*PAGE ANIMATEUR 4*/
     a i {
         color: black;
@@ -480,42 +410,57 @@ header ul {
     }
     .user-animator-ligne {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-items: flex-end;
         margin-top: 4rem;
     }
-
-    .pagination {
-        display: flex;
-        justify-content: flex-end;
+    #ajout-animateur {
+        margin-right: 3rem;
     }
     .searchButton {
         border: none;
         background-color: transparent;
     }
-
-
-
-
-
-
-
+    #send-email-animator {
+        margin-top: 3rem;
+    }
 
     /*PAGE FORMULAIRE CREATION ANIMATEUR*/
+    .title-center {
+        text-align: center;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
     .activity-leader-bloc {
+        width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    .name {
-        height: 4rem;
+    #card-action {
+        padding: 0rem;
     }
-    .birthdate, .phone, .location, .city, .diploma {
+    #row-activity-leader-creation {
+        width: 60rem;
+        margin-top: 4rem;
+    }
+    .card-action {
+        margin: 3rem;
+    }
+    .birthdate, .phone, .location, .city, .diploma, .name {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
     }
     #birthdate, #email1, #firstname, #last_name, #phone, #adress1, #adress2, #postcode, #city, #car1, #diploma, #xp {
-        width: 20rem;
+        width: 24rem;
+    }
+    #email1, #last_name, #adress1, #postcode, #xp, #car1 {
+        margin-left: 4rem;
+    }
+    #car1 {
+        margin-left: 5rem;
     }
     #phone1, #city1, #diploma1, #end-date2 {
         margin-left: 0;
@@ -530,18 +475,172 @@ header ul {
     #diploma1 {
         margin-bottom: 1.5rem;
     }
-
-
-
-
-
-
-
-
-
-
+    .center-align-button button {
+        margin-bottom: 4rem;
+        margin-top: 3rem;
+    }
+    .center-align-button {
+        text-align: center;
+    }
+    #diploma1 input {
+        width: 24rem;
+    }
+    #send-email-condition {
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+        margin-top: 0rem;
+    }
+    #send-email-condition i {
+        color: white;
+    }
 
 
     /*PAGE RECHERCHE*/
+    #leader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .block-filter {
+        width: 100%;
+    }
+    #bloc-form-filter {
+        margin-left: 0;
+        max-width: 80rem;
+    }
+    .bloc1, .bloc2, .bloc3, .bloc4, .bloc6 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .bloc5 {
+        display: flex;
+        justify-content: space-between;
+    }
+    #firstname-filter, #last_name-filter, #birthdate-filter, #email-filter, #phone-filter, #location1-filter, #location2-filter, #postcode-filter, #city-filter, #car-filter, #diploma-filter, #xp-filter, #unavailabilityStart-filter, #unavailabilityEnd-filter, #startdate1-filter, #endDate1-filter, #audience-filter, #values-filter {
+        width: 24rem;
+    }
+    #last_name-filter, #postcode-filter {
+        margin-left: 0;
+    }
+    .car-filter {
+        margin-top: 1rem;
+    }
+    .car-filter span {
+        width: 24rem;
+    }
+    .bloc1, .bloc2, .bloc3, .values-filter {
+    height: 5rem;
+    }
+    .bloc6, .values-filter {
+        margin-top: 1rem;
+    }
+    .start-date-filter, .endDate-filter {
+        width: 24rem;
+    }
+    .audience-filter {
+        width: 24rem;
+        margin-top: 1.5rem;
+    }
+    .center-align-filter {
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .firstname-filter, .lastname-filter, .birthdate-filter, .email-filter, .phone-filter, .location1-filter, .location2-filter, .postcode-filter, .city-filter, .car-filter, .diploma-filter, .xp-filter, .start-date-filter, .endDate-filter, .audience-filter, .values-filter {
+        width: 25rem;
+    }
+    .skill-filter {
+        display: flex;
+        flex-direction: column;
+    }
+    #skill-filter {
+        width: 49rem;
+    }
+    .values-filter {
+        margin-top: 0;
+    }
+    #card-filter{
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+    .color {
+        background-color: greenyellow;
+        width: 2rem;
+    }
+    .bloc-card-filter {
+        margin-left: 1.5rem;
+        width: 76rem;
+    }
+    .form-card-filter {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #card-horizontal {
+        width: 80rem;
+    }
+    .title-check label {
+        margin-top: 1rem;
+    }
+    .title-check {
+        display: flex;
+        justify-content: space-between;
+    }
+    .bloc-phone {
+        display: flex;
+        justify-content: space-between;
+    }
+    .phone-email-address {
+        display: flex;
+        justify-content: space-between;
+        width: 45rem;
+    }
+    .phone-email-address i {
+        margin-right: 0.5rem;
+    }
+    .vehicule {
+        width: 15rem;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .vehicule p i {
+        margin-right: 0.5rem;
+    }
+    .bloc-phone, .bloc-age {
+        border-bottom: 1px solid gainsboro;
+    }
+    .bloc-age {
+        display: flex;
+        padding-bottom: 1rem;
+    }
+    .age, .exp, .competence {
+        margin-right: 5rem;
+    }
+    .bloc-competences {
+        display: flex;
+        justify-content: space-between;
+    }
+    .competences-filter {
+        display: flex;
+    }
+    .show-activity-leader {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+    }
+    .selectemail {
+        width: 80rem;
+        display: flex;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .selectemail p {
+        margin-right: 1rem;
+    }
 
 }

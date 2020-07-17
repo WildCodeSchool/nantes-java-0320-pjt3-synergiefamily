@@ -13,7 +13,6 @@
 <header th:replace="nav.html :: nav-bar"></header>
 <main class="userManagementPageContent">
     <h2>Gestion des animateurs</h2>
-    <!-- TODO: put the same font-size to all the h2 from the whole website. -->
     <div class="user-animator-ligne">
         <a id="ajout-animateur" class="waves-effect waves-light btn black-text white darken-1" th:href="@{/activity-leader-creation}">
             <i class="material-icons left">add</i>AJOUTER UN ANIMATEUR</a>
@@ -24,14 +23,27 @@
                 <input type="text" id="search" placeholder="Chercher" name="search">
             </div>
         </form>
-
     </div>
     <form method="post" action="/activity-leader-management-email">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <button type="submit" id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1">ENVOYER UN EMAIL
+        <button data-target="modal1" id="send-email-animator" class="waves-effect waves-light btn black-text white darken-1 btn modal-trigger">ENVOYER UN EMAIL
             <i class="tiny material-icons right">send</i></button>
-    <table class="striped">
-        <thead>
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Envoie ton message</h4>
+                <div>
+                    <label for="subject">Objet: </label><br>
+                    <input type="text" id="subject" name="subject"><br>
+                    <textarea id="content" name="content"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#close" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                <button type="submit">Envoyer</button>
+            </div>
+        </div>
+        <table class="striped">
+            <thead>
             <tr>
                 <th></th>
                 <th>Nom</th>
@@ -42,8 +54,8 @@
                 <th>Actif</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <tr th:each="activityLeader : ${activityLeaders}">
                 <td>
                     <label>
@@ -58,7 +70,6 @@
                 <td th:text="${#dates.format(activityLeader.birthdate, 'dd/MM/yyyy')}">01/01/2020</td>
                 <td >
                     <i th:if="${activityLeader.active}" class="small material-icons">done</i>
-
                     <i  th:if="${activityLeader.active == false}" class="small material-icons">close</i>
                 </td>
                 <td>
@@ -66,18 +77,9 @@
                     </a><a class="subheader" th:href="@{activity-leader/disable(id=${activityLeader.id})}"><i class="small material-icons" onclick="ConfirmMessage()">delete</i></a></p>
                 </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     </form>
-    <ul class="pagination">
-        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li class="active teal lighten-2"><a href="#!">1</a></li>
-        <li class="waves-effect"><a href="#!">2</a></li>
-        <li class="waves-effect"><a href="#!">3</a></li>
-        <li class="waves-effect"><a href="#!">4</a></li>
-        <li class="waves-effect"><a href="#!">5</a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-    </ul>
 </main>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -89,6 +91,9 @@
             alert("L'animateur a bien été supprimé.")
         }
     }
+    $(document).ready(function(){
+        $('.modal').modal();
+    });
 </script>
 </body>
 </html>

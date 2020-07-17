@@ -40,19 +40,16 @@ public class ActivityLeader {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
-    @Column
-    private Boolean hasACar;
+    @Column(columnDefinition = "boolean default false", nullable = false)
+    private Boolean hasACar = false;
 
     @Column
     private String experience;
 
     @Column
-    private String availability;
-
-    @Column
     private String comment;
 
-    @Column(columnDefinition = "boolean default true", nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private Boolean disabled = false;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -90,7 +87,7 @@ public class ActivityLeader {
     private List<Audience> audiences = new ArrayList<>();
 
     @OneToMany(mappedBy = "activityLeader")
-    private List<Availability> availabilities = new ArrayList<>();
+    private List<Unavailability> unavailabilities = new ArrayList<>();
 
     @Transient
     private Boolean active;
@@ -174,14 +171,6 @@ public class ActivityLeader {
         this.experience = experience;
     }
 
-    public String getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -256,8 +245,10 @@ public class ActivityLeader {
     }
 
     public Boolean getActive() {
+
         if (this.getStartDate() == null || this.getStartDate().compareTo(new Date()) > 0
                 || this.getEndDate() == null || this.getEndDate().compareTo(new Date()) < 0 ) {
+
             return false;
         }
         return true;
@@ -278,13 +269,16 @@ public class ActivityLeader {
     public int getAge() {
 
         if (this.birthdate != null) {
+
             return Period.between(convertDate(this.birthdate), convertDate(new Date())).getYears();
         } else {
+
             return 0;
         }
     }
 
     public LocalDate convertDate(Date dateToConvert) {
+
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
@@ -306,12 +300,12 @@ public class ActivityLeader {
         this.valueList = valueList;
     }
 
-    public List<Availability> getAvailabilities() {
-        return availabilities;
+    public List<Unavailability> getUnavailabilities() {
+        return unavailabilities;
     }
 
-    public void setAvailabilities(List<Availability> availabilities) {
-        this.availabilities = availabilities;
+    public void setUnavailabilities(List<Unavailability> availabilities) {
+        this.unavailabilities = availabilities;
     }
 
     public String getToken() {

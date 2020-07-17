@@ -1,12 +1,11 @@
 package com.wildcodeschool.synergieFamily.controller;
 
 import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
+import com.wildcodeschool.synergieFamily.entity.Audience;
 import com.wildcodeschool.synergieFamily.entity.Diploma;
 import com.wildcodeschool.synergieFamily.entity.Value;
 import com.wildcodeschool.synergieFamily.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import com.wildcodeschool.synergieFamily.service.EmailService;
@@ -14,11 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.Filter;
 
 @Controller
 public class FilterController {
@@ -28,20 +23,74 @@ public class FilterController {
 
     @Autowired
     private ActivityLeaderRepository activityLeaderRepository;
+
     @Autowired
     private AudienceRepository audienceRepository;
+
     @Autowired
     private LocationRepository locationRepository;
+
     @Autowired
     private DiplomaRepository diplomaRepository;
+
     @Autowired
     private SkillRepository skillRepository;
+
     @Autowired
     private ValueRepository valueRepository;
 
     @PostMapping("/filter")
-    public String filter(Model model, @ModelAttribute ActivityLeader activityLeader){
-        List<ActivityLeader> list = activityLeaderRepository.findAllByFilter(activityLeader.getFirstName(),
+    public String filter(Model model, @ModelAttribute ActivityLeader activityLeader) {
+
+        List<Diploma> diplomas = activityLeader.getDiplomas();
+        Long[] diplomasIds;
+        if (diplomas.size() > 0) {
+
+            diplomasIds = new Long[diplomas.size()];
+            for (int i = 0; i < diplomas.size(); i++) {
+
+                Diploma diploma = diplomas.get(i);
+                Long id = diploma.getId();
+                diplomasIds[i] = id;
+            }
+        } else {
+
+            diplomasIds = null;
+        }
+
+        List<Value> values = activityLeader.getValues();
+        Long[] valuesIds;
+        if (values.size() > 0) {
+
+            valuesIds = new Long[values.size()];
+            for (int i = 0; i < values.size(); i++) {
+
+                Value value = values.get(i);
+                Long id = value.getId();
+                valuesIds[i] = id;
+            }
+        } else {
+
+            valuesIds = null;
+        }
+
+        List<Audience> audiences = activityLeader.getAudiences();
+        Long[] audiencesIds;
+        if (audiences.size() > 0) {
+
+            audiencesIds = new Long[audiences.size()];
+            for (int i = 0; i < audiences.size(); i++) {
+
+                Audience audience = audiences.get(i);
+                Long id = audience.getId();
+                audiencesIds[i] = id;
+            }
+        } else {
+
+            audiencesIds = null;
+        }
+
+        List<ActivityLeader> list = activityLeaderRepository.findAllActiveByFilter(activityLeader.getFirstName(),
                 activityLeader.getLastName(),
                 activityLeader.getEmail(),
                 activityLeader.getPhone(),
@@ -49,15 +98,25 @@ public class FilterController {
                 activityLeader.getLocation().getAddress2(),
                 activityLeader.getLocation().getCity(),
                 activityLeader.getLocation().getPostcode(),
-                activityLeader.getExperience());
-        //TODO  activityLeader.hasACar()
+                activityLeader.getExperience(),
+                diplomasIds,
+                valuesIds,
+                audiencesIds,
+                activityLeader.getHasACar(),
+                activityLeader.getStartDate(),
+                activityLeader.getEndDate()
+                );
         model.addAttribute("activityleaders", list);
         return "filter";
     }
 
     @GetMapping("/filter")
-    public String showFilter(Model model){
+    public String showFilter(Model model) {
+
         model.addAttribute("activityLeader", new ActivityLeader());
+        model.addAttribute("audienceList", audienceRepository.findAll());
+        model.addAttribute("valuesList", valueRepository.findAll());
+        model.addAttribute("diplomasList", diplomaRepository.findAll());
         return "filter";
     }
 
@@ -68,32 +127,18 @@ public class FilterController {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo("alan.raoul22@gmail.com");
-
         msg.setSubject("Testing from Spring Boot");
         msg.setText("Hello World \n Spring Boot Email");
-
         javaMailSender.send(msg);
 
     }
 
     @GetMapping("/email")
     @ResponseBody
-    public String email(){
+    public String email() {
+
         sendEmail();
         return "ok";
-    }
-
-    @PostMapping("/filter-email")
-    public String multiEmail(@RequestParam List<Long> activityLeaders){
-
-        for (Long id : activityLeaders){
-            Optional<ActivityLeader> optionalActivityLeader = activityLeaderRepository.findById(id);
-            if (optionalActivityLeader.isPresent()) {
-                ActivityLeader activityLeader = optionalActivityLeader.get();
-                emailService.sendActivityLeaderByFilter(activityLeader);
-            }
-        }
-        return "redirect:/filter";
     }
 }
 

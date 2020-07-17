@@ -25,30 +25,35 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void autoLogin(HttpServletRequest request, String email, String password) {
+
         try {
+
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, password);
             authToken.setDetails(new WebAuthenticationDetails(request));
-
             Authentication authentication = authenticationManager.authenticate(authToken);
-
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        }catch (Exception e) {
+        } catch (Exception e) {
+
             e.printStackTrace();
         }
     }
 
     @Override
-    public User getLoggedEmail() {
+    public User getLoggedUser() {
+
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email;
         if (principal instanceof UserDetails) {
+
             email = ((UserDetails) principal).getUsername();
         } else {
+
             email = principal.toString();
         }
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
+
             return optionalUser.get();
         }
         return null;

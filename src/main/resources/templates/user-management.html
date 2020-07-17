@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestion des utilisateurs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="user-management-body">
 <header th:replace="nav.html :: nav-bar"></header>
     <main class="userManagementPageContent">
         <h2>Gestion des utilisateurs</h2>
-        <!-- TODO: put the same font-size to all the h2 from the whole website. -->
         <div class="user-animator-ligne">
             <a class="waves-effect waves-light btn black-text white darken-1" th:href="@{/user-creation}">
                 <i class="material-icons left">add</i>AJOUTER UN UTILISATEUR</a>
@@ -40,7 +39,7 @@
                                 </i>
                             </a>
                             <a class="subheader" th:href="@{/user/disable(id=${user.id})}">
-                                <i class="small material-icons" onclick="ConfirmMessage()">
+                                <i th:if="${user.id != loggedId}" class="small material-icons" onclick="ConfirmMessage()">
                                         delete
                                 </i>
                             </a>
@@ -50,10 +49,8 @@
             </tbody>
         </table>
     </main>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script type="text/javascript">
     function ConfirmMessage() {
 
