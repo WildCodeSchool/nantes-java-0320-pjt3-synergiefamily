@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -44,9 +43,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login/**").permitAll()
                 .antMatchers("/init").permitAll()
                 .antMatchers("/autolog").permitAll()
-                .antMatchers("/activity-leader-creation").hasRole("ADMIN")
-                .antMatchers("/activity-leader-email/*").hasRole("ADMIN")
-                .antMatchers("/activity-leader-management-email").hasRole("ADMIN")
+                .antMatchers("/activity-leader-creation").hasAnyRole("ADMIN", "COORDINATEUR")
+                .antMatchers("/activity-leader-email/*").hasAnyRole("ADMIN", "COORDINATEUR")
+                .antMatchers("/activity-leader-management-email").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/filter-email").hasAnyRole("ADMIN","COORDINATEUR")
                 .antMatchers("/activity-leader-modification/*").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/activity-leader-edit/**").permitAll()
@@ -55,7 +54,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profile").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/user-creation").hasRole("ADMIN")
                 .antMatchers("/user-management").hasRole("ADMIN")
-                .antMatchers("/activity-leader/disable").hasRole("ADMIN")
+                .antMatchers("/activity-leader/disable").hasAnyRole("ADMIN", "COORDINATEUR")
                 .antMatchers("/user/disable").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
