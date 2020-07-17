@@ -22,6 +22,7 @@ public class Audience {
     private List<ActivityLeader> activityLeaders = new ArrayList<>();
 
     public Audience(Long id, String ageBracket) {
+
         this.id = id;
         this.ageBracket = ageBracket;
     }

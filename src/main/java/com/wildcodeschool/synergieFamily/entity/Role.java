@@ -68,7 +68,7 @@ public class Role {
     public static String transformRoleForDisplay(String roleName) {
 
         int length = roleName.length();
-        String roleNameForDisplay = roleName.substring(4,length); // "ROLE_" deletion
+        String roleNameForDisplay = roleName.substring(5,length); // "ROLE_" deletion
         return roleNameForDisplay;
     }
 

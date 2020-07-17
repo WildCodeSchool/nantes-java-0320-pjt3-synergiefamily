@@ -245,8 +245,10 @@ public class ActivityLeader {
     }
 
     public Boolean getActive() {
+
         if (this.getStartDate() == null || this.getStartDate().compareTo(new Date()) > 0
                 || this.getEndDate() == null || this.getEndDate().compareTo(new Date()) < 0 ) {
+
             return false;
         }
         return true;
@@ -267,13 +269,16 @@ public class ActivityLeader {
     public int getAge() {
 
         if (this.birthdate != null) {
+
             return Period.between(convertDate(this.birthdate), convertDate(new Date())).getYears();
         } else {
+
             return 0;
         }
     }
 
     public LocalDate convertDate(Date dateToConvert) {
+
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
