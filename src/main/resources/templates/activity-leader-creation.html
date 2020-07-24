@@ -38,7 +38,7 @@
                         </div>
                         <div class="birthdate">
                             <div>
-                                <input th:field="*{birthdate}" id="birthdate" type="date" class="datepicker" placeholder="Date de Naissance" th:disabled="${!editable}">
+                                <input th:field="*{birthdate}" id="birthdate" type="text" class="datepicker" placeholder="Date de Naissance" th:disabled="${!editable}">
                             </div>
                             <div class="form-field">
                                 <input th:field="*{email}" required id="email1" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
@@ -89,11 +89,11 @@
                             <label>Ajouter une nouvelle indisponibilité</label>
                             <div class="unavailabilityStart">
                                 <label title="Clique-ici">Date de début d'indisponibilité</label>
-                                <input type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
+                                <input type="text" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
                             </div>
                             <div class="unavailabilityEnd">
                                 <label title="Clique-ici">Date de fin d'indisponibilité</label>
-                                <input type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
+                                <input type="text" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div th:if="${activityLeader.unavailabilities.size() > 0}">
@@ -103,12 +103,12 @@
                                     <div class="unavailabilityStart">
                                         <label title="Clique-ici">Date de début d'indisponibilité</label>
                                         <input th:field="*{unavailabilities[__${itemStat.index}__].startDate}"
-                                               type="date" class="datepicker" name="unavailabilityStart"
+                                               type="text" class="datepicker" name="unavailabilityStart"
                                                th:disabled="${!editable}">
                                     </div>
                                     <div class="unavailabilityEnd">
                                         <label title="Clique-ici">Date de fin d'indisponibilité</label>
-                                        <input th:field="*{unavailabilities[__${itemStat.index}__].endDate}" type="date"
+                                        <input th:field="*{unavailabilities[__${itemStat.index}__].endDate}" type="text"
                                                class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
                                     </div>
                                     <a href="#remove" th:onclick="'removeUnavailability(\'unavailability-' + ${unavailability.getId()} + '\')'">Supprimer cette indisponibilité</a>
@@ -122,11 +122,11 @@
                         <div class="start-date">
                             <div class="form-field col s6" id="end-date2">
                                 <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
-                                <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
+                                <input th:field="*{startDate}" id="startdate1" type="text" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                             </div>
                             <div class="end-date">
                                 <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
-                                <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
+                                <input th:field="*{endDate}" id="endDate1" type="text" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div class="values">
