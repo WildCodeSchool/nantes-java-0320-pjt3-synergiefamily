@@ -20,7 +20,8 @@
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <div class="search-wrapper" id="search-wrapper-animator">
                 <button type="submit" class="searchButton"> <i class="material-icons left" id="search-user-animator">search<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">chercher</font></font></i></button>
-                <input type="text" id="search" placeholder="Chercher" name="search">
+                <!--<input type="text" id="search" placeholder="Chercher" name="search">-->
+                <input placeholder="Chercher" name="search" autofocus />
             </div>
         </form>
     </div>
@@ -94,6 +95,13 @@
     $(document).ready(function(){
         $('.modal').modal();
     });
+    const input = document.querySelector('input');
+    const log = document.getElementById('log');
+
+    input.addEventListener('change', updateValue);
+
+    function updateValue(e) {
+        log.textContent = e.target.value;}
 </script>
 </body>
 </html>

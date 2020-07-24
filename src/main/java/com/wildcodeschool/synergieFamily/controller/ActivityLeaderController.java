@@ -1,6 +1,8 @@
 package com.wildcodeschool.synergieFamily.controller;
 
-import com.wildcodeschool.synergieFamily.entity.*;
+import com.wildcodeschool.synergieFamily.entity.ActivityLeader;
+import com.wildcodeschool.synergieFamily.entity.Skill;
+import com.wildcodeschool.synergieFamily.entity.Unavailability;
 import com.wildcodeschool.synergieFamily.repository.*;
 import com.wildcodeschool.synergieFamily.service.EmailService;
 import com.wildcodeschool.synergieFamily.service.TokenService;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -53,21 +54,6 @@ public class ActivityLeaderController {
         out.addAttribute("external", false);
 
         return "activity-leader-creation";
-    }
-
-    @GetMapping("/activity-leader-management")
-    public String showAllActivityLeaders(Model out) {
-
-        out.addAttribute("activityLeaders", activityLeaderRepository.findAllActive());
-        return "activity-leader-management";
-    }
-
-    @GetMapping("/activity-leaders-search")
-    public String showActivityLeadersByLastNameFirstNamePhoneEmail(Model out,
-                                                                   @RequestParam String search) {
-
-        out.addAttribute("activityLeaders", activityLeaderRepository.findByLastNameContainingOrFirstNameContainingOrEmailContaining(search, search, search));
-        return "activity-leader-management";
     }
 
     @PostMapping("/activity-leader-creation")
@@ -115,6 +101,28 @@ public class ActivityLeaderController {
         }
         return "redirect:/activity-leader-modification/" + activityLeader.getId();
     }
+
+    @GetMapping("/activity-leader-management")
+    public String showAllActivityLeaders(Model out) {
+
+        out.addAttribute("activityLeaders", activityLeaderRepository.findAllActive());
+        return "activity-leader-management";
+    }
+
+    @GetMapping("/activity-leaders-search")
+    public String showActivityLeadersByLastNameFirstNamePhoneEmail(Model out,
+                                                                   @RequestParam String search) {
+
+        if (search.isEmpty()) {
+            out.addAttribute("activityLeaders", activityLeaderRepository.findAllActive());
+        } else {
+            out.addAttribute("activityLeaders", activityLeaderRepository.findByLastNameContainingOrFirstNameContainingOrEmailContaining(search, search, search));
+
+        }
+        return "activity-leader-management";
+    }
+
+
 
     @GetMapping("/activity-leader-modification/{id}")
     public String getActivityLeaderModification(Model out,
