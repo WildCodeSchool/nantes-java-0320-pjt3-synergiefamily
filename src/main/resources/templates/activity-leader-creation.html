@@ -30,18 +30,18 @@
                         <h4 class="title-center">Information animateur</h4>
                         <div class="name">
                             <div class="firstname">
-                                <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
+                                <input th:field="*{firstName}" required id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
                             </div>
                             <div class="lastname">
-                                <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
+                                <input th:field="*{lastName}" required id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div class="birthdate">
                             <div>
-                                <input th:field="*{birthdate}" id="birthdate" type="date" class="datepicker" placeholder="Date de Naissance" th:disabled="${!editable}">
+                                <input th:field="*{birthdate}" id="birthdate" type="text" class="datepicker" placeholder="Date de Naissance" th:disabled="${!editable}">
                             </div>
                             <div class="form-field">
-                                <input th:field="*{email}" id="email1" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
+                                <input th:field="*{email}" required id="email1" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div class="phone">
@@ -89,11 +89,11 @@
                             <label>Ajouter une nouvelle indisponibilité</label>
                             <div class="unavailabilityStart">
                                 <label title="Clique-ici">Date de début d'indisponibilité</label>
-                                <input type="date" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
+                                <input type="text" class="datepicker" name="unavailabilityStart" th:disabled="${!editable}">
                             </div>
                             <div class="unavailabilityEnd">
                                 <label title="Clique-ici">Date de fin d'indisponibilité</label>
-                                <input type="date" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
+                                <input type="text" class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div th:if="${activityLeader.unavailabilities.size() > 0}">
@@ -103,12 +103,12 @@
                                     <div class="unavailabilityStart">
                                         <label title="Clique-ici">Date de début d'indisponibilité</label>
                                         <input th:field="*{unavailabilities[__${itemStat.index}__].startDate}"
-                                               type="date" class="datepicker" name="unavailabilityStart"
+                                               type="text" class="datepicker" name="unavailabilityStart"
                                                th:disabled="${!editable}">
                                     </div>
                                     <div class="unavailabilityEnd">
                                         <label title="Clique-ici">Date de fin d'indisponibilité</label>
-                                        <input th:field="*{unavailabilities[__${itemStat.index}__].endDate}" type="date"
+                                        <input th:field="*{unavailabilities[__${itemStat.index}__].endDate}" type="text"
                                                class="datepicker" name="unavailabilityEnd" th:disabled="${!editable}">
                                     </div>
                                     <a href="#remove" th:onclick="'removeUnavailability(\'unavailability-' + ${unavailability.getId()} + '\')'">Supprimer cette indisponibilité</a>
@@ -116,17 +116,17 @@
                             </div>
                         </div>
                         <div class="form-field">
-                            <label for="skill" type="text"  class="validate">Compétences</label>
+                            <label for="skill" type="text" title="Mettre une virgule entre chaque compétence" class="validate">Compétences</label>
                             <input th:field="*{skillList}" id="skill" type="text" autocomplete="off" class="validate" th:disabled="${!editable}">
                         </div>
                         <div class="start-date">
                             <div class="form-field col s6" id="end-date2">
                                 <label for="startdate1" title="Clique-ici">Date de début de contrat</label>
-                                <input th:field="*{startDate}" id="startdate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
+                                <input th:field="*{startDate}" id="startdate1" type="text" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                             </div>
                             <div class="end-date">
                                 <label for="endDate1" title="Clique-ici">Date de fin de contrat</label>
-                                <input th:field="*{endDate}" id="endDate1" type="date" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
+                                <input th:field="*{endDate}" id="endDate1" type="text" class="datepicker" value="05/03/2019" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div class="values">
