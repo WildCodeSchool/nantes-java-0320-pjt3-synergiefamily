@@ -34,7 +34,8 @@ public class ActivityLeaderController {
 
     @Autowired
     private ValueRepository valueRepository;
-
+//Article article = new Article();
+        //out.addAttribute("newArticle", article);
     @Autowired
     private TokenService tokenService;
 

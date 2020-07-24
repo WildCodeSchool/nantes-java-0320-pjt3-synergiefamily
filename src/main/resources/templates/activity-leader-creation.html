@@ -30,10 +30,10 @@
                         <h4 class="title-center">Information animateur</h4>
                         <div class="name">
                             <div class="firstname">
-                                <input th:field="*{firstName}" id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
+                                <input th:field="*{firstName}" required id="firstname"type="text" class="validate" placeholder="Prénom*" th:disabled="${!editable}">
                             </div>
                             <div class="lastname">
-                                <input th:field="*{lastName}" id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
+                                <input th:field="*{lastName}" required id="last_name" type="text" class="validate" placeholder="Nom*" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div class="birthdate">
@@ -41,7 +41,7 @@
                                 <input th:field="*{birthdate}" id="birthdate" type="date" class="datepicker" placeholder="Date de Naissance" th:disabled="${!editable}">
                             </div>
                             <div class="form-field">
-                                <input th:field="*{email}" id="email1" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
+                                <input th:field="*{email}" required id="email1" type="email" class="validate" placeholder="Email*" th:disabled="${!editable}">
                             </div>
                         </div>
                         <div class="phone">
