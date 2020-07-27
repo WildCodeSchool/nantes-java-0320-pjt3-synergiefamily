@@ -24,6 +24,7 @@
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <input th:field="*{id}" type="hidden">
             <input th:field="*{draft}" type="hidden">
+            <input th:field="*{token}" type="hidden">
             <div class="row" id="row-form">
                 <div class="card white">
                     <div class="card-action black-text" id="card-action">

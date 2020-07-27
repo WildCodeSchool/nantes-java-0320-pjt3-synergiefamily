@@ -114,10 +114,11 @@ public class ActivityLeaderController {
                                                                    @RequestParam String search) {
 
         if (search.isEmpty()) {
+
             out.addAttribute("activityLeaders", activityLeaderRepository.findAllActive());
         } else {
-            out.addAttribute("activityLeaders", activityLeaderRepository.findByLastNameContainingOrFirstNameContainingOrEmailContaining(search, search, search));
 
+            out.addAttribute("activityLeaders", activityLeaderRepository.findByLastNameContainingOrFirstNameContainingOrEmailContaining(search, search, search));
         }
         return "activity-leader-management";
     }
@@ -222,14 +223,13 @@ public class ActivityLeaderController {
             out.addAttribute("valuesList", valueRepository.findAll());
             out.addAttribute("audiencesList", audienceRepository.findAll());
             out.addAttribute("diplomasList", diplomaRepository.findAll());
-            out.addAttribute("editable", true);
+            out.addAttribute("editable", activityLeader.getDraft());
             out.addAttribute("external", true);
         }
         return "activity-leader-creation";
     }
 
     @PostMapping("/activity-leader-edit/")
-    @ResponseBody
     public String editForm(@ModelAttribute ActivityLeader activityLeader,
                            @RequestParam(required = false) String unavailabilityStart,
                            @RequestParam(required = false) String unavailabilityEnd) {
@@ -237,7 +237,7 @@ public class ActivityLeaderController {
         postForm(activityLeader, unavailabilityStart, unavailabilityEnd);
         activityLeader.setDraft(false);
         activityLeaderRepository.save(activityLeader);
-        return "Votre fiche a bien été modifiée, merci.";
+        return "redirect:/activity-leader-edit/" + activityLeader.getToken();
     }
 
     @PostMapping("/activity-leader-management-email")
