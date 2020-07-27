@@ -26,7 +26,7 @@ public class EmailService {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(activityLeader.getEmail());
         msg.setSubject("Valider votre fiche sur Synergie Family");
-        msg.setText("Bonjour,\n Merci de remplir vos informations sur le lien suivant :\n" +
+        msg.setText("Bonjour,\nMerci de remplir vos informations sur le lien suivant :\n" +
                 url + "/activity-leader-edit/" + token);
         javaMailSender.send(msg);
 
