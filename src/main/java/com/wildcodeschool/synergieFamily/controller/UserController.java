@@ -42,7 +42,7 @@ public class UserController {
 
     @GetMapping("/init")
     @ResponseBody
-    public User init() {
+    public String init() {
         if (!roleRepository.findByName("ROLE_COORDINATEUR").isPresent()) {
             roleRepository.save(new Role("ROLE_COORDINATEUR"));
         }
@@ -51,11 +51,13 @@ public class UserController {
         }
 
         Optional<Role> optionalRole =roleRepository.findByName("ROLE_ADMIN");
-        User user = new User("aurelien.lonni@gmail.com", passwordEncoder.encode("password"));
+        User user = new User("init@gmail.com", passwordEncoder.encode("init"));
         if (optionalRole.isPresent()) {
             user.getRoles().add(optionalRole.get());
         }
-        return userRepository.save(user);
+
+        userRepository.save(user);
+        return "ok";
     }
 
 
